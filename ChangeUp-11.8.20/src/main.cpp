@@ -111,7 +111,7 @@ void autonomous() {
       a_SKILLS_SPINOFF_SEQUEL();
     break;
     default:
-      a_SKILLS_BROKEN_ARM();
+      a_SKILLS_BROKEN_ARM_DISTANCE();
     break;
   }
 
@@ -197,6 +197,7 @@ void opcontrol() {
 bool pressed=false;
 // drive->setState({13.5_in,17_in,-114_deg});   //Set the state for odometry
 // drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
+pros::delay(2000);
 
 //Continually update the screen to show OdomDebug information.
 while(true){

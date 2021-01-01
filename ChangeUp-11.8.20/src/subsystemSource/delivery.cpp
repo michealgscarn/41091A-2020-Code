@@ -9,6 +9,6 @@ void setDelivery(int power){
  //DELIVERY CONTROL FUNCTIONS
  void setDeliveryMotor(){
    //Set delivery speed based on button presses
-   int power = 127 * (controller.get_digital(DIGITAL_R1) - controller.get_digital(DIGITAL_L2)- controller.get_digital(DIGITAL_R2)+controller.get_digital(DIGITAL_A));
+   int power = 127 * (controller.get_digital(DIGITAL_R1) - controller.get_digital(DIGITAL_L2)- controller.get_digital(DIGITAL_R2));
    setDelivery(power);
  }

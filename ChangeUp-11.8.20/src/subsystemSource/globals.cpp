@@ -38,6 +38,10 @@ pros::Optical topColor(18);   //Top color sensor
 //------Distance Sensors--//
 pros::Distance bottomIndex(18);
 
+pros::Distance leftTrackFront(15);
+pros::Distance leftTrackBack(20);
+pros::Distance frontTrack(17);
+
 
 pros::ADIAnalogIn lineFollower ('G');
 pros::ADIDigitalIn bottomLimit ({9,'H'}); //limit switch at bottom of intake

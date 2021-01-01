@@ -27,6 +27,10 @@ extern pros::Optical topColor;   //Top color sensor
 
 extern pros::Distance bottomIndex;
 
+extern pros::Distance leftTrackBack;
+extern pros::Distance leftTrackFront;
+extern pros::Distance frontTrack;
+
 extern pros::ADIDigitalIn bottomLimit;
 
 extern void waitForADIInit(int time);
