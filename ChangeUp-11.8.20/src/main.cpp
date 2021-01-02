@@ -197,7 +197,7 @@ void opcontrol() {
 bool pressed=false;
 // drive->setState({13.5_in,17_in,-114_deg});   //Set the state for odometry
 // drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
-pros::delay(2000);
+// pros::delay(2000);
 
 //Continually update the screen to show OdomDebug information.
 while(true){
