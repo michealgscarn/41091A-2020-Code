@@ -33,10 +33,10 @@ void initialize() {
     //Send a wait command before building the chassis or turning on the screen
     // if you don't do this, encoder values won't be correct.
     // waitForADIInit(200);
-    // pros::lcd::initialize();  //initialize brain screen so we can see info later
+    pros::lcd::initialize();  //initialize brain screen so we can see info later
 
       //run a task to refresh the screen when using the legacy display
-      // pros::Task screen_task(legacyDisplay_task_fn);
+      pros::Task screen_task(legacyDisplay_task_fn);
       pros::Task ballUpdate(ballCountTask);
       pros::Task filterUpdate(filterCountTask);
       bottomColor.set_led_pwm(100);
@@ -198,7 +198,8 @@ bool pressed=false;
 // drive->setState({13.5_in,17_in,-114_deg});   //Set the state for odometry
 // drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
 // pros::delay(2000);
-
+// DriveCoordShortNoPID(10,10,0,2);
+// DriveCoordShort(10,15,0,3);
 //Continually update the screen to show OdomDebug information.
 while(true){
   // FilterBall("red",300,5);
