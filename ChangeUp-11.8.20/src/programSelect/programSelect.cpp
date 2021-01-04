@@ -1,11 +1,7 @@
 #include "main.h"
 #include <iostream>
 #include<string>
-using namespace std ;
-
-// int len(std::string arr[]){
-//   return sizeof(arr);
-// }
+using namespace std;
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $$\    $$\                    $$\           $$\       $$\
@@ -39,8 +35,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 int posC=1; //Current position of each selection
 int posP=0; //Previous position of each selection
-int lineC=1; //Current line of order
-int lineP=1; //Line Backup
+int lineC=0; //Current line of order
+int lineP=0; //Line Backup
 std::string autoSel="Skills";
 std::string lineM[]={"Home","","Skills"}; //Total line memory
 std::string page="Home"; //Current Page
@@ -87,18 +83,18 @@ void leftButton(){
 }
 
 void aButton(std::string selC[]){
-    // for(int i=0;i<len(selC);i++){ //Write the next page
-    //   if(posC==i+1){
-    //     page = selC[i]; //Update the current page ID
-    //     lineM[i+1]=selC[i];
-    //     if(lineC==3){
-    //       // Controller.Screen.clearLine(2);
-    //       lineC=0;
-    //       page="Home";
-    //       autoSel=selC[i];
-    //     }
-    //   }
-    // }
+    for(int i=0;i<sizeof(selC->c_str());i++){ //Write the next page
+      if(posC==i+1){
+        page = selC[i]; //Update the current page ID
+        lineM[i+1]=selC[i];
+        if(lineC==2){
+          // controller.clearLine(2);
+          lineC=-1;
+          page="Home";
+          autoSel=selC[i];
+        }
+      }
+    }
     lineC++; //Update line count
     posC=1; //Reset option position
     posP=0; //Update Page after
@@ -106,38 +102,38 @@ void aButton(std::string selC[]){
 }
 
 void bButton(){
-    // Controller.Screen.clearLine(lineC);
+    // controller.clearLine(lineC);
     posP=0;
     lineC--; //Go back one line
-    page=lineM[lineC-1];
+    page=lineM[lineC];
     while(controller.get_digital(DIGITAL_B)){}; //Wait until button not pressed
 }
 
 void selectButtons(std::string selC[]){ //Enter the current options and the new options
-  // if((controller.get_digital(DIGITAL_RIGHT)) & (posC != len(selC)-1)){ //If the Right Button was pressed and not on the last option
-  //   rightButton();
-  // }
-  // else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ //If the Left Button was pressed and not on the first option
-  //   leftButton();
-  // }
-  // else if(controller.get_digital(DIGITAL_A)){ //If the A Button was pressed
-  //   aButton(selC);
-  // }
-  // else if(controller.get_digital(DIGITAL_B) & (lineC!=1)){
-  //   bButton();
-  // }
+  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != sizeof(selC->c_str())-1)){ //If the Right Button was pressed and not on the last option
+    rightButton();
+  }
+  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ //If the Left Button was pressed and not on the first option
+    leftButton();
+  }
+  else if(controller.get_digital(DIGITAL_A)){ //If the A Button was pressed
+    aButton(selC);
+  }
+  else if(controller.get_digital(DIGITAL_B) & (lineC!=0)){
+    bButton();
+  }
 }
 
 void infoButtons(std::string selC[]){ //Enter the current options and the new options
-  // if((controller.get_digital(DIGITAL_RIGHT)) & (posC != len(selC)-1)){ //If the Right Button was pressed and not on the last option
-  //   rightButton();
-  // }
-  // else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ //If the Left Button was pressed and not on the first option
-  //   leftButton();
-  // }
-  // else if(controller.get_digital(DIGITAL_B) & (lineC!=1)){
-  //   bButton();
-  // }
+  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != sizeof(selC->c_str())-1)){ //If the Right Button was pressed and not on the last option
+    rightButton();
+  }
+  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ //If the Left Button was pressed and not on the first option
+    leftButton();
+  }
+  else if(controller.get_digital(DIGITAL_B) & (lineC!=0)){
+    bButton();
+  }
 }
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -162,23 +158,20 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 void centerText(std::string str){
   int midText=str.length()/2;
-  int startPoint=12-midText;
-  // controller.set_text()
-  // controller.set_text(lineC);
-  // Controller.Screen.setCursor(lineC,startPoint);
-  // Controller.Screen.print(str.c_str());
+  int startPoint=9-midText;
+  controller.set_text(lineC,startPoint,str);
 }
 
 void updatePage(std::string selC[]){ //Enter current options
   if(posC != posP){
     posP=posC;;
-    // for(int i=0;i<len(selC);i++){ //Loop each option
-    //   if(posC==i+1) //If the current option is found
-    //     centerText(selC[i]);
-    // }
-    if(lineC!=3){
+    for(int i=0;i<sizeof(selC->c_str());i++){ //Loop each option
+      if(posC==i+1) //If the current option is found
+        centerText(selC[i]);
+    }
+    if(lineC!=2){
       lineP=lineC;
-      lineC=3;
+      lineC=2;
       centerText(autoSel);
       lineC=lineP;
     }
@@ -283,10 +276,10 @@ $$$$$$\ $$ |  $$ |$$ |  \$$$$  |$$ |\$$$$$$$ |$$ |$$ |$$$$$$$$\ \$$$$$$$\
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 void initilizeController(){
-  // Controller.Screen.clearScreen();
-  lineC=3;
+  controller.clear();
+  lineC=2;
   centerText(autoSel);
-  lineC=1;
+  lineC=0;
 }
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -316,8 +309,8 @@ void contDisplay(){ //480 x 272
     setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                                       //-->
     pros::delay(1);
   }
-  // Controller.Screen.clearScreen();
-  lineC=2;
+  controller.clear();
+  lineC=1;
   centerText("Start");
   while(controller.get_digital(DIGITAL_Y)){pros::delay(1);}
 

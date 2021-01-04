@@ -36,9 +36,10 @@ void initialize() {
     pros::lcd::initialize();  //initialize brain screen so we can see info later
 
       //run a task to refresh the screen when using the legacy display
-      pros::Task screen_task(legacyDisplay_task_fn);
+      // pros::Task screen_task(legacyDisplay_task_fn);
       pros::Task ballUpdate(ballCountTask);
       pros::Task filterUpdate(filterCountTask);
+      pros::Task controllerDisplay(contDisplay);
       bottomColor.set_led_pwm(100);
       middleColor.set_led_pwm(100);
       topColor.set_led_pwm(100);
