@@ -276,17 +276,35 @@ void OdomDebug::setData(state_t state, sensors_t sensors) {
 
 
   //Write odometry location and heading to the screen
+  // std::string text =
+  // "X_in: " + std::to_string(state.x.convert(inch)) + "\n" +
+  // "Y_in: " + std::to_string(state.y.convert(inch)) + "\n" +
+  // "\n" +
+  // "Theta_deg: " + std::to_string(state.theta.convert(degree)) + "\n" +
+  // "\n" +
+  // "Left: " + std::to_string(sensors.left) + "\n" +
+  // "Right: " + std::to_string(sensors.right);
+  // if(sensors.hasMiddle) {
+  //   text = text + "\n" + "Middle: " + std::to_string(sensors.middle);
+  // }
+
+
+
   std::string text =
-  "X_in: " + std::to_string(state.x.convert(inch)) + "\n" +
-  "Y_in: " + std::to_string(state.y.convert(inch)) + "\n" +
-  "\n" +
-  "Theta_deg: " + std::to_string(state.theta.convert(degree)) + "\n" +
-  "\n" +
-  "Left: " + std::to_string(sensors.left) + "\n" +
-  "Right: " + std::to_string(sensors.right);
-  if(sensors.hasMiddle) {
-    text = text + "\n" + "Middle: " + std::to_string(sensors.middle);
-  }
+  "Bottom Follower: " + std::to_string(bottomFollower.get_value()) + "\n" +
+  "Bottom Color: " + std::to_string(bottomColor.get_hue()) + "\n" +
+  "Middle Color: "  + std::to_string(middleColor.get_hue()) + "\n" +
+  "Top Follower: " + std::to_string(topFollower.get_value()) + "\n" +
+  "Top Color: " + std::to_string(topColor.get_hue());
+
+
+
+
+
+
+
+
+
 
   lv_label_set_text(statusLabel, text.c_str());
   lv_obj_align(statusLabel, container, LV_ALIGN_CENTER, -lv_obj_get_width(container)/2 + (lv_obj_get_width(container) - fieldDim)/2, 0);

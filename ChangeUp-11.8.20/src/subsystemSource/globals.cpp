@@ -16,8 +16,7 @@ int autonomousPreSet = 0;
 //CONTROLLER
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-//Gyro
-pros::Imu Gyron(1);
+
 //
 // //Tracking Encoders
 // ADIEncoder l{'C', 'D'}; // left encoder
@@ -32,19 +31,19 @@ ADIEncoder m({9,'E', 'F'}, true); //middle encoder
 
 //-----Color Sensors-----//
 pros::Optical bottomColor(8);    //Bottom color Sensor
-pros::Optical middleColor(7);    //Middle color Sensor
-pros::Optical topColor(18);   //Top color sensor
+pros::Optical middleColor(18);    //Middle color Sensor
+pros::Optical topColor(7);   //Top color sensor
 
-//------Distance Sensors--//
-pros::Distance bottomIndex(18);
-
+//------Distance Sensors-----//
 pros::Distance leftTrackFront(15);
 pros::Distance leftTrackBack(20);
 pros::Distance frontTrack(17);
 
+//------3-Wire Ball Sensors-----//
+pros::ADIDigitalIn bottomLimit ({19,'A'});    //limit switch at filter
+pros::ADIAnalogIn bottomFollower ({19,'H'});    //lLine follower at bottom of lift
+pros::ADIAnalogIn topFollower ('A');    //lLine follower at top of lift
 
-pros::ADIAnalogIn lineFollower ('G');
-pros::ADIDigitalIn bottomLimit ({9,'H'}); //limit switch at bottom of intake
 
 //timer to ensure ADI Encoders have time  to initialize before building chassis
 void  waitForADIInit(int time){

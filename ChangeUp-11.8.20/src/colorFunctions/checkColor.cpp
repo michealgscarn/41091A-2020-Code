@@ -34,7 +34,7 @@ std::string CheckColor(std::string location){
 
 std::string colorParam(double colorValue){
   //-----Blue-----//
-  if(colorValue >= 220 & colorValue <= 280){    //If the input value is within the blue values...
+  if(colorValue >= 210 & colorValue <= 280){    //If the input value is within the blue values...
     return "blue";    //Return blue
   }
 

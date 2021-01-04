@@ -5,7 +5,7 @@ int ballCount;
 int filterCount;
 
 bool ballIn(){
-  if(bottomIndex.get()<130 & bottomIndex.get()>20)
+  if(bottomFollower.get_value()<2600 & bottomFollower.get_value()>0)
     return true;
   return false;
 }
@@ -19,7 +19,7 @@ void ballCountTask(){
     if(ballIn()&!ballStillIn&!ballFiltering()){
       ballCount++;
       ballStillIn=true;
-      pros::delay(200);
+      pros::delay(100);
     }
     else if(!ballIn())
       ballStillIn=false;

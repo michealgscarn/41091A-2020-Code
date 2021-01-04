@@ -1,7 +1,7 @@
 #include "main.h"
 using namespace okapi;
 
-void a_SKILLS_BROKEN_ARM_DISTANCE(){
+void a_SKILLS_BROKEN_ARM_DISTANCE_FILTER(){
 // ----------Prepare the Program----------//
 startTime=pros::millis();   //Set up the timer
 drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
@@ -36,18 +36,22 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   setDelivery(-40);   //Start running delivery slowly in reverse
   setLift(-40);   //Start running lift slowly in reverse
   pros::delay(400);   //Wait for ball to slowly move down
-
-  setDelivery(127);   //Start running delivery
-  setLift(80);   //Start running lift
-  pros::delay(1000);   //Wait for ball to score
-
+  FilterBall("blue",1);
+  // setDelivery(127);   //Start running delivery
+  // setLift(80);   //Start running lift
+  // pros::delay(1000);   //Wait for ball to score
+  //
   setIntake(-127);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
 
 //----------Goal 3 (Back Left Corner)----------//
   //-----Transition to Goal-----//
+  // pros::delay(100000);
   DriveCoordShort(38,71.8,-90,0.9);   //Back away from goal
+  setIntake(127);
+  setLift(60);
+  setDelivery(-127);
   DriveCoordShort(42,95,6.7,1.4);   //Line up with ball
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
@@ -92,7 +96,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
     right_bc_mtr.set_brake_mode(MOTOR_BRAKE_HOLD);
 
   setDrive(0,0,0,0);    //Stop the drive
-
+  pros::delay(100000);
 //----------Goal 4 (Back wall)----------//
   //-----Transition to Goal-----//
   DriveCoordShort(48,101,90,2);   //Line up with ball

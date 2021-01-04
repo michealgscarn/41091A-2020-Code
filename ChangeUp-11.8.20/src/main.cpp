@@ -111,7 +111,7 @@ void autonomous() {
       a_SKILLS_SPINOFF_SEQUEL();
     break;
     default:
-      a_SKILLS_BROKEN_ARM_DISTANCE();
+      a_SKILLS_BROKEN_ARM_DISTANCE_FILTER();
     break;
   }
 
@@ -202,7 +202,7 @@ bool pressed=false;
 // DriveCoordShort(10,15,0,3);
 //Continually update the screen to show OdomDebug information.
 while(true){
-  // FilterBall("red",300,5);
+  // FilterBall("blue",5);
     //Display the field as a grid
     //Show the robot on the field
     OdomDebug display(lv_scr_act(), LV_COLOR_NAVY);

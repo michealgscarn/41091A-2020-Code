@@ -104,6 +104,7 @@ void opcontrol(void);
 #include "autoFunctionsHeaders/A-SKILLS-SPINOFF-SEQUEL.hpp"
 #include "autoFunctionsHeaders/A-SKILLS-BROKEN-ARM.hpp"
 #include "autoFunctionsHeaders/A-SKILLS-BROKEN-ARM-DISTANCE.hpp"
+#include "autoFunctionsHeaders/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER.hpp"
 #include "odomDebug/odomDebug.hpp"
 #include "odomPosition/odomPosition.hpp"
 #include "odomPosition/wallAlign.hpp"
