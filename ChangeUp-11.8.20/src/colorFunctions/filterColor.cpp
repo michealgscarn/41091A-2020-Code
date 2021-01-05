@@ -57,12 +57,14 @@ void FilterBallCorner(std::string alliance, int deltaBallCount){
   while(ballCount<targetBallCount){
     if((ballState=="detected")&CheckColor("bottom")==alliance&bottomFollower.get_value()>2800){
       setDelivery(-127);    //...Run the delivery in reverse until ...
+      setIntake(0);
       pros::delay(10);   //... The limit switch is pressed and ...
       while(!ballFiltering()){pros::delay(10);} //Wait for filter switch to gather a ball
       while(ballFiltering()){pros::delay(10);}
       pros::delay(00);   //Wait for ball to filter out
       ballState="none"; //Set ball status to none
       setDelivery(127); //Deliver ball
+      setIntake(75);
     }
     // if(ballState=="detected")//Check to see if ball has been detected
     //   ballState="held";//...Mark the ball as held

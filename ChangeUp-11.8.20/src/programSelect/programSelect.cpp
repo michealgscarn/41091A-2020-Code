@@ -2,6 +2,7 @@
 #include <iostream>
 #include<string>
 using namespace std;
+using namespace okapi;
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $$\    $$\                    $$\           $$\       $$\
@@ -40,6 +41,12 @@ int lineP=0; //Line Backup
 std::string autoSel="Skills";
 std::string lineM[]={"Home","","Skills"}; //Total line memory
 std::string page="Home"; //Current Page
+
+std::string odomDetails;
+std::string trackLeft;
+std::string trackRight;
+std::string trackMiddle;
+
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -88,7 +95,7 @@ void aButton(std::string selC[]){
         page = selC[i]; //Update the current page ID
         lineM[i+1]=selC[i];
         if(lineC==2){
-          // controller.clearLine(2);
+          controller.set_text(1,0,"                   ");
           lineC=-1;
           page="Home";
           autoSel=selC[i];
@@ -102,7 +109,8 @@ void aButton(std::string selC[]){
 }
 
 void bButton(){
-    // controller.clearLine(lineC);
+  controller.set_text(lineC,0,"                   ");
+
     posP=0;
     lineC--; //Go back one line
     page=lineM[lineC];
@@ -159,11 +167,24 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 void centerText(std::string str){
   int midText=str.length()/2;
   int startPoint=9-midText;
+  controller.set_text(lineC,0,"                   ");
+  pros::delay(200);
   controller.set_text(lineC,startPoint,str);
 }
 
+bool Blink=false;
+
+void blinkTimer(){
+  while(true){
+    pros::delay(1000);
+    Blink=true;
+    pros::delay(200);
+    Blink=false;
+  }
+}
+
 void updatePage(std::string selC[]){ //Enter current options
-  if(posC != posP){
+  if(posC != posP || Blink){
     posP=posC;;
     for(int i=0;i<sizeof(selC->c_str());i++){ //Loop each option
       if(posC==i+1) //If the current option is found
@@ -299,13 +320,27 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 void contDisplay(){ //480 x 272
   initilizeController();
+  pros::Task blinkingText(blinkTimer);
   while(!controller.get_digital(DIGITAL_Y)){
+    odomDetails="X: ";
+    odomDetails.append(to_string(drive->getState().x.convert(inch)));
+    odomDetails.append(" Y: ");
+    odomDetails.append(to_string(drive->getState().y.convert(inch)));
+    odomDetails.append(" A: ");
+    odomDetails.append(to_string(drive->getState().theta.convert(degree)));
+    trackLeft="L: ";
+    trackLeft.append(to_string(l.get()));
+    trackRight="R: ";
+    trackRight.append(to_string(r.get()));
+    trackMiddle="M: ";
+    trackMiddle.append(to_string(m.get()));
+
     setUpPage("Home",       "Select", "Autonomous",         "Odometry",   "Debug",    "Set Up");                   //->
     setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");                  //-->
     setUpPage("Red",        "Select", "Red 1",              "Red 2",      "Red 3",    "Red 3");        //--->
     setUpPage("Blue",       "Select", "Blue 1",             "Blue 2",     "Blue 3",   "Blue 3");       //--->
     setUpPage("Skills",     "Info",   "Skills");                                                      //-->
-    setUpPage("Odometry",   "Info",   "X=144 Y=144 θ=-720", "L=12321212", "R=322323", "M=23232232");  //-->
+    setUpPage("Odometry",   "Info",   odomDetails, trackLeft, trackRight, trackMiddle);  //-->
     setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                                       //-->
     pros::delay(1);
   }

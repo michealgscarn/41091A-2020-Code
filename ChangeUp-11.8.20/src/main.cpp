@@ -1,66 +1,72 @@
 #include "main.h"
 using namespace okapi;
-
 #include "main.h"
 
-/*
-  A callback function for LLEMU's center button.
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
- When this callback is fired, it will toggle line 2 of the LCD text between
-  "I was pressed!" and nothing.
-  This is a nice testing function for when the screen seems locked up.
- */
-void on_center_button() {
-    	static bool pressed = false;
-    	pressed = !pressed;
+$$\      $$\           $$\
+$$$\    $$$ |          \__|
+$$$$\  $$$$ | $$$$$$\  $$\ $$$$$$$\
+$$\$$\$$ $$ | \____$$\ $$ |$$  __$$\
+$$ \$$$  $$ | $$$$$$$ |$$ |$$ |  $$ |
+$$ |\$  /$$ |$$  __$$ |$$ |$$ |  $$ |
+$$ | \_/ $$ |\$$$$$$$ |$$ |$$ |  $$ |
+\__|     \__| \_______|\__|\__|  \__|
 
-    	if (pressed) {
-    		  pros::lcd::set_text(2, "I was pressed!");
-    	} else {
-    		  pros::lcd::clear_line(2);
-    	}
-}
+INITIALIZE
+----------
+Sets up all sensors, motors and tasks.
+Starts all tasks.
+Initializes autonomous selector.
+Turns optical sensor lights to max.
 
+DISABLED
+--------
+Period of program when robot is disabled.
 
-/*
-  Runs initialization code. This occurs as soon as the program is started.
+COMPETITION INITIALIZE
+----------------------
+Initialize sensors and others at the start of a comp.
+Don't start autonous until the encoders are callibrated.
 
-  All other competition modes are blocked by initialize; it is recommended
- to keep execution time for this mode under a few seconds.
- */
+AUTONOMOUS
+----------
+The robot drives on its own.
+Starts autnomous from a chosen autonomous.
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+// $$$$$$$$$$$$$$$$ INITIALIZE $$$$$$$$$$$$$$$$ //
+// Sets up all sensors, motors and tasks.       //
+// Starts all tasks.                            //
+// Initializes autonomous selector.             //
+// Turns optical sensor lights to max.          //
+
 void initialize() {
-    AutoSelect();
-    //Send a wait command before building the chassis or turning on the screen
-    // if you don't do this, encoder values won't be correct.
-    // waitForADIInit(200);
-    pros::lcd::initialize();  //initialize brain screen so we can see info later
+  pros::lcd::initialize();  //initialize Brain screen so we can see info later
+  // pros::Task controllerDisplay(contDisplay); //Start Controller display to see info
 
-      //run a task to refresh the screen when using the legacy display
-      // pros::Task screen_task(legacyDisplay_task_fn);
-      pros::Task ballUpdate(ballCountTask);
-      pros::Task filterUpdate(filterCountTask);
-      pros::Task controllerDisplay(contDisplay);
-      bottomColor.set_led_pwm(100);
-      middleColor.set_led_pwm(100);
-      topColor.set_led_pwm(100);
+  AutoSelect(); //Start Brain autonomous selector to select before autonomous period
+
+  // pros::Task screen_task(legacyDisplay_task_fn); //Display information to the Brain
+  pros::Task ballUpdate(ballCountTask); //Update ball count since the start of the program
+  pros::Task filterUpdate(filterCountTask); //Update filter count since the start of the program
+
+  bottomColor.set_led_pwm(100);
+  middleColor.set_led_pwm(100);
+  topColor.set_led_pwm(100);
 }
-/*
-  Runs while the robot is in the disabled state of Field Management System or
-  the VEX Competition Switch, following either autonomous or opcontrol. When
-  the robot is enabled, this task will exit.
- */
+
+// $$$$$$$$$$$$$$$$ DISABLED $$$$$$$$$$$$$$$$ //
+// Period of program when robot is disabled.  //
+
 void disabled() {
 }
 
-/*
-  Runs after initialize(), and before autonomous when connected to the Field
-  Management System or the VEX Competition Switch. This is intended for
-  competition-specific initialization routines, such as an autonomous selector
-  on the LCD.
+ // $$$$$$$$$$$$$$$$ COMPETITION INITIALIZE $$$$$$$$$$$$$$$$ //
+ // Initialize sensors and others at the start of a comp.    //
+ // Don't start autonous until the encoders are callibrated. //
 
-  This task will exit when the robot is enabled and autonomous or opcontrol
-  starts.
- */
  void competition_initialize() {
   encCallibrate=0;
   while(encCallibrate<200){
@@ -70,28 +76,11 @@ void disabled() {
 
 }
 
-/*
-AUTONOMOUS CONTROL
-Description: Possesses all goals in the home row
-
-Tasks:
-  1. Score and possess the goal in the top right corner of the Field
-  2. Score and possess the goal in the middle right edge of the Field
-  3. Score and possess the goal in the bottom right corner of the Field
-
-Expected Point Outcome: 1 Win Point, 12 total points, 9 descored points, 18 point swing
-*/
-
+// $$$$$$$$$$$$$$$$ AUTONOMOUS $$$$$$$$$$$$$$$$ //
+// The robot drives on its own.                 //
+// Starts autnomous from a chosen autonomous.   //
 
 void autonomous() {
-
-//a_HMC_HLC();
-// drive->setState({0_in,0_in,-135_deg});
-//   SetDriveCoordinatePID(52, 15, -180);
-
- // a_HMP_HL1_HR1();
-// a_SKILLS_2();
-  //
   switch (auton_sel) {
     case 1:
       a_HMP_HL1_HR1();
@@ -109,10 +98,18 @@ void autonomous() {
       a_HMC_HRC();
     break;
     case 6:
+    // ----------- SKILLS ----------- //
+    // 1 minute autonomous program    //
+    // 11 Red balls                   //
+    // 7 Blue balls                   //
+    // 9 Goals                        //
       a_SKILLS_SPINOFF_SEQUEL();
+    // ------------------------------ //
     break;
     default:
-      a_SKILLS_BROKEN_ARM_DISTANCE_FILTER();
+    // ----------- DEFAULT ----------- //
+    a_SKILLS_BROKEN_ARM_DISTANCE_FILTER();
+    // ------------------------------- //
     break;
   }
 

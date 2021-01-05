@@ -83,6 +83,7 @@ void opcontrol(void);
 #include "autoFunctionsHeaders/fieldCentric.hpp"
 #include "autoFunctionsHeaders/OdomDrive.hpp"
 #include "legacyDisplay/legacyDisplay.hpp" //older vex display
+#include "legacyDisplay/legacyButtons.hpp" //older vex display
 //#include "legacyDisplay/dwightImage.h" //image file for dwight schrute
 #include "autoFunctionsHeaders/A-HMC-HRC.hpp"
 #include "autoFunctionsHeaders/A-HMC-HLC.hpp"

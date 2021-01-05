@@ -37,7 +37,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   setLift(-40);   //Start running lift slowly in reverse
   pros::delay(400);   //Wait for ball to slowly move down
   FilterBall("blue",1);
-  pros::delay(200);   //Wait for ball to slowly move down
+  // pros::delay(200);   //Wait for ball to slowly move down
 
   // setDelivery(127);   //Start running delivery
   // setLift(80);   //Start running lift
@@ -64,10 +64,10 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   DriveCoordShort(26,126,-37,0.75); //Drive into goal
 
   //-----Score in Goal-----//
-  setDelivery(127);   //Start running delivery
-  setIntake(0);   //Stop intake
-  pros::delay(550);   //Wait for ball to score
-  // FilterBallCorner("blue", 1);
+  // setDelivery(127);   //Start running delivery
+  // setIntake(0);   //Stop intake
+  // pros::delay(550);   //Wait for ball to score
+  FilterBallCorner("blue", 2);
   setIntake(-127);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
@@ -140,10 +140,10 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   DriveCoordShort(128.3,129.5,52.6,1);    //Drive into goal
 
   //-----Score in Goal-----//
-  setDelivery(127);   //Start running delivery
-  setIntake(0);   //Stop running intake
-  pros::delay(750);   //Wait for ball to score
-  // FilterBallCorner("blue",1);
+  // setDelivery(127);   //Start running delivery
+  // setIntake(0);   //Stop running intake
+  // pros::delay(750);   //Wait for ball to score
+  FilterBallCorner("blue",2);
   setIntake(-127);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
@@ -199,11 +199,11 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   setLift(-60);   //Start running lift slowly in reverse
   pros::delay(300);   //Wait for ball to slowly move down
 
-  // setDelivery(127);   //Start running lift again
-  // setLift(127);   //Start running delivery
-  // pros::delay(1250);   //Wait for ball to score
-  FilterBall("blue",1);
-  pros::delay(400);
+  setDelivery(127);   //Start running lift again
+  setLift(127);   //Start running delivery
+  pros::delay(1250);   //Wait for ball to score
+  // FilterBall("blue",1);
+  // pros::delay(400);
   setIntake(-127);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
@@ -311,5 +311,5 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
 
-  DriveCoordShort(70,30,180,0.5);   //Back away from goal
+  DriveCoordShort(70,36,180,0.5);   //Back away from goal
 }
