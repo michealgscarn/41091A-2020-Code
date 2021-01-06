@@ -1,14 +1,41 @@
 #include "main.h"
  using namespace okapi;
-//HELPER FUNCTIONS
+ /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ $$$$$$$\            $$\ $$\
+ $$  __$$\           $$ |\__|
+ $$ |  $$ | $$$$$$\  $$ |$$\ $$\    $$\  $$$$$$\   $$$$$$\  $$\   $$\
+ $$ |  $$ |$$  __$$\ $$ |$$ |\$$\  $$  |$$  __$$\ $$  __$$\ $$ |  $$ |
+ $$ |  $$ |$$$$$$$$ |$$ |$$ | \$$\$$  / $$$$$$$$ |$$ |  \__|$$ |  $$ |
+ $$ |  $$ |$$   ____|$$ |$$ |  \$$$  /  $$   ____|$$ |      $$ |  $$ |
+ $$$$$$$  |\$$$$$$$\ $$ |$$ |   \$  /   \$$$$$$$\ $$ |      \$$$$$$$ |
+ \_______/  \_______|\__|\__|    \_/     \_______|\__|       \____$$ |
+                                                            $$\   $$ |
+                                                            \$$$$$$  |
+                                                             \______/
+DELIVERY VELOCITY
+----------
+Set the velocity of the Delivery motors.
+
+CONTROLLER DELIVERY
+---------------
+Set the velocity of the Delivery based on Controller input
+
+ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+ // $$$$$$$$$$$$$$$$ DELIVERY VELOCITY $$$$$$$$$$$$$$$$ //
+ // Set the speed of the Delivery motors.               //
+
 void setDelivery(int power){
   del_mtr.set_voltage_limit(12000);
   del_mtr = power;
 }
 
- //DELIVERY CONTROL FUNCTIONS
+// $$$$$$$$$$$$$$$$ CONTROLLER DELIVERY $$$$$$$$$$$$$$$$ //
+// Set the velocity of the Delivery using the Controller.//
+
  void setDeliveryMotor(){
-   //Set delivery speed based on button presses
+   //Set Delivery speed based on button presses
    int power = 127 * (controller.get_digital(DIGITAL_R1) - controller.get_digital(DIGITAL_L2)- controller.get_digital(DIGITAL_R2));
-   setDelivery(power);
+   setDelivery(power);// Apply the velocity to the Delivery
  }

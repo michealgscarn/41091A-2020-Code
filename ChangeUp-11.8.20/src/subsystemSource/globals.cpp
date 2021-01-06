@@ -1,7 +1,74 @@
 #include "main.h"
 using namespace okapi;
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-//MOTORS - fr=front, bc=back, int=intake, del=delivery
+ $$$$$$\  $$\           $$\                 $$\
+$$  __$$\ $$ |          $$ |                $$ |
+$$ /  \__|$$ | $$$$$$\  $$$$$$$\   $$$$$$\  $$ | $$$$$$$\
+$$ |$$$$\ $$ |$$  __$$\ $$  __$$\  \____$$\ $$ |$$  _____|
+$$ |\_$$ |$$ |$$ /  $$ |$$ |  $$ | $$$$$$$ |$$ |\$$$$$$\
+$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ | \____$$\
+\$$$$$$  |$$ |\$$$$$$  |$$$$$$$  |\$$$$$$$ |$$ |$$$$$$$  |
+ \______/ \__| \______/ \_______/  \_______|\__|\_______/
+
+MOTORS
+------
+Left front Motor
+Left back Motor
+Right front Motor
+Right back Motor
+Left Intake Motor
+Right Intake Motor
+Lift Motor
+Delivery Motor
+
+CONTROLLER
+----------
+Controller
+
+ENCODERS
+-------
+Left Encoder
+Right Encoder
+Middle Encoder
+
+OPITCAL
+-------
+Bottom Color
+Middle Color
+Top Color
+
+DISTANCE
+--------
+Left front Distance
+Left back Distance
+Front Distance
+
+3 WIRE SENSORS
+-------------
+Filter Limit Switch
+Bottom Ball detecting Line Follower
+Top Ball detecting Line Follower
+
+CHASSIS BUILDER
+---------------
+Motors : 11, 12, 8, 3
+Sensors : l, r, m
+Forward PID Gains : 0.00095, 0.00001, 0.0
+Angle PID Gains : 0.0032, 0.000025, 0.0
+Turn PID Gains : 0.0003, 0.0, 0.0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+// $$$$$$$$$$$$$$$$ MOTORS $$$$$$$$$$$$$$$$ //
+// 12 - Left front Motor                    //
+// 13 - Left back Motor                     //
+// 1  - Right front Motor                   //
+// 10 - Right back Motor                    //
+// 11 - Left Intake Motor                   //
+// 16 - Right Intake Motor                  //
+// 14 - Lift Motor                          //
+// 6  - Delivery Motor                      //
+
 pros::Motor left_fr_mtr(12, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor left_bc_mtr(13, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor right_fr_mtr(1, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
@@ -13,16 +80,10 @@ pros::Motor del_mtr(6, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEG
 
 int autonomousPreSet = 0;
 
-//CONTROLLER
+// $$$$$$$$$$$$$$$$ CONTROLLER $$$$$$$$$$$$$$$$ //
+// Controller                                   //
+
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
-
-
-//
-// //Tracking Encoders
-// ADIEncoder l{'C', 'D'}; // left encoder
-// ADIEncoder r{'E', 'F'};  // right encoder
-// ADIEncoder m{'G', 'H',true}; //middle encoder
-//
 
 //-----Encoders-----//
 ADIEncoder l({9,'A', 'B'}, false); // left encoder
@@ -86,6 +147,3 @@ std::shared_ptr<okapi::XDriveModel> driveTrain = std::dynamic_pointer_cast<XDriv
         )
       )
 */
-
-// *******************************************************************************************************************
-// *******************************************************************************************************************
