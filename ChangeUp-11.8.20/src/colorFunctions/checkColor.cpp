@@ -17,7 +17,7 @@ std::string CheckColor(std::string location){
 
 //----------Bottom sensor----------//
   if(location == "bottom"){
-    return colorParam(bottomColor.get_hue());
+    return colorParam((bottomColor.get_hue()));
   }
 
 //----------Middle Sensor----------//

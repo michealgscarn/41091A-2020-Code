@@ -24,7 +24,7 @@ void FilterBall(std::string alliance, int deltaBallCount){
   int targetBallCount=ballCount+deltaBallCount;
   int targetRotM=0;
   while(ballCount<targetBallCount){
-    if((ballState=="detected")&CheckColor("bottom")==alliance&bottomFollower.get_value()>2800){
+    if((ballState=="detected")&(CheckColor("bottom")==alliance || CheckColor("middle")==alliance)&bottomFollower.get_value()>2800){
       setDelivery(-127);    //...Run the delivery in reverse until ...
       pros::delay(10);   //... The limit switch is pressed and ...
       while(!ballFiltering()){pros::delay(10);} //Wait for filter switch to gather a ball

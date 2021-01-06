@@ -13,6 +13,10 @@
                                                             $$\   $$ |
                                                             \$$$$$$  |
                                                              \______/
+
+Created By Logan and Taylor
+Last Updated By Logan
+
 DELIVERY VELOCITY
 ----------
 Set the velocity of the Delivery motors.
@@ -35,7 +39,7 @@ void setDelivery(int power){
 // Set the velocity of the Delivery using the Controller.//
 
  void setDeliveryMotor(){
-   //Set Delivery speed based on button presses
+   // Set Delivery speed based on button presses
    int power = 127 * (controller.get_digital(DIGITAL_R1) - controller.get_digital(DIGITAL_L2)- controller.get_digital(DIGITAL_R2));
    setDelivery(power);// Apply the velocity to the Delivery
  }

@@ -1,6 +1,31 @@
 #include "main.h"
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-void wallAlign(double facingAngle,double minusY,double minusX){
+
+$$\      $$\           $$\ $$\        $$$$$$\  $$\ $$\
+$$ | $\  $$ |          $$ |$$ |      $$  __$$\ $$ |\__|
+$$ |$$$\ $$ | $$$$$$\  $$ |$$ |      $$ /  $$ |$$ |$$\  $$$$$$\  $$$$$$$\
+$$ $$ $$\$$ | \____$$\ $$ |$$ |      $$$$$$$$ |$$ |$$ |$$  __$$\ $$  __$$\
+$$$$  _$$$$ | $$$$$$$ |$$ |$$ |      $$  __$$ |$$ |$$ |$$ /  $$ |$$ |  $$ |
+$$$  / \$$$ |$$  __$$ |$$ |$$ |      $$ |  $$ |$$ |$$ |$$ |  $$ |$$ |  $$ |
+$$  /   \$$ |\$$$$$$$ |$$ |$$ |      $$ |  $$ |$$ |$$ |\$$$$$$$ |$$ |  $$ |
+\__/     \__| \_______|\__|\__|      \__|  \__|\__|\__| \____$$ |\__|  \__|
+                                                       $$\   $$ |
+                                                       \$$$$$$  |
+                                                        \______/
+
+Created By Logan and Taylor
+Last Updated By Logan
+
+WALL ALIGN
+----------
+Aligns with wall and resets odometry position
+Turns until side distance sensors are the same
+Reset robot position
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+void wallAlign(double facingAngle,double minusY,double minusX){ // Get the robot's angle, X and Y offsets
 double xSen = leftTrackFront.get()*0.0393701+8.5;
 double ySen = frontTrack.get()*0.0393701+5;
 if(drive->getState().theta.convert(degree)==90){
@@ -17,9 +42,6 @@ else
     drive->setState({(142-xSen)*1_in,drive->getState().y});
   else
     drive->setState({(xSen-1)*1_in,drive->getState().y});
-
-
-
 
   while(leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5){
     double pow=(leftTrackBack.get()-leftTrackFront.get())*0.2;

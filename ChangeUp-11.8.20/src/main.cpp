@@ -13,6 +13,9 @@ $$ |\$  /$$ |$$  __$$ |$$ |$$ |  $$ |
 $$ | \_/ $$ |\$$$$$$$ |$$ |$$ |  $$ |
 \__|     \__| \_______|\__|\__|  \__|
 
+Created By Logan and Taylor
+Last Updated By Logan
+
 INITIALIZE
 ----------
 Sets up all sensors, motors and tasks.
@@ -165,6 +168,9 @@ void autonomous() {
 // Display Odometry details.                        //
 
 void opcontrol() {
+
+FilterBall("blue",10);
+pros::delay(100000);
 
 //Continually update the screen to show OdomDebug information.
   while(true){

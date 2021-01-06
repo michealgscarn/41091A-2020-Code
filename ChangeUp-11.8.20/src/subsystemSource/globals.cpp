@@ -11,16 +11,19 @@ $$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ | \____$$\
 \$$$$$$  |$$ |\$$$$$$  |$$$$$$$  |\$$$$$$$ |$$ |$$$$$$$  |
  \______/ \__| \______/ \_______/  \_______|\__|\_______/
 
+Created By Logan and Taylor
+Last Updated By Logan
+
 MOTORS
 ------
-Left front Motor
-Left back Motor
-Right front Motor
-Right back Motor
-Left Intake Motor
-Right Intake Motor
-Lift Motor
-Delivery Motor
+12 - Left front Motor
+13 - Left back Motor
+1  - Right front Motor
+10 - Right back Motor
+11 - Left Intake Motor
+16 - Right Intake Motor
+14 - Lift Motor
+6  - Delivery Motor
 
 CONTROLLER
 ----------
@@ -28,15 +31,16 @@ Controller
 
 ENCODERS
 -------
-Left Encoder
-Right Encoder
-Middle Encoder
+9 & 'A''B' - Left Encoder
+9 & 'C''D' - Right Encoder
+9 & 'E''F' - Middle Encoder
+Callibration Timeout
 
 OPITCAL
 -------
-Bottom Color
-Middle Color
-Top Color
+8  - Bottom Color
+18 - Middle Color
+7  - Top Color
 
 DISTANCE
 --------
@@ -44,11 +48,14 @@ Left front Distance
 Left back Distance
 Front Distance
 
-3 WIRE SENSORS
+LIMIT SWITCH
 -------------
-Filter Limit Switch
-Bottom Ball detecting Line Follower
-Top Ball detecting Line Follower
+Filter checking
+
+LINE FOLLOWER
+-------------
+Bottom Ball detecting
+Top Ball detecting
 
 CHASSIS BUILDER
 ---------------
@@ -57,6 +64,7 @@ Sensors : l, r, m
 Forward PID Gains : 0.00095, 0.00001, 0.0
 Angle PID Gains : 0.0032, 0.000025, 0.0
 Turn PID Gains : 0.0003, 0.0, 0.0
+
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 // $$$$$$$$$$$$$$$$ MOTORS $$$$$$$$$$$$$$$$ //
@@ -85,28 +93,18 @@ int autonomousPreSet = 0;
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-//-----Encoders-----//
-ADIEncoder l({9,'A', 'B'}, false); // left encoder
-ADIEncoder r({9,'C', 'D'}, false);  // right encoder
-ADIEncoder m({9,'E', 'F'}, true); //middle encoder
+// $$$$$$$$$$$$$$$$ ENCODERS $$$$$$$$$$$$$$$$ //
+// 9 & 'A''B' - Left Encoder                  //
+// 9 & 'C''D' - Right Encoder                 //
+// 9 & 'E''F' - Middle Encoder                //
+// Callibration timeout                       //
+// Sensor initialize time                     //
 
-//-----Color Sensors-----//
-pros::Optical bottomColor(8);    //Bottom color Sensor
-pros::Optical middleColor(18);    //Middle color Sensor
-pros::Optical topColor(7);   //Top color sensor
-
-//------Distance Sensors-----//
-pros::Distance leftTrackFront(15);
-pros::Distance leftTrackBack(20);
-pros::Distance frontTrack(17);
-
-//------3-Wire Ball Sensors-----//
-pros::ADIDigitalIn bottomLimit ({19,'A'});    //limit switch at filter
-pros::ADIAnalogIn bottomFollower ({19,'H'});    //lLine follower at bottom of lift
-pros::ADIAnalogIn topFollower ('A');    //lLine follower at top of lift
-
-
-//timer to ensure ADI Encoders have time  to initialize before building chassis
+ADIEncoder l({9,'A', 'B'}, false); // Left Encoder
+ADIEncoder r({9,'C', 'D'}, false); // Right Encoder
+ADIEncoder m({9,'E', 'F'}, true); // Middle Encoder
+int encCallibrate; // Callibration timeout
+// Sensor initialize time
 void  waitForADIInit(int time){
     int timer = 0;
     while(timer < time){
@@ -114,36 +112,56 @@ void  waitForADIInit(int time){
       pros::delay(1);
     }
 }
+// $$$$$$$$$$$$$$$$ OPTICAL $$$$$$$$$$$$$$$$ //
+// 8  - Bottom Color                         //
+// 18 - Middle Color                         //
+// 7  - Top Color                            //
 
-//encoder callibration initialization
-int encCallibrate;
+pros::Optical bottomColor(8);
+pros::Optical middleColor(18);
+pros::Optical topColor(7);
 
-//Use ChassisControllerBuilder to set up the Odom Chassis
+// $$$$$$$$$$$$$$$$ OPTICAL $$$$$$$$$$$$$$$$ //
+// 8  - Bottom Color                         //
+// 18 - Middle Color                         //
+// 7  - Top Color                            //
+
+pros::Distance leftTrackFront(15);
+pros::Distance leftTrackBack(20);
+pros::Distance frontTrack(17);
+
+// $$$$$$$$$$$$$$$$ LIMIT SWITCH $$$$$$$$$$$$$$$$ //
+// Filter checker                                 //
+
+pros::ADIDigitalIn bottomLimit ({19,'A'});
+
+// $$$$$$$$$$$$$$$$ LINE FOLLOWER $$$$$$$$$$$$$$$$ //
+// 19 - Bottom Ball detecting                      //
+// 19 'A' - Top Ball detecting                     //
+
+pros::ADIAnalogIn bottomFollower ({19,'H'});
+pros::ADIAnalogIn topFollower ('A');
+
+// $$$$$$$$$$$$$$$$ CHASSIS BUILDER $$$$$$$$$$$$$$$$ //
+// Motors   : 11, 12, 8, 3                           //
+// Sensors  : l, r, m                                //
+// Forward PID Gains  : 0.00095, 0.00001, 0.0        //
+// Angle PID Gains    : 0.0032, 0.000025, 0.0        //
+// Turn PID Gains : 0.0003, 0.0, 0.0                 //
+// Wheel Diameter : 2.75 in                          //
+// Side Wheel Distance Apart : 8.4903 in             //
+// Back Wheel Distance from Center  : 5.3456         //
+
 std::shared_ptr<OdomChassisController> drive = ChassisControllerBuilder()
-    .withMotors(11, 12, 8, 3) // Drive Motors  8 is front left, 11 is front right, 20 is back right, 10 is back left
-    .withSensors(l, r, m)  // Tracking wheels
-    .withGains(  //PID Gains
-      {0.00095, 0.00001, 0.00000}, // distance controller gains
-      {0.0032, 0.000025, 0.00000}, // angle turn controller gains
-      {0.0003, 0.0000, 0.00000}) // turn controller gains
-    //.withClosedLoopControllerTimeUtil(100,10,50_ms) //enable if there are settling problems
-    //2.75 in l&r tracking diameter, 12.09 in apart.  6.67 back tracking whell from robot center, 2.75 in diameter.
-    .withDimensions(AbstractMotor::gearset::green, {{2.75_in, 8.490274191388693_in, 5.345580847873998_in, 2.75_in}, quadEncoderTPR})
-    // .withDimensions(AbstractMotor::gearset::green, {{2.75_in, 12.00787_in, 6.0625_in, 2.75_in}, quadEncoderTPR})
-    .withOdometry(StateMode::CARTESIAN) // Build the OdomChassisController with cartesian coordinates
-    .buildOdometry(); //Build the chassis with odometry
+  .withMotors(11, 12, 8, 3) // Motors - 11 is front left / 12 is front right / 8 is back right / 3 is back left
+  .withSensors(l, r, m)  // Tracking wheels
+  .withGains(  // PID Gains
+    {0.00095, 0.00001, 0.00000}, // Forward PID Gais
+    {0.0032, 0.000025, 0.00000}, // Angle PID Gains
+    {0.0003, 0.0000, 0.00000}) // Turn PID Gains
+  .withDimensions(AbstractMotor::gearset::green, {{2.75_in, 8.490274191388693_in, 5.345580847873998_in, 2.75_in}, quadEncoderTPR})
+  .withOdometry(StateMode::CARTESIAN) // Coordinate System
+  .buildOdometry(); // Build the chassis with Odometry
 
 //Cast xdrive model to OdomChassisController
 std::shared_ptr<okapi::XDriveModel> driveTrain = std::dynamic_pointer_cast<XDriveModel>(drive->getModel());
-
-
-
-/* uncomment below to log to the pros terminal window
-    .withLogger(  //Brain Printout info aka "Logger"
-      std::make_shared<Logger>(
-          TimeUtilFactory::createDefault().getTimer(), // Set up a timer
-          "/ser/sout", // Output to PROS terminal
-          Logger::LogLevel::debug // Show errors and warnings
-        )
-      )
-*/

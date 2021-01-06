@@ -11,6 +11,9 @@ $$ |  $$ |$$ |      $$ |  \$$$  /  $$   ____| $$ |$$\ $$ |     $$  __$$ |$$ |$$ 
 $$$$$$$  |$$ |      $$ |   \$  /   \$$$$$$$\  \$$$$  |$$ |     \$$$$$$$ |$$ |$$ |  $$ |
 \_______/ \__|      \__|    \_/     \_______|  \____/ \__|      \_______|\__|\__|  \__|
 
+Created By Logan and Taylor
+Last Updated By Logan
+
 DRIVETRAIN SPEED
 ----------
 Set the velocity of the Drivetrain motors.
@@ -43,13 +46,13 @@ void setDrive(double leftFront, double leftBack, double rightFront, double right
 // Stop motors if the velocity is very small.              //
 
 void setDriveMotors( double driveSpeed ){
-  //Set drive velocity based on button presses
+  // Set drive velocity based on button presses
   int left_fr_pow = (controller.get_analog(ANALOG_LEFT_Y)+controller.get_analog(ANALOG_RIGHT_X)+controller.get_analog(ANALOG_LEFT_X))*driveSpeed;
   int left_bc_pow = (controller.get_analog(ANALOG_LEFT_Y)+controller.get_analog(ANALOG_RIGHT_X)-controller.get_analog(ANALOG_LEFT_X))*driveSpeed;
   int right_fr_pow = (controller.get_analog(ANALOG_LEFT_Y)-controller.get_analog(ANALOG_RIGHT_X)-controller.get_analog(ANALOG_LEFT_X))*driveSpeed;
   int right_bc_pow = (controller.get_analog(ANALOG_LEFT_Y)-controller.get_analog(ANALOG_RIGHT_X)+controller.get_analog(ANALOG_LEFT_X))*driveSpeed;
 
-  //Stop the motors if the the controller is a small value to reduce drift
+  // Stop the motors if the the controller is a small value to reduce drift
   if (abs(left_fr_pow) < 10)
     left_fr_pow = 0;
   if (abs(left_bc_pow) < 10)
@@ -59,7 +62,7 @@ void setDriveMotors( double driveSpeed ){
   if (abs(right_bc_pow) < 10)
     right_bc_pow = 0;
 
-  //Apply the speed to the Drivetrain
+  // Apply the speed to the Drivetrain
   setDrive(left_fr_pow, left_bc_pow,right_fr_pow,right_bc_pow);
 }
 
@@ -68,6 +71,6 @@ void setDriveMotors( double driveSpeed ){
 // Run the motors using the field centric algorithm.          //
 
 void setDriveMotorsFieldCentric(){
-  //Input the X, Y, and theta speed
+  // Input the X, Y, and theta speed
   DriveFieldCentric(controller.get_analog(ANALOG_LEFT_X),controller.get_analog(ANALOG_LEFT_Y),controller.get_analog(ANALOG_RIGHT_X));
 }
