@@ -336,7 +336,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   //Reset state: X-Subtract the left front sensor distance from 142 inches minus distance from the center Y-Add 2 to the front sensor from 142 plus distance from the center THETA-180
   drive->setState({(142*1_in)-(leftTrackFront.get()*0.0393701_in)-8.5_in,4_in+(frontTrack.get()*0.0393701_in)+5_in,180_deg});
 
-  //---Put all motors on brake type hold to get accurate values---//
+  // ----- Put all motors on brake type hold to get accurate values ----- //
     left_fr_mtr.set_brake_mode(MOTOR_BRAKE_HOLD);
     left_bc_mtr.set_brake_mode(MOTOR_BRAKE_HOLD);
     right_fr_mtr.set_brake_mode(MOTOR_BRAKE_HOLD);
@@ -344,8 +344,8 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
 
   setDrive(0,0,0,0);    //Stop the drive
 
-//----------Goal 8 (Center)----------//
-  //-----Transition to Goal-----//
+// ---------- Goal 8 (Center) ---------- //
+  // ----- Transition to Goal-----//
   setIntake(127);   //Start running intake
   setLift(127);   //Start running lift
   setDelivery(0);
@@ -353,7 +353,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   DriveCoordShort(125.5,39,90,1);    //Pick up ball
   DriveCoordShort(94,74,274,2.3);    //Drive in front of goal
 
-  //-----Descore from Goal-----//
+  // ----- Descore from Goal ----- //
   setIntake(127);   //Run intake in reverse
   setLift(0);   //Stop running lift
 
@@ -366,7 +366,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   DriveCoordShort(84.5,75,274,0.75);    //Drive in front of goal
   DriveCoordShort(95.8,73.1,277,1);   //Back away
 
-  //-----Transition to Score-----//
+  // ----- Transition to Score ----- //
   DriveCoordShort(90,63,313,2);   //Line up with goal
   DriveCoordShort(82.6,69,314,1);   //Drive into goal
 
@@ -375,8 +375,8 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   pros::delay(1100);   //Wait for ball to score
   setDelivery(0);   //Stop running delivery
 
-//----------Goal 9 (Front Wall)----------//
-  //-----Transition to Goal-----//
+// ---------- Goal 9 (Front Wall) ---------- //
+  // ----- Transition to Goal ----- //
   DriveCoordShort(95,56,309,3);   //Back away from goal
   DriveCoordShort(93,55,269,0.95);    //Turn to face ball
   setIntake(127);   //Start running intake to pick up ball
@@ -386,7 +386,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   setIntake(0);   //Stop running intake
   DriveCoordShort(70,23,180,0.5);    //Drive into goal
 
-  //-----Score in Goal-----//
+  // ----- Score in Goal ----- //
   // setDelivery(127);   //Start running delivery
   // pros::delay(550);   //Wait for ball to score
   FilterBall("blue",1);

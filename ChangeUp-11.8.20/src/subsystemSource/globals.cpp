@@ -85,13 +85,14 @@ pros::Motor left_int_mtr(11, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCOD
 pros::Motor right_int_mtr(16, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor lift_mtr(14, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor del_mtr(6, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
-
 int autonomousPreSet = 0;
+
 
 // $$$$$$$$$$$$$$$$ CONTROLLER $$$$$$$$$$$$$$$$ //
 // Controller                                   //
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
+
 
 // $$$$$$$$$$$$$$$$ ENCODERS $$$$$$$$$$$$$$$$ //
 // 9 & 'A''B' - Left Encoder                  //
@@ -112,6 +113,8 @@ void  waitForADIInit(int time){
       pros::delay(1);
     }
 }
+
+
 // $$$$$$$$$$$$$$$$ OPTICAL $$$$$$$$$$$$$$$$ //
 // 8  - Bottom Color                         //
 // 18 - Middle Color                         //
@@ -120,6 +123,7 @@ void  waitForADIInit(int time){
 pros::Optical bottomColor(8);
 pros::Optical middleColor(18);
 pros::Optical topColor(7);
+
 
 // $$$$$$$$$$$$$$$$ OPTICAL $$$$$$$$$$$$$$$$ //
 // 8  - Bottom Color                         //
@@ -130,10 +134,12 @@ pros::Distance leftTrackFront(15);
 pros::Distance leftTrackBack(20);
 pros::Distance frontTrack(17);
 
+
 // $$$$$$$$$$$$$$$$ LIMIT SWITCH $$$$$$$$$$$$$$$$ //
 // Filter checker                                 //
 
 pros::ADIDigitalIn bottomLimit ({19,'A'});
+
 
 // $$$$$$$$$$$$$$$$ LINE FOLLOWER $$$$$$$$$$$$$$$$ //
 // 19 - Bottom Ball detecting                      //
@@ -141,6 +147,7 @@ pros::ADIDigitalIn bottomLimit ({19,'A'});
 
 pros::ADIAnalogIn bottomFollower ({19,'H'});
 pros::ADIAnalogIn topFollower ('A');
+
 
 // $$$$$$$$$$$$$$$$ CHASSIS BUILDER $$$$$$$$$$$$$$$$ //
 // Motors   : 11, 12, 8, 3                           //

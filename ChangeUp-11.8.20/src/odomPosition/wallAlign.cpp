@@ -20,26 +20,37 @@ Last Updated By Logan
 FILTER WHILE ALIGNING
 ---------------------
 Filters balls in the robot while the robot is aligning.
-Won't allow the wall align to exit if the ball is not cycled
+Won't allow the wall align to exit if the ball is not cycled.
 
 WALL ALIGN
 ----------
-Aligns with wall and resets odometry position
-Turns until side distance sensors are the same
-Reset robot position
+Aligns with wall and resets odometry position.
+Turns until side distance sensors are the same.
+Reset robot position.
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 bool filtered;
 
+// $$$$$$$$$$$$$$$$$$$ FILTER WHILE ALIGNING $$$$$$$$$$$$$$$$$$$ //
+// Filters balls in the robot while the robot is aligning.       //
+// Won't allow the wall align to exit if the ball is not cycled. //
+
 void filterWhileAlign(){
+  // Filter Ball
   setIntake(127);
   setLift(60);
   setDelivery(-127);
+  // Filter until ball filtering sensor says otherwise
   while(!ballFiltering()){pros::delay(10);}
   while(ballFiltering()){pros::delay(10);}
   filtered=true;
 }
+
+// $$$$$$$$$$$$$$$$$ WALL ALIGN $$$$$$$$$$$$$$$$$ //
+// Aligns with wall and resets odometry position. //
+// Turns until side distance sensors are the same.//
+// Reset robot position.                          //
 
 void wallAlign(double facingAngle,double minusY,double minusX){ // Get the robot's angle, X and Y offsets
 double xSen = leftTrackFront.get()*0.0393701+8.5;

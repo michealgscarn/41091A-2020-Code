@@ -39,24 +39,11 @@ Previous line in order.
 Takes current line position to temporarily change lineC.
 Changes lineC back to lineP after temporary change made to return to original.
 
-RIGHT ARROW
------------
-Moves one option to the right for each page.
-Limited to only moving right on any place but the last.
-
-LEFT ARROW
-----------
-Moves one option to the left for each page.
-Limited to only moving left on any place but the first.
-
-A BUTTON
---------
-Selected Option will be the next page.
-Enter down a line after pressed.
-
-B BUTTON
---------
-Go up a line when pressed.
+BLINK
+-----
+Blink the current option on screen
+Blinks the option every second
+Follows the option through lines
 
 UPDATEPAGE
 ----------
@@ -84,117 +71,40 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 // Current position in the selection.     //
 // Starts at first place.                 //
 // Resets on each page.                   //
+
 int posC=1; //Current position of each selection
+
 
 // $$$$$$$$$$$$$$$$ posP $$$$$$$$$$$$$$$$ //
 // Previous position in the selection.    //
 // Updates the page when posC changes.    //
 // Resets on each page.                   //
+
 int posP=0; //Previous position of each selection
+
 
 // $$$$$$$$$$$$$$$$$$$$$$ lineC $$$$$$$$$$$$$$$$$$$$$$ //
 // Current line of order.                              //
 // Breaks to next line after something is selected.    //
 // Goes up a line when B button is pressed.            //
+
 int lineC=0; //Current line of order
+
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ lineP $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ //
 // Previous line in order.                                                         //
 // Takes current line position to temporarily change lineC.                        //
 // Changes lineC back to lineP after temporary change made to return to original.  //
+
 int lineP=0; //Line Backup                                                         //
 
-std::string autoSel="Skills";
-std::string lineM[]={"Home","","Skills"}; //Total line memory
-std::string page="Home"; //Current Page
 
-std::string odomDetails;
-std::string trackLeft;
-std::string trackRight;
-std::string trackMiddle;
-
-
-// $$$$$$$$$$$$$$$$$$$$$$$$$$ RIGHT $$$$$$$$$$$$$$$$$$$$$$$$$$ //
-// Moves one option to the right for each page.                //
-// Limited to only moving right on any place but the last.     //
-void rightButton(){
-    posC+=1; //Move one option to the right
-    while(controller.get_digital(DIGITAL_RIGHT)){}; //Wait until button not pressed
-}
-
-// Go up a line when pressed.
-void leftButton(){
-    posC-=1; //Move one option to the left
-    while(controller.get_digital(DIGITAL_LEFT)){}; //Wait until button not pressed
-}
-
-void aButton(std::string selC[]){
-    for(int i=0;i<sizeof(selC->c_str());i++){ //Write the next page
-      if(posC==i+1){
-        page = selC[i]; //Update the current page ID
-        lineM[i+1]=selC[i];
-        if(lineC==2){
-          controller.set_text(1,0,"                   ");
-          lineC=-1;
-          page="Home";
-          autoSel=selC[i];
-        }
-      }
-    }
-    lineC++; //Update line count
-    posC=1; //Reset option position
-    posP=0; //Update Page after
-    while(controller.get_digital(DIGITAL_A)){}; //Wait until button not pressed
-}
-
-void bButton(){
-  controller.set_text(lineC,0,"                   ");
-
-    posP=0;
-    lineC--; //Go back one line
-    page=lineM[lineC];
-    while(controller.get_digital(DIGITAL_B)){}; //Wait until button not pressed
-}
-
-void selectButtons(std::string selC[]){ //Enter the current options and the new options
-  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != sizeof(selC->c_str())-1)){ //If the Right Button was pressed and not on the last option
-    rightButton();
-  }
-  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ //If the Left Button was pressed and not on the first option
-    leftButton();
-  }
-  else if(controller.get_digital(DIGITAL_A)){ //If the A Button was pressed
-    aButton(selC);
-  }
-  else if(controller.get_digital(DIGITAL_B) & (lineC!=0)){
-    bButton();
-  }
-}
-
-void infoButtons(std::string selC[]){ //Enter the current options and the new options
-  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != sizeof(selC->c_str())-1)){ //If the Right Button was pressed and not on the last option
-    rightButton();
-  }
-  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ //If the Left Button was pressed and not on the first option
-    leftButton();
-  }
-  else if(controller.get_digital(DIGITAL_B) & (lineC!=0)){
-    bButton();
-  }
-}
-
-
-
-void centerText(std::string str){
-  int midText=str.length()/2;
-  int startPoint=9-midText;
-  controller.set_text(lineC,0,"                   ");
-  pros::delay(200);
-  controller.set_text(lineC,startPoint,str);
-}
+// $$$$$$$$$$$$$$$$ BLINK $$$$$$$$$$$$$$$$ //
+// Blink the current option on screen.     //
+// Blinks the option every second.         //
+// Follows the option through lines.       //
 
 bool Blink=false;
-
 void blinkTimer(){
   while(true){
     pros::delay(1000);
@@ -203,6 +113,31 @@ void blinkTimer(){
     Blink=false;
   }
 }
+
+
+// $$$$$$$$$$$$$$$$ AUTONOMOUS SELECTED $$$$$$$$$$$$$$$$ //
+// Current Autonous to run.                              //
+// Runs the autonomous program set.                      //
+// Preset to Skills.                                     //
+
+std::string autoSel="Skills";
+
+std::string lineM[]={"Home","","Skills"}; //Total line memory
+std::string page="Home"; //Current Page
+void centerText(std::string str){
+  int midText=str.length()/2;
+  int startPoint=9-midText;
+  controller.set_text(lineC,0,"                   ");
+  pros::delay(200);
+  controller.set_text(lineC,startPoint,str);
+}
+std::string odomDetails;
+std::string trackLeft;
+std::string trackRight;
+std::string trackMiddle;
+
+// $$$$$$$$$$$$$$$$ UPDATEPAGE $$$$$$$$$$$$$$$$ //
+// Update the current line with new values.     //
 
 void updatePage(std::string selC[]){ //Enter current options
   if(posC != posP || Blink){
@@ -220,22 +155,8 @@ void updatePage(std::string selC[]){ //Enter current options
   }
 }
 
-
-void selectPage(std::string pageQ,std::string selC[]){ //Enter the Page in Question, current selection, and future selection
-  if(page==pageQ){ //If the page in question is the actual page
-    updatePage(selC);
-    selectButtons(selC); //Run the Buttons
-  }
-}
-
-void infoPage(std::string pageQ,std::string selC[]){ //Enter the Page in Question, current selection, and future selection
-  if(page==pageQ){ //If the page in question is the actual page
-    updatePage(selC);
-    infoButtons(selC); //Run the Buttons
-  }
-}
-
-
+// $$$$$$$$$$$$$$$$ SET UP PAGE $$$$$$$$$$$$$$$$ //
+// Set up arrays based off inputed information.  //
 
 void setUpPageType(std::string pageQ, std::string pageType, std::string selC[]){
   if(pageType=="Select")
@@ -270,7 +191,8 @@ void setUpPage(std::string pageQ, std::string pageType, std::string a){
   setUpPageType(pageQ, pageType, selC);
 }
 
-
+// $$$$$$$$$$$$$$$$ INITIALIZE $$$$$$$$$$$$$$$$ //
+// Clear the screen and print starting text.    //
 
 void initilizeController(){
   controller.clear();
@@ -279,12 +201,13 @@ void initilizeController(){
   lineC=0;
 }
 
+// $$$$$$$$$$$$$$$$$$$$$$$$ MAIN $$$$$$$$$$$$$$$$$$$$$$$$ //
+// All other functions branch off from the main function. //
 
-
-void contDisplay(){ //480 x 272
-  initilizeController();
-  pros::Task blinkingText(blinkTimer);
-  while(!controller.get_digital(DIGITAL_Y)){
+void contDisplay(){
+  initilizeController(); // Initialize the controller screen
+  pros::Task blinkingText(blinkTimer); // Start blinking the screen
+  while(!controller.get_digital(DIGITAL_Y)){ // While the button Y is not pressed
     odomDetails="X: ";
     odomDetails.append(to_string(drive->getState().x.convert(inch)));
     odomDetails.append(" Y: ");
@@ -298,6 +221,7 @@ void contDisplay(){ //480 x 272
     trackMiddle="M: ";
     trackMiddle.append(to_string(m.get()));
 
+    // Print page
     setUpPage("Home",       "Select", "Autonomous",         "Odometry",   "Debug",    "Set Up");                   //->
     setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");                  //-->
     setUpPage("Red",        "Select", "Red 1",              "Red 2",      "Red 3",    "Red 3");        //--->
