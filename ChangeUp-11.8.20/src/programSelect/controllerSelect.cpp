@@ -221,14 +221,14 @@ void contDisplay(){
     trackMiddle="M: ";
     trackMiddle.append(to_string(m.get()));
 
-    // Print page
-    setUpPage("Home",       "Select", "Autonomous",         "Odometry",   "Debug",    "Set Up");                   //->
-    setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");                  //-->
-    setUpPage("Red",        "Select", "Red 1",              "Red 2",      "Red 3",    "Red 3");        //--->
-    setUpPage("Blue",       "Select", "Blue 1",             "Blue 2",     "Blue 3",   "Blue 3");       //--->
-    setUpPage("Skills",     "Info",   "Skills");                                                      //-->
-    setUpPage("Odometry",   "Info",   odomDetails, trackLeft, trackRight, trackMiddle);  //-->
-    setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                                       //-->
+    // Print pages
+    setUpPage("Home",       "Select", "Autonomous",         "Odometry",   "Debug",    "Set Up"); //->
+    setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");             //-->
+    setUpPage("Red",        "Select", "Red 1",              "Red 2",      "Red 3",    "Red 3");  //--->
+    setUpPage("Blue",       "Select", "Blue 1",             "Blue 2",     "Blue 3",   "Blue 3"); //--->
+    setUpPage("Skills",     "Info",   "Skills");                                                 //-->
+    setUpPage("Odometry",   "Info",   odomDetails, trackLeft, trackRight, trackMiddle);          //-->
+    setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                //-->
     pros::delay(1);
   }
   controller.clear();

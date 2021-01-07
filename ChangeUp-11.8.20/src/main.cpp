@@ -150,7 +150,7 @@ void autonomous() {
     // 7 Blue balls                   //
     // 9 Goals                        //
     case 6:
-      a_SKILLS_SPINOFF_SEQUEL();
+      a_SKILLS_BROKEN_ARM_DISTANCE_FILTER();
     break;
     // ------------------------------ //
 
