@@ -112,7 +112,7 @@ void opcontrol(void);
 #include "colorFunctions/checkColor.hpp"
 #include "colorFunctions/filterColor.hpp"
 #include "colorFunctions/globalCountColor.hpp"
-#include "programSelect/programSelect.hpp"
+#include "programSelect/controllerSelect.hpp"
 
 
 #include "pros/apix.h"  //LVGLs

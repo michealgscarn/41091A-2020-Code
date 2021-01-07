@@ -17,6 +17,11 @@ $$  /   \$$ |\$$$$$$$ |$$ |$$ |      $$ |  $$ |$$ |$$ |\$$$$$$$ |$$ |  $$ |
 Created By Logan and Taylor
 Last Updated By Logan
 
+FILTER WHILE ALIGNING
+---------------------
+Filters balls in the robot while the robot is aligning.
+Won't allow the wall align to exit if the ball is not cycled
+
 WALL ALIGN
 ----------
 Aligns with wall and resets odometry position
@@ -24,6 +29,17 @@ Turns until side distance sensors are the same
 Reset robot position
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+bool filtered;
+
+void filterWhileAlign(){
+  setIntake(127);
+  setLift(60);
+  setDelivery(-127);
+  while(!ballFiltering()){pros::delay(10);}
+  while(ballFiltering()){pros::delay(10);}
+  filtered=true;
+}
 
 void wallAlign(double facingAngle,double minusY,double minusX){ // Get the robot's angle, X and Y offsets
 double xSen = leftTrackFront.get()*0.0393701+8.5;
@@ -53,5 +69,4 @@ else
     pros::delay(10);
   }
   drive->setState({minusX*1_in+leftTrackFront.get()*0.0393701_in+8.5_in,minusY*1_in+frontTrack.get()*0.0393701_in+5_in,facingAngle*1_deg});
-
 }

@@ -5,39 +5,105 @@ using namespace std;
 using namespace okapi;
 
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-$$\    $$\                    $$\           $$\       $$\
-$$ |   $$ |                   \__|          $$ |      $$ |
-$$ |   $$ |$$$$$$\   $$$$$$\  $$\  $$$$$$\  $$$$$$$\  $$ | $$$$$$\   $$$$$$$\
-\$$\  $$  |\____$$\ $$  __$$\ $$ | \____$$\ $$  __$$\ $$ |$$  __$$\ $$  _____|
- \$$\$$  / $$$$$$$ |$$ |  \__|$$ | $$$$$$$ |$$ |  $$ |$$ |$$$$$$$$ |\$$$$$$\
-  \$$$  / $$  __$$ |$$ |      $$ |$$  __$$ |$$ |  $$ |$$ |$$   ____| \____$$\
-   \$  /  \$$$$$$$ |$$ |      $$ |\$$$$$$$ |$$$$$$$  |$$ |\$$$$$$$\ $$$$$$$  |
-    \_/    \_______|\__|      \__| \_______|\_______/ \__| \_______|\_______/
+
+ $$$$$$\                       $$\                         $$\ $$\
+$$  __$$\                      $$ |                        $$ |$$ |
+$$ /  \__| $$$$$$\  $$$$$$$\ $$$$$$\    $$$$$$\   $$$$$$\  $$ |$$ | $$$$$$\   $$$$$$\
+$$ |      $$  __$$\ $$  __$$\\_$$  _|  $$  __$$\ $$  __$$\ $$ |$$ |$$  __$$\ $$  __$$\
+$$ |      $$ /  $$ |$$ |  $$ | $$ |    $$ |  \__|$$ /  $$ |$$ |$$ |$$$$$$$$ |$$ |  \__|
+$$ |  $$\ $$ |  $$ |$$ |  $$ | $$ |$$\ $$ |      $$ |  $$ |$$ |$$ |$$   ____|$$ |
+\$$$$$$  |\$$$$$$  |$$ |  $$ | \$$$$  |$$ |      \$$$$$$  |$$ |$$ |\$$$$$$$\ $$ |
+ \______/  \______/ \__|  \__|  \____/ \__|       \______/ \__|\__| \_______|\__|
 
 posC
 ----
-Current position in the selection
-Starts at first place
-Resets on each page
+Current position in the selection.
+Starts at first place.
+Resets on each page.
 
 posP
 ----
-Previous position in the selection
-Updates the page when posC changes
-Resets on each page
+Previous position in the selection.
+Updates the page when posC changes.
+Resets on each page.
 
 lineC
 -----
-Current line of order
-Breaks to next line after something is selected
-Goes up a line when B button is pressed
+Current line of order.
+Breaks to next line after something is selected.
+Goes up a line when B button is pressed.
+
+lineP
+-----
+Previous line in order.
+Takes current line position to temporarily change lineC.
+Changes lineC back to lineP after temporary change made to return to original.
+
+RIGHT ARROW
+-----------
+Moves one option to the right for each page.
+Limited to only moving right on any place but the last.
+
+LEFT ARROW
+----------
+Moves one option to the left for each page.
+Limited to only moving left on any place but the first.
+
+A BUTTON
+--------
+Selected Option will be the next page.
+Enter down a line after pressed.
+
+B BUTTON
+--------
+Go up a line when pressed.
+
+UPDATEPAGE
+----------
+Update the current line with new values.
+
+PAGE
+----
+Set up the page based off of the page in question, selection for that page, and following page after.
+
+SET UP
+------
+Set up arrays based off inputed information.
+
+INITIALIZE
+----------
+Clear the screen and print starting text.
+
+MAIN
+----
+All other functions branch off from the main function.
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
+// $$$$$$$$$$$$$$$$ posC $$$$$$$$$$$$$$$$ //
+// Current position in the selection.     //
+// Starts at first place.                 //
+// Resets on each page.                   //
 int posC=1; //Current position of each selection
+
+// $$$$$$$$$$$$$$$$ posP $$$$$$$$$$$$$$$$ //
+// Previous position in the selection.    //
+// Updates the page when posC changes.    //
+// Resets on each page.                   //
 int posP=0; //Previous position of each selection
+
+// $$$$$$$$$$$$$$$$$$$$$$ lineC $$$$$$$$$$$$$$$$$$$$$$ //
+// Current line of order.                              //
+// Breaks to next line after something is selected.    //
+// Goes up a line when B button is pressed.            //
 int lineC=0; //Current line of order
-int lineP=0; //Line Backup
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ lineP $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// Previous line in order.                                                         //
+// Takes current line position to temporarily change lineC.                        //
+// Changes lineC back to lineP after temporary change made to return to original.  //
+int lineP=0; //Line Backup                                                         //
+
 std::string autoSel="Skills";
 std::string lineM[]={"Home","","Skills"}; //Total line memory
 std::string page="Home"; //Current Page
@@ -48,42 +114,15 @@ std::string trackRight;
 std::string trackMiddle;
 
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-$$$$$$$\              $$\     $$\
-$$  __$$\             $$ |    $$ |
-$$ |  $$ |$$\   $$\ $$$$$$\ $$$$$$\    $$$$$$\  $$$$$$$\   $$$$$$$\
-$$$$$$$\ |$$ |  $$ |\_$$  _|\_$$  _|  $$  __$$\ $$  __$$\ $$  _____|
-$$  __$$\ $$ |  $$ |  $$ |    $$ |    $$ /  $$ |$$ |  $$ |\$$$$$$\
-$$ |  $$ |$$ |  $$ |  $$ |$$\ $$ |$$\ $$ |  $$ |$$ |  $$ | \____$$\
-$$$$$$$  |\$$$$$$  |  \$$$$  |\$$$$  |\$$$$$$  |$$ |  $$ |$$$$$$$  |
-\_______/  \______/    \____/  \____/  \______/ \__|  \__|\_______/
-
-RIGHT ARROW
------------
-Moves one option to the right for each page
-Limited to only moving right on any place but the last
-
-LEFT ARROW
-----------
-Moves one option to the left for each page
-Limited to only moving left on any place but the first
-
-A BUTTON
---------
-Selected Option will be the next page
-Enter down a line after pressed
-
-B BUTTON
---------
-Go up a line when pressed
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-
+// $$$$$$$$$$$$$$$$$$$$$$$$$$ RIGHT $$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// Moves one option to the right for each page.                //
+// Limited to only moving right on any place but the last.     //
 void rightButton(){
     posC+=1; //Move one option to the right
     while(controller.get_digital(DIGITAL_RIGHT)){}; //Wait until button not pressed
 }
+
+// Go up a line when pressed.
 void leftButton(){
     posC-=1; //Move one option to the left
     while(controller.get_digital(DIGITAL_LEFT)){}; //Wait until button not pressed
@@ -144,25 +183,7 @@ void infoButtons(std::string selC[]){ //Enter the current options and the new op
   }
 }
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
- /$$   /$$                 /$$             /$$
-| $$  | $$                | $$            | $$
-| $$  | $$  /$$$$$$   /$$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$
-| $$  | $$ /$$__  $$ /$$__  $$ |____  $$|_  $$_/   /$$__  $$
-| $$  | $$| $$  \ $$| $$  | $$  /$$$$$$$  | $$    | $$$$$$$$
-| $$  | $$| $$  | $$| $$  | $$ /$$__  $$  | $$ /$$| $$_____/
-|  $$$$$$/| $$$$$$$/|  $$$$$$$|  $$$$$$$  |  $$$$/|  $$$$$$$
- \______/ | $$____/  \_______/ \_______/   \___/   \_______/
-          | $$
-          | $$
-          |__/
-
-UPDATEPAGE
-----------
-Update the current line with new values
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 void centerText(std::string str){
   int midText=str.length()/2;
@@ -200,24 +221,6 @@ void updatePage(std::string selC[]){ //Enter current options
 }
 
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-$$$$$$$\
-$$  __$$\
-$$ |  $$ |$$$$$$\   $$$$$$\   $$$$$$\
-$$$$$$$  |\____$$\ $$  __$$\ $$  __$$\
-$$  ____/ $$$$$$$ |$$ /  $$ |$$$$$$$$ |
-$$ |     $$  __$$ |$$ |  $$ |$$   ____|
-$$ |     \$$$$$$$ |\$$$$$$$ |\$$$$$$$\
-\__|      \_______| \____$$ | \_______|
-                   $$\   $$ |
-                   \$$$$$$  |
-                    \______/
-
-Set up the page based off of the page in question, selection for that page, and following page after
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-
 void selectPage(std::string pageQ,std::string selC[]){ //Enter the Page in Question, current selection, and future selection
   if(page==pageQ){ //If the page in question is the actual page
     updatePage(selC);
@@ -232,23 +235,7 @@ void infoPage(std::string pageQ,std::string selC[]){ //Enter the Page in Questio
   }
 }
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
- $$$$$$\             $$\           $$\   $$\
-$$  __$$\            $$ |          $$ |  $$ |
-$$ /  \__| $$$$$$\ $$$$$$\         $$ |  $$ | $$$$$$\
-\$$$$$$\  $$  __$$\\_$$  _|        $$ |  $$ |$$  __$$\
- \____$$\ $$$$$$$$ | $$ |          $$ |  $$ |$$ /  $$ |
-$$\   $$ |$$   ____| $$ |$$\       $$ |  $$ |$$ |  $$ |
-\$$$$$$  |\$$$$$$$\  \$$$$  |      \$$$$$$  |$$$$$$$  |
- \______/  \_______|  \____/        \______/ $$  ____/
-                                             $$ |
-                                             $$ |
-                                             \__|
-
-Set up arrays based off inputed information
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 void setUpPageType(std::string pageQ, std::string pageType, std::string selC[]){
   if(pageType=="Select")
@@ -283,18 +270,7 @@ void setUpPage(std::string pageQ, std::string pageType, std::string a){
   setUpPageType(pageQ, pageType, selC);
 }
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-$$$$$$\           $$\   $$\     $$\           $$\ $$\
-\_$$  _|          \__|  $$ |    \__|          $$ |\__|
-  $$ |  $$$$$$$\  $$\ $$$$$$\   $$\  $$$$$$\  $$ |$$\ $$$$$$$$\  $$$$$$\
-  $$ |  $$  __$$\ $$ |\_$$  _|  $$ | \____$$\ $$ |$$ |\____$$  |$$  __$$\
-  $$ |  $$ |  $$ |$$ |  $$ |    $$ | $$$$$$$ |$$ |$$ |  $$$$ _/ $$$$$$$$ |
-  $$ |  $$ |  $$ |$$ |  $$ |$$\ $$ |$$  __$$ |$$ |$$ | $$  _/   $$   ____|
-$$$$$$\ $$ |  $$ |$$ |  \$$$$  |$$ |\$$$$$$$ |$$ |$$ |$$$$$$$$\ \$$$$$$$\
-\______|\__|  \__|\__|   \____/ \__| \_______|\__|\__|\________| \_______|
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 void initilizeController(){
   controller.clear();
@@ -303,20 +279,7 @@ void initilizeController(){
   lineC=0;
 }
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
- /$$      /$$           /$$
-| $$$    /$$$          |__/
-| $$$$  /$$$$  /$$$$$$  /$$ /$$$$$$$
-| $$ $$/$$ $$ |____  $$| $$| $$__  $$
-| $$  $$$| $$  /$$$$$$$| $$| $$  \ $$
-| $$\  $ | $$ /$$__  $$| $$| $$  | $$
-| $$ \/  | $$|  $$$$$$$| $$| $$  | $$
-|__/     |__/ \_______/|__/|__/  |__/
-
-All other functions branch off from the main function
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
 void contDisplay(){ //480 x 272
   initilizeController();

@@ -169,9 +169,6 @@ void autonomous() {
 
 void opcontrol() {
 
-FilterBall("blue",10);
-pros::delay(100000);
-
 //Continually update the screen to show OdomDebug information.
   while(true){
 
