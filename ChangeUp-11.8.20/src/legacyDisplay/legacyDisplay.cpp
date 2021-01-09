@@ -2,15 +2,6 @@
 using namespace okapi;
 /*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-//rumble the controller if anty drive motors get hot
-if(left_fr_mtr.get_temperature()>=55||right_fr_mtr.get_temperature()>=55||
-left_bc_mtr.get_temperature()>=55||right_bc_mtr.get_temperature()>=55||
-lift_mtr.get_temperature()>=55||del_mtr.get_temperature()>=55||
-left_int_mtr.get_temperature()>=55||right_int_mtr.get_temperature()>=55)
-  {
-    controller.rumble("-");
-  }
-
 $$$$$$$\  $$\                     $$\
 $$  __$$\ \__|                    $$ |
 $$ |  $$ |$$\  $$$$$$$\  $$$$$$\  $$ | $$$$$$\  $$\   $$\

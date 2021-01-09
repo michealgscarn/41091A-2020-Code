@@ -13,8 +13,8 @@ $$ |\$  /$$ |$$  __$$ |$$ |$$ |  $$ |
 $$ | \_/ $$ |\$$$$$$$ |$$ |$$ |  $$ |
 \__|     \__| \_______|\__|\__|  \__|
 
-Created By Logan and Taylor
-Last Updated By Logan
+Created on 10/14/2020 by Logan and Taylor
+Last Updated on 1/8/2021 by Logan
 
 INITIALIZE
 ----------
@@ -66,11 +66,13 @@ void initialize() {
   topColor.set_led_pwm(100);
 }
 
+
 // $$$$$$$$$$$$$$$$ DISABLED $$$$$$$$$$$$$$$$ //
 // Period of program when robot is disabled.  //
 
 void disabled() {
 }
+
 
  // $$$$$$$$$$$$$$$$ COMPETITION INITIALIZE $$$$$$$$$$$$$$$$ //
  // Initialize sensors and others at the start of a comp.    //
@@ -82,8 +84,8 @@ void disabled() {
     encCallibrate+=1;
     pros::delay(1);
   }
-
 }
+
 
 // $$$$$$$$$$$$$$$$ AUTONOMOUS $$$$$$$$$$$$$$$$ //
 // The robot drives on its own.                 //
@@ -161,6 +163,7 @@ void autonomous() {
     // ------------------------------- //
   }
 }
+
 
 // $$$$$$$$$$$$$$$$ DRIVER CONTROL $$$$$$$$$$$$$$$$ //
 // Robot is driven by a human.                      //

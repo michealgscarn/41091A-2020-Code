@@ -112,8 +112,8 @@ void opcontrol(void);
 #include "colorFunctions/checkColor.hpp"
 #include "colorFunctions/filterColor.hpp"
 #include "colorFunctions/globalCountColor.hpp"
-#include "programSelect/controllerSelect.hpp"
-#include "programSelect/controllerButtons.hpp"
+#include "controllerAttributes/controllerSelect.hpp"
+#include "controllerAttributes/controllerButtons.hpp"
 
 
 #include "pros/apix.h"  //LVGLs
