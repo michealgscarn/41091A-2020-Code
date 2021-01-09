@@ -17,6 +17,10 @@ $$ |  $$ |\$$$$$$  |$$ | $$ | $$ |$$$$$$$  |$$ |\$$$$$$$\
 Created on 1/8/2021 by Logan and Taylor
 Last updated on 1/8/2021 by Logan
 
+TEMPERATURE RUMBER
+------------------
+
+
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 void tempRumble(){
   //rumble the controller if anty drive motors get hot
