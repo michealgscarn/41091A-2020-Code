@@ -1,6 +1,8 @@
 #include "main.h"
 using namespace okapi;
 
+  double maxSpeed = 200;
+
   //Convert Degrees to Radians
   double degToRad2(double degrees){
     return (degrees*3.1415926579/180);
@@ -16,11 +18,11 @@ using namespace okapi;
 
     //Adjust speeds so that nothing is set over its max value
     double max = std::max({fabs(leftFrontSpeed),fabs(leftBackSpeed),fabs(rightFrontSpeed),fabs(rightBackSpeed)});
-    if(max>200){
-      leftFrontSpeed  = 200 * leftFrontSpeed / max;
-      leftBackSpeed   = 200 * leftBackSpeed / max;
-      rightFrontSpeed = 200 * rightFrontSpeed / max;
-      rightBackSpeed  = 200 * rightBackSpeed / max;
+    if(max>maxSpeed){
+      leftFrontSpeed  = maxSpeed * leftFrontSpeed / max;
+      leftBackSpeed   = maxSpeed * leftBackSpeed / max;
+      rightFrontSpeed = maxSpeed * rightFrontSpeed / max;
+      rightBackSpeed  = maxSpeed * rightBackSpeed / max;
     }
     setDrive(leftFrontSpeed,leftBackSpeed,rightFrontSpeed,rightBackSpeed);
   }

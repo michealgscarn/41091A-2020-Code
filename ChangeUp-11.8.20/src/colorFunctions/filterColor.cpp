@@ -31,7 +31,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 // Exit the loop if all balls have been cycled/filterd.//
 void FilterBall(std::string alliance, int deltaBallCount){
   setLift(65);
-  setIntake(70);
+  setIntake(65);
   setDelivery(127); //Deliver ball
 
   std::string ballState="none";

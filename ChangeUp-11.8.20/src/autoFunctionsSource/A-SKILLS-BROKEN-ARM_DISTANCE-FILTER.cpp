@@ -88,6 +88,7 @@ void a_SKILLS_BROKEN_ARM_DISTANCE_FILTER(){
 // ---------- PREPARE THE PROGRAM ---------- //
 startTime=pros::millis();   //Set up the timer
 drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
+maxSpeed=200;
 
 // ---------- Goal 1 (Home Row Left Corner) ---------- //
   // ----- Preparation ----- //
@@ -102,13 +103,13 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
 
 // ---------- Goal 2 (Left Wall) ---------- //
   // ----- Transition to Goal ----- //
-  DriveCoordShort(49.7, 42, 8, 3);   //Move to line up with next ball while spinning to face it
+  DriveCoordShort(49, 42, 8, 3);   //Move to line up with next ball while spinning to face it
   setIntake(-127);    //Deploy intake
   pros::delay(900);   //Wait for it to deploy
 
   setIntake(127);   //Run intake forward to pick up a ball
   setLift(127);   //Start running lift
-  DriveCoordShort(50,70,5,1);   //Drive forward to pick up ball
+  DriveCoordShort(49,70,5,1);   //Drive forward to pick up ball
   DriveCoordShort(52,70,-86,.75);   //Turn to face next ball
   DriveCoordShort(24,72,-88,0.5);   //Drive forward to pick up ball
   pros::delay(200);   //Wait for ball to pick up
@@ -132,14 +133,14 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
 // ---------- Goal 3 (Back Left Corner) ---------- //
   // ----- Transition to Goal----- //
   DriveCoordShort(46,71.8,-90,0.9);   //Back away from goal
-  DriveCoordShort(44,95,6.7,1.3);   //Line up with ball
+  DriveCoordShort(43,95,6.7,1.1);   //Line up with ball
   pros::delay(300);
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
-  DriveCoordShort(44,122,6.3,1.2);   //Pick up ball
-  DriveCoordShort(31,119,-32.2,1.15);  //Line up with goal
+  DriveCoordShort(43,122,6.3,1);   //Pick up ball
+  DriveCoordShort(31,119,-32.2,0.9);  //Line up with goal
   setIntake(0);   //Stop running intake
   DriveCoordShort(25,127,-37,0.75); //Drive into goal
 
@@ -155,13 +156,13 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
 
 // ---------- Reset alignment ---------- //
   //-----Prepare-----//
-  DriveCoordShort(29,92,6,1.25); //Back away from goal
+  DriveCoordShort(27,95,6,1.25); //Back away from goal
 
   // ----- Align ----- //
   pros::Task yeet(filterWhileAlign);
   filtered=false;
   //While the left back and left front distance sensors are not equal within a margin of error and those values are not within a specific range...
-  while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || ((frontTrack.get() > 1500) || (frontTrack.get() < 900)) & (!filtered)){
+  while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || ((frontTrack.get() > 1500) || (frontTrack.get() < 900)) || (!filtered)){
     double pow=(leftTrackBack.get()-leftTrackFront.get());    //Create a local variable that calculates the difference in sensor values
 
     if(leftTrackBack.get()>leftTrackFront.get())    //if the back value is greater than the front value...
@@ -193,7 +194,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   DriveCoordShort(69,99,90,0.85);   //Pick up ball
   DriveCoordShort(71,121,0,1.2);    //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(71,131.5,0,0.6);    //Drive into goal
+  DriveCoordShort(71,132,0,0.6);    //Drive into goal
 
   // ----- Score in Goal ----- //
   // setDelivery(127);   //Start running delivery
@@ -206,17 +207,17 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
 
 // ---------- Goal 5 (Back Right Corner) ---------- //
   // ----- Transition to Goal ----- //
-  DriveCoordShort(71.6,121,0,0.9); //Back away from goal
+  DriveCoordShort(71.6,115,0,0.9); //Back away from goal
   setIntake(127);    //Run intake in reverse
   setDelivery(-127);   //Stop running delivery
   setLift(60);   //Stop running lift
-  DriveCoordShort(87,122,90,1.15); //Drive in front of ball
+  DriveCoordShort(87,124,90,1.15); //Drive in front of ball
   pros::delay(100);
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
-  DriveCoordShort(110,121,87,1.9);    //Pick up ball
+  DriveCoordShort(110,124,87,1.9);    //Pick up ball
   DriveCoordShort(110,120,52,0.9);    //Line up with goal
   setIntake(0);   //Stop running intake
   DriveCoordShort(128.3,129.5,52.6,1);    //Drive into goal
@@ -268,7 +269,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
-  setLift(80);   //Start running lift
+  setLift(60);   //Start running lift
   DriveCoordShort(90,69.8,184.5,1);   //Drive forward to pick up ball
   DriveCoordShort(90.9,71,92.9,0.75);   //Turn to face next ball
   DriveCoordShort(109,70,94,1.1);   //Line up with goal
@@ -293,16 +294,16 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
 // ---------- Goal 7 (Bottom Right Corner) ---------- //
   // ----- Transition to Goal ----- //
   DriveCoordShort(104,70,94,1);   //Back up from goal
-  DriveCoordShort(100,45,184,8);   //Line up with ball
+  DriveCoordShort(99,45,184,8);   //Line up with ball
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
-  DriveCoordShort(95,20,183,1);    //Drive forward to pick up ball
-  DriveCoordShort(109.7,21,134,0.75);    //Line up with goal
+  DriveCoordShort(99,20,183,0.9);    //Drive forward to pick up ball
+  DriveCoordShort(111,21,134,0.65);    //Line up with goal
   setIntake(0);   //Stop running intake
   pros::delay(200);   //Wait a bit
-  DriveCoordShort(119,14,138,0.75);    //Drive into goal
+  DriveCoordShort(122,11,138,0.75);    //Drive into goal
 
   //-----Score in Goal-----//
   setDelivery(127);   //Start running delivery
@@ -349,7 +350,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   setIntake(127);   //Start running intake
   setLift(127);   //Start running lift
   setDelivery(0);
-  DriveCoordShort(116.5,39,90,1.5);   //Line up with ball
+  DriveCoordShort(116.5,41,90,1.5);   //Line up with ball
   DriveCoordShort(125.5,39,90,1);    //Pick up ball
   DriveCoordShort(94,74,274,2.3);    //Drive in front of goal
 
@@ -357,14 +358,18 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   setIntake(127);   //Run intake in reverse
   setLift(0);   //Stop running lift
 
+  // maxSpeed=600;
+  //
   DriveCoordShort(84.5,75,274,1);    //Drive in front of goal
   DriveCoordShort(93,75,274,0.75);   //Back away
   //
   // DriveCoordShort(84.5,73,274,1);    //Drive in front of goal
   // DriveCoordShort(93,73,274,1);   //Back away
-
+  //
   // DriveCoordShort(84.5,75,274,0.75);    //Drive in front of goal
   // DriveCoordShort(95.8,73.1,277,1);   //Back away
+
+  maxSpeed=200;
 
   // ----- Transition to Score ----- //
   DriveCoordShort(90,63,313,2);   //Line up with goal
@@ -382,7 +387,7 @@ drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
   DriveCoordShort(93,55,269,0.95);    //Turn to face ball
   setIntake(127);   //Start running intake to pick up ball
   setLift(127);   //Start running lift
-  DriveCoordShort(70,55,266,1.25);    //Pick up ball
+  DriveCoordShort(70,55,266,1.15);    //Pick up ball
   DriveCoordShort(70,31,180,1.3);    //Line up with goal
   setIntake(0);   //Stop running intake
   DriveCoordShort(70,23,180,0.5);    //Drive into goal
