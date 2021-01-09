@@ -351,7 +351,7 @@ maxSpeed=200;
   setLift(127);   //Start running lift
   setDelivery(0);
   DriveCoordShort(116.5,41,90,1.5);   //Line up with ball
-  DriveCoordShort(125.5,39,90,1);    //Pick up ball
+  DriveCoordShort(125.5,39,90,0.9);    //Pick up ball
   DriveCoordShort(94,74,274,2.3);    //Drive in front of goal
 
   // ----- Descore from Goal ----- //
