@@ -13,7 +13,7 @@ void a_HRF(){
 
 //----------Goal 1 (Corner Goal)----------//
   //-----Move to Goal-----//
-  strafeDrive(-24,1,5);    //Strafe left to align with goal
+  // strafeDrive(-24,1,5);    //Strafe left to align with goal
   setIntake(-127);    //Deploy intake
   pros::delay(600);   //Wait for intake to deploy
 

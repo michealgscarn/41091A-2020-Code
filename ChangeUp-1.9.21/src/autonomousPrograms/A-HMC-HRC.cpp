@@ -17,7 +17,7 @@ void a_HMC_HRC(){
   //-----Move to Goal-----//
   drive->moveDistance(-12_in);    //Back up to get ready to strafe
   setIntake(-127);    //Reverse intakes to deploy
-  strafeDrive(16,1,5);    //Strafe right to line up with goal
+  // strafeDrive(16,1,5);    //Strafe right to line up with goal
   setIntake(40);    //Slowly run intake forward
   setDrive(60,60,60,60);    //Move into goal
   pros::delay(500);   //Wait a bit

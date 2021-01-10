@@ -28,7 +28,7 @@ startTime=pros::millis();
 
 drive->setMaxVelocity(175);   //Slow the robot down for more accuracy and precision
 drive->setState({46_in,12_in,-135_deg});   //Set the state for odometry
-strafeDrive(24,-1,5);    //Strafe left to align with goal
+// strafeDrive(24,-1,5);    //Strafe left to align with goal
 setIntake(-127);
 pros::delay(600);
 drive->setMaxVelocity(250);   //Slow the robot back down for accuracy and precision
