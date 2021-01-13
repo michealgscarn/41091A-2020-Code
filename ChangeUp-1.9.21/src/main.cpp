@@ -52,12 +52,11 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 // Turns optical sensor lights to max.          //
 
 void initialize() {
-  pros::lcd::initialize();  //initialize Brain screen so we can see info later
   // pros::Task controllerDisplay(contDisplay); //Start Controller display to see info
 
-  AutoSelect(); //Start Brain autonomous selector to select before autonomous period
+  // AutoSelect(); //Start Brain autonomous selector to select before autonomous period
+  pros::Task screenUpdate(legacyDisplayAlign); //Display information to the Brain
 
-  // pros::Task screen_task(legacyDisplay_task_fn); //Display information to the Brain
   pros::Task ballUpdate(ballCountTask); //Update ball count since the start of the program
   pros::Task filterUpdate(filterCountTask); //Update filter count since the start of the program
 
@@ -158,7 +157,7 @@ void autonomous() {
 
     // ----------- DEFAULT ----------- //
     default:
-    a_SKILLS_BROKEN_ARM_DISTANCE_FILTER();
+    A_SKILLS_JANUARY();
     // a_SKILLS_BROKEN_ARM_DISTANCE_FILTER_115();
     break;
     // ------------------------------- //
@@ -172,7 +171,6 @@ void autonomous() {
 // Display Odometry details.                        //
 
 void opcontrol() {
-
 //Continually update the screen to show OdomDebug information.
   while(true){
 
@@ -184,6 +182,14 @@ void opcontrol() {
     setIntakeMotors();
     setLiftMotor();
     setDriveMotors(1);
+
+    // DELETEEEEEEEEEEEEEEE
+    if(controller.get_digital(DIGITAL_Y))
+      quickAlign("X");
+    if(controller.get_digital(DIGITAL_B))
+      quickAlign("Y");
+    // DELETEEEEEEEEEEEEEEE
+
 
     pros::delay(20); //wait for motors to update
   }

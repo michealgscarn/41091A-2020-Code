@@ -6,6 +6,23 @@ using namespace okapi;
 // we use this to time actions in autonomous
 int startTime;
 
+void cycleGoal(std::string alliance, int ballCount){
+  setLift(65);
+  setIntake(65);
+  setDelivery(127); //Deliver ball
+
+  std::string ballState="none";
+  int targetBallCount=ballCount+ballCount;
+  int targetRotM=0;
+  int noBallTimeout=pros::millis()+3000;
+  while((ballCount<targetBallCount) & ((noBallTimeout>pros::millis()))){
+    if((ballOut())&(CheckColor("top")==alliance)&bottomFollower.get_value()>2800){
+      setDelivery(0);
+    }
+    pros::delay(10);//Wait for sensors to update
+  }
+}
+
 
 //Use this function to drive up to the goal, and score quickly.
 //Only use this when there is little time to score, which will not be often.

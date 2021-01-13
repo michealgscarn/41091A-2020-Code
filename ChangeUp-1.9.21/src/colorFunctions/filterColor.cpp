@@ -49,7 +49,7 @@ void FilterBall(std::string alliance, int deltaBallCount){
       noBallTimeout=pros::millis()+3000;
       pros::delay(00);   //Wait for ball to filter out
       ballState="none"; //Set ball status to none
-      setIntake(127);
+      setIntake(65);
       setDelivery(127); //Deliver ball
     }
     // if(ballState=="detected")//Check to see if ball has been detected

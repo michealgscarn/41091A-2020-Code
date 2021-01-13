@@ -276,26 +276,30 @@ void OdomDebug::setData(state_t state, sensors_t sensors) {
 
 
   //Write odometry location and heading to the screen
-  // std::string text =
-  // "X_in: " + std::to_string(state.x.convert(inch)) + "\n" +
-  // "Y_in: " + std::to_string(state.y.convert(inch)) + "\n" +
-  // "\n" +
-  // "Theta_deg: " + std::to_string(state.theta.convert(degree)) + "\n" +
-  // "\n" +
-  // "Left: " + std::to_string(sensors.left) + "\n" +
-  // "Right: " + std::to_string(sensors.right);
-  // if(sensors.hasMiddle) {
-  //   text = text + "\n" + "Middle: " + std::to_string(sensors.middle);
-  // }
-
-
-
   std::string text =
-  "Bottom Follower: " + std::to_string(bottomFollower.get_value()) + "\n" +
-  "Bottom Color: " + std::to_string(bottomColor.get_hue()) + "\n" +
-  "Middle Color: "  + std::to_string(middleColor.get_hue()) + "\n" +
-  "Top Follower: " + std::to_string(topFollower.get_value()) + "\n" +
-  "Top Color: " + std::to_string(topColor.get_hue());
+  "X_in: " + std::to_string(state.x.convert(inch)) + "\n" +
+  "Y_in: " + std::to_string(state.y.convert(inch)) + "\n" +
+  "\n" +
+  "Theta_deg: " + std::to_string(state.theta.convert(degree)) + "\n" +
+  "\n" +
+   "Distance Front: " + std::to_string(leftTrackFront.get()*0.0393701) + "\n" +
+   "Distance Back: " + std::to_string(leftTrackBack.get()*0.0393701);
+
+
+  //"Left: " + std::to_string(sensors.left) + "\n" +
+  //"Right: " + std::to_string(sensors.right);
+  if(sensors.hasMiddle) {
+    text = text + "\n" + "Middle: " + std::to_string(sensors.middle);
+  }
+
+
+
+  // std::string text =
+  // "Bottom Follower: " + std::to_string(bottomFollower.get_value()) + "\n" +
+  // "Bottom Color: " + std::to_string(bottomColor.get_hue()) + "\n" +
+  // "Middle Color: "  + std::to_string(middleColor.get_hue()) + "\n" +
+  // "Top Follower: " + std::to_string(topFollower.get_value()) + "\n" +
+  // "Top Color: " + std::to_string(topColor.get_hue());
 
 
 

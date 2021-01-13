@@ -33,7 +33,8 @@ extern pros::Distance frontTrack;
 extern pros::ADIDigitalIn bottomLimit;
 extern pros::ADIAnalogIn bottomFollower;
 extern pros::ADIAnalogIn topFollower;
-
+extern pros::ADIAnalogIn leftResetFollower;
+extern pros::ADIAnalogIn rightResetFollower;
 
 
 

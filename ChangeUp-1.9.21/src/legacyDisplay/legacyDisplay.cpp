@@ -41,6 +41,7 @@ bool pressed=false;
 // Print the Odometry position on lines 5-7.                                     //
 
 void legacyDisplayPos(){
+  pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
   	pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
     pros::lcd::print(1,"Middle:       %f",m.get()); // Print middle encoder value on line 2
@@ -60,6 +61,7 @@ void legacyDisplayPos(){
 // Print the color of ball from the bottom optical sensor on line 4. //
 
 void legacyDisplayBall(){
+  pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
   	pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
     pros::lcd::print(1,"Ball Count:   %i",ballCount); // Print the ball count on line 2
@@ -77,12 +79,29 @@ void legacyDisplayBall(){
 // Print the color of ball from the bottom optical sensor on line 4. //
 
 void legacyDisplayTemp(){
+  pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
     pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
     pros::lcd::print(1,"lf:       %f",left_fr_mtr.get_temperature()); // Print the left front drive temperature on line 2
     pros::lcd::print(2,"rf:       %f",right_fr_mtr.get_temperature()); // Print the right front drive temperature on line 3
     pros::lcd::print(3,"rb:       %f",right_bc_mtr.get_temperature()); // Print the right back drive temperature on line 4
     pros::lcd::print(4,"lb:       %f",left_bc_mtr.get_temperature()); // Print the left back drive temperature on line 5
+    pros::delay(200); // Wait for the screen to update
+  }
+}
+
+// $$$$$$$$$$$$$$$$$$$$$$ LEGACY DISPLAY ALIGN $$$$$$$$$$$$$$$$$$$$$$ //
+
+void legacyDisplayAlign(){
+  pros::lcd::initialize();  //initialize Brain screen so we can see info later
+  while(true){ // Loop infinitly
+    pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
+    pros::lcd::print(1,"Front Distance:%f",leftTrackFront.get()*0.0393701+5.125); //
+    pros::lcd::print(2,"Back Distance: %f",leftTrackBack.get()*0.0393701+5.375); //
+    pros::lcd::print(3,"Theta:         %f",drive->getState().theta.convert(degree)); //
+    pros::lcd::print(4,"X:             %f",drive->getState().x.convert(inch)); //
+    pros::lcd::print(5,"Y:             %f",drive->getState().y.convert(inch)); //
+    pros::lcd::print(6,"Bottom Value:  %d",(leftResetFollower.get_value()+leftResetFollower.get_value())/2); //
     pros::delay(200); // Wait for the screen to update
   }
 }

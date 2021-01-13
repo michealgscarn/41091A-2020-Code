@@ -64,6 +64,13 @@ bool ballIn(){
   return (bottomFollower.get_value()<2600 & bottomFollower.get_value()>0);
 }
 
+// $$$$$$$$$$$$$$$$$$$$$$$$$$ BALL OUT $$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// Checks if a ball is in the robot                              //
+// Returns if the line follower is dark enough that a ball is in.//
+
+bool ballOut(){
+  return (topFollower.get_value()<2850 & topFollower.get_value()>0);
+}
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$ BALL IN $$$$$$$$$$$$$$$$$$$$$$$$$$ //
 // Check if a ball is being filtered.
@@ -78,7 +85,7 @@ bool ballFiltering(){
 // Adds one to the ball count if a ball is in.                    //
 
 void ballCountTask(){
-  bool ballStillIn=false; // Set the ball still 
+  bool ballStillIn=false; // Set the ball still
   while(true){
     if(ballIn()&!ballStillIn&!ballFiltering()){
       ballCount++;

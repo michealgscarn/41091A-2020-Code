@@ -131,7 +131,7 @@ pros::Optical topColor(7);
 // 7  - Top Color                            //
 
 pros::Distance leftTrackFront(15);
-pros::Distance leftTrackBack(20);
+pros::Distance leftTrackBack(2);
 pros::Distance frontTrack(17);
 
 
@@ -143,10 +143,12 @@ pros::ADIDigitalIn bottomLimit ({19,'A'});
 
 // $$$$$$$$$$$$$$$$ LINE FOLLOWER $$$$$$$$$$$$$$$$ //
 // 19 - Bottom Ball detecting                      //
-// 19 'A' - Top Ball detecting                     //
+// 'A' - Top Ball detecting                     //
 
 pros::ADIAnalogIn bottomFollower ({19,'H'});
 pros::ADIAnalogIn topFollower ('A');
+pros::ADIAnalogIn leftResetFollower ({19,'C'});
+pros::ADIAnalogIn rightResetFollower ({19,'B'});
 
 
 // $$$$$$$$$$$$$$$$ CHASSIS BUILDER $$$$$$$$$$$$$$$$ //
