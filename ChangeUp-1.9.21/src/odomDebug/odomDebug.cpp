@@ -282,8 +282,8 @@ void OdomDebug::setData(state_t state, sensors_t sensors) {
   "\n" +
   "Theta_deg: " + std::to_string(state.theta.convert(degree)) + "\n" +
   "\n" +
-   "Distance Front: " + std::to_string(leftTrackFront.get()*0.0393701) + "\n" +
-   "Distance Back: " + std::to_string(leftTrackBack.get()*0.0393701);
+  "Distance Front: " + std::to_string(sf) + "\n" +
+  "Distance Back: " + std::to_string(sb);
 
 
   //"Left: " + std::to_string(sensors.left) + "\n" +

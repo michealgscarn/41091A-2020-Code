@@ -4,70 +4,20 @@
 using namespace std;
 using namespace okapi;
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+/*----------------------------------------------------------------------------
 
- $$$$$$\                       $$\                         $$\ $$\
-$$  __$$\                      $$ |                        $$ |$$ |
-$$ /  \__| $$$$$$\  $$$$$$$\ $$$$$$\    $$$$$$\   $$$$$$\  $$ |$$ | $$$$$$\   $$$$$$\
-$$ |      $$  __$$\ $$  __$$\\_$$  _|  $$  __$$\ $$  __$$\ $$ |$$ |$$  __$$\ $$  __$$\
-$$ |      $$ /  $$ |$$ |  $$ | $$ |    $$ |  \__|$$ /  $$ |$$ |$$ |$$$$$$$$ |$$ |  \__|
-$$ |  $$\ $$ |  $$ |$$ |  $$ | $$ |$$\ $$ |      $$ |  $$ |$$ |$$ |$$   ____|$$ |
-\$$$$$$  |\$$$$$$  |$$ |  $$ | \$$$$  |$$ |      \$$$$$$  |$$ |$$ |\$$$$$$$\ $$ |
+ ------\                       --\                         --\ --\
+--  __--\                      -- |                        -- |-- |
+-- /  \__| ------\  -------\ ------\    ------\   ------\  -- |-- | ------\   ------\
+-- |      --  __--\ --  __--\\_--  _|  --  __--\ --  __--\ -- |-- |--  __--\ --  __--\
+-- |      -- /  -- |-- |  -- | -- |    -- |  \__|-- /  -- |-- |-- |-------- |-- |  \__|
+-- |  --\ -- |  -- |-- |  -- | -- |--\ -- |      -- |  -- |-- |-- |--   ____|-- |
+\------  |\------  |-- |  -- | \----  |-- |      \------  |-- |-- |\-------\ -- |
  \______/  \______/ \__|  \__|  \____/ \__|       \______/ \__|\__| \_______|\__|
 
-posC
-----
-Current position in the selection.
-Starts at first place.
-Resets on each page.
+----------------------------------------------------------------------------*/
 
-posP
-----
-Previous position in the selection.
-Updates the page when posC changes.
-Resets on each page.
-
-lineC
------
-Current line of order.
-Breaks to next line after something is selected.
-Goes up a line when B button is pressed.
-
-lineP
------
-Previous line in order.
-Takes current line position to temporarily change lineC.
-Changes lineC back to lineP after temporary change made to return to original.
-
-BLINK
------
-Blink the current option on screen
-Blinks the option every second
-Follows the option through lines
-
-UPDATEPAGE
-----------
-Update the current line with new values.
-
-PAGE
-----
-Set up the page based off of the page in question, selection for that page, and following page after.
-
-SET UP
-------
-Set up arrays based off inputed information.
-
-INITIALIZE
-----------
-Clear the screen and print starting text.
-
-MAIN
-----
-All other functions branch off from the main function.
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-
-// $$$$$$$$$$$$$$$$ posC $$$$$$$$$$$$$$$$ //
+// ---------------- posC ---------------- //
 // Current position in the selection.     //
 // Starts at first place.                 //
 // Resets on each page.                   //
@@ -75,7 +25,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 int posC=1; //Current position of each selection
 
 
-// $$$$$$$$$$$$$$$$ posP $$$$$$$$$$$$$$$$ //
+// ---------------- posP ---------------- //
 // Previous position in the selection.    //
 // Updates the page when posC changes.    //
 // Resets on each page.                   //
@@ -83,7 +33,7 @@ int posC=1; //Current position of each selection
 int posP=0; //Previous position of each selection
 
 
-// $$$$$$$$$$$$$$$$$$$$$$ lineC $$$$$$$$$$$$$$$$$$$$$$ //
+// ---------------------- lineC ---------------------- //
 // Current line of order.                              //
 // Breaks to next line after something is selected.    //
 // Goes up a line when B button is pressed.            //
@@ -91,7 +41,7 @@ int posP=0; //Previous position of each selection
 int lineC=0; //Current line of order
 
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ lineP $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// ------------------------------------ lineP ------------------------------------ //
 // Previous line in order.                                                         //
 // Takes current line position to temporarily change lineC.                        //
 // Changes lineC back to lineP after temporary change made to return to original.  //
@@ -99,7 +49,7 @@ int lineC=0; //Current line of order
 int lineP=0; //Line Backup                                                         //
 
 
-// $$$$$$$$$$$$$$$$ BLINK $$$$$$$$$$$$$$$$ //
+// ---------------- BLINK ---------------- //
 // Blink the current option on screen.     //
 // Blinks the option every second.         //
 // Follows the option through lines.       //
@@ -115,7 +65,7 @@ void blinkTimer(){
 }
 
 
-// $$$$$$$$$$$$$$$$ AUTONOMOUS SELECTED $$$$$$$$$$$$$$$$ //
+// ---------------- AUTONOMOUS SELECTED ---------------- //
 // Current Autonous to run.                              //
 // Runs the autonomous program set.                      //
 // Preset to Skills.                                     //
@@ -136,7 +86,7 @@ std::string trackLeft;
 std::string trackRight;
 std::string trackMiddle;
 
-// $$$$$$$$$$$$$$$$ UPDATEPAGE $$$$$$$$$$$$$$$$ //
+// ---------------- UPDATEPAGE ---------------- //
 // Update the current line with new values.     //
 
 void updatePage(std::string selC[]){ //Enter current options
@@ -155,7 +105,7 @@ void updatePage(std::string selC[]){ //Enter current options
   }
 }
 
-// $$$$$$$$$$$$$$$$ SET UP PAGE $$$$$$$$$$$$$$$$ //
+// ---------------- SET UP PAGE ---------------- //
 // Set up arrays based off inputed information.  //
 
 void setUpPageType(std::string pageQ, std::string pageType, std::string selC[]){
@@ -191,7 +141,7 @@ void setUpPage(std::string pageQ, std::string pageType, std::string a){
   setUpPageType(pageQ, pageType, selC);
 }
 
-// $$$$$$$$$$$$$$$$ INITIALIZE $$$$$$$$$$$$$$$$ //
+// ---------------- INITIALIZE ---------------- //
 // Clear the screen and print starting text.    //
 
 void initilizeController(){
@@ -201,7 +151,7 @@ void initilizeController(){
   lineC=0;
 }
 
-// $$$$$$$$$$$$$$$$$$$$$$$$ MAIN $$$$$$$$$$$$$$$$$$$$$$$$ //
+// ------------------------ MAIN ------------------------ //
 // All other functions branch off from the main function. //
 
 void contDisplay(){

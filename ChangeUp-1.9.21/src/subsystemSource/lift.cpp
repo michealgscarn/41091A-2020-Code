@@ -11,16 +11,8 @@
  $$$$$$$$\ $$ |$$ |        \$$$$  |
  \________|\__|\__|         \____/
 
-Created By Logan and Taylor
-Last Updated By Logan
-
-LIFT SPEED
-----------
-Set the velocity of the Lift motor.
-
-CONTROLLER LIFT
----------------
-Set the velocity of the Lift based on Controller input
+Created on 10/14/2020 by Logan and Taylor
+Last Updated on 1/15/2021 by Logan
 
  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 

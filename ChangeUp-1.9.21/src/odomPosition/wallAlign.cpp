@@ -14,19 +14,8 @@ $$  /   \$$ |\$$$$$$$ |$$ |$$ |      $$ |  $$ |$$ |$$ |\$$$$$$$ |$$ |  $$ |
                                                        \$$$$$$  |
                                                         \______/
 
-Created By Logan and Taylor
-Last Updated By Logan
-
-FILTER WHILE ALIGNING
----------------------
-Filters balls in the robot while the robot is aligning.
-Won't allow the wall align to exit if the ball is not cycled.
-
-WALL ALIGN
-----------
-Aligns with wall and resets odometry position.
-Turns until side distance sensors are the same.
-Reset robot position.
+  Created on 1/5/2020 by Logan and Taylor
+  Last Updated on 1/15/2021 by Logan
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 

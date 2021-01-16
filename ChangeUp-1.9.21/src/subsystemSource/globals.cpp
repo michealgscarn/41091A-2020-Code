@@ -11,59 +11,8 @@ $$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ | \____$$\
 \$$$$$$  |$$ |\$$$$$$  |$$$$$$$  |\$$$$$$$ |$$ |$$$$$$$  |
  \______/ \__| \______/ \_______/  \_______|\__|\_______/
 
-Created By Logan and Taylor
-Last Updated By Logan
-
-MOTORS
-------
-12 - Left front Motor
-13 - Left back Motor
-1  - Right front Motor
-10 - Right back Motor
-11 - Left Intake Motor
-16 - Right Intake Motor
-14 - Lift Motor
-6  - Delivery Motor
-
-CONTROLLER
-----------
-Controller
-
-ENCODERS
--------
-9 & 'A''B' - Left Encoder
-9 & 'C''D' - Right Encoder
-9 & 'E''F' - Middle Encoder
-Callibration Timeout
-
-OPITCAL
--------
-8  - Bottom Color
-18 - Middle Color
-7  - Top Color
-
-DISTANCE
---------
-Left front Distance
-Left back Distance
-Front Distance
-
-LIMIT SWITCH
--------------
-Filter checking
-
-LINE FOLLOWER
--------------
-Bottom Ball detecting
-Top Ball detecting
-
-CHASSIS BUILDER
----------------
-Motors : 11, 12, 8, 3
-Sensors : l, r, m
-Forward PID Gains : 0.00095, 0.00001, 0.0
-Angle PID Gains : 0.0032, 0.000025, 0.0
-Turn PID Gains : 0.0003, 0.0, 0.0
+ Created on 10/14/2020 by Logan and Taylor
+ Last Updated on 1/15/2021 by Logan
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 

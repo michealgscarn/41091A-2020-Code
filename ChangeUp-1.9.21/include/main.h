@@ -93,6 +93,7 @@ void opcontrol(void);
 #include "autonomousPrograms/A-HMP-HLC-MM1-I.hpp"
 #include "autonomousPrograms/A-HMC-HLC-MM1.hpp"
 #include "autonomousPrograms/A-HMP-HLC-HRC.hpp"
+#include "autonomousPrograms/A-HR1-HMC-HL1-MM1.hpp"
 #include "autonomousPrograms/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER.hpp"
 #include "autonomousPrograms/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER-115.hpp"
 #include "autonomousPrograms/A-SKILLS-JANUARY.hpp"
@@ -106,7 +107,6 @@ void opcontrol(void);
 #include "colorFunctions/globalCountColor.hpp"
 #include "controllerAttributes/controllerSelect.hpp"
 #include "controllerAttributes/controllerButtons.hpp"
-
 
 #include "pros/apix.h"  //LVGLs
 

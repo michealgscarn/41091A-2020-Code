@@ -11,22 +11,8 @@ $$ |  $$ |$$ |      $$ |  \$$$  /  $$   ____| $$ |$$\ $$ |     $$  __$$ |$$ |$$ 
 $$$$$$$  |$$ |      $$ |   \$  /   \$$$$$$$\  \$$$$  |$$ |     \$$$$$$$ |$$ |$$ |  $$ |
 \_______/ \__|      \__|    \_/     \_______|  \____/ \__|      \_______|\__|\__|  \__|
 
-Created By Logan and Taylor
-Last Updated By Logan
-
-DRIVETRAIN SPEED
-----------
-Set the velocity of the Drivetrain motors.
-
-CONTROLLER DRIVETRAIN
----------------
-Set the velocity of the Drivetrain based on Controller input
-Stop motors if the velocity is very small.
-
-FIELD CENTRIC CONTROLLER
-------------------------
-Drive using Controller input.
-Run the motors using the field centric algorithm.
+Created on 10/14/2020 by Logan and Taylor
+Last Updated on 1/15/2021 by Logan
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 

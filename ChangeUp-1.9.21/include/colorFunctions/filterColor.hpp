@@ -2,4 +2,5 @@
 using namespace okapi;
 
 void FilterBall(std::string alliance, int deltaBallCount);
+void FilterBallNoIn(std::string alliance, int deltaBallCount);
 void FilterBall(std::string alliance, int deltaBallCount, int deltaFilterCount);

@@ -17,7 +17,7 @@ using namespace okapi;
 void A_HMC_HLC_MM1(){
 //----------Set Up----------//
   startTime=pros::millis();
-  drive->setState({57_in,9.5_in,110_deg});   //Set the state for odometry
+  drive->setState({83.75_in,13.75_in,110_deg});   //Set the state for odometry
 
 //   //----------Goal 1 (Home Row Wall)----------//
 //     setDelivery(127);   //Start running delivery

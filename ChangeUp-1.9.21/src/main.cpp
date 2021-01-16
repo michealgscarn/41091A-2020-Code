@@ -16,32 +16,9 @@ $$ | \_/ $$ |\$$$$$$$ |$$ |$$ |  $$ |
 Created on 10/14/2020 by Logan and Taylor
 Last Updated on 1/8/2021 by Logan
 
-INITIALIZE
-----------
-Sets up all sensors, motors and tasks.
-Starts all tasks.
-Initializes autonomous selector.
-Turns optical sensor lights to max.
-
-DISABLED
---------
-Period of program when robot is disabled.
-
-COMPETITION INITIALIZE
-----------------------
-Initialize sensors and others at the start of a comp.
-Don't start autonous until the encoders are callibrated.
-
-AUTONOMOUS
-----------
-The robot drives on its own.
-Starts autnomous from a chosen autonomous.
-
-DRIVER CONTROL
---------------
-Robot is driven by a human.
-Run the robot based on joystick and button inputs
-Display Odometry details.
+The Main function Initializes the program as it starts.
+It starts autonomous, driver control and everything competition.
+It is the most important program because it references all others.
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
 
@@ -91,6 +68,7 @@ void disabled() {
 // Starts autnomous from a chosen autonomous.   //
 
 void autonomous() {
+
   switch (auton_sel) {
 
     // ----------- HOME ROW ----------- //
@@ -157,7 +135,8 @@ void autonomous() {
 
     // ----------- DEFAULT ----------- //
     default:
-    A_SKILLS_JANUARY();
+    // a_HR1_HMC_HL1_MM1();
+    a_MMF_HLC_HMC();
     // a_SKILLS_BROKEN_ARM_DISTANCE_FILTER_115();
     break;
     // ------------------------------- //
@@ -171,6 +150,8 @@ void autonomous() {
 // Display Odometry details.                        //
 
 void opcontrol() {
+  // drive->setState({117.5_in,16.75_in,90_deg});   //Set the state for odometry
+
 //Continually update the screen to show OdomDebug information.
   while(true){
 

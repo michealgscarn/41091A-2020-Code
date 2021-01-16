@@ -8,14 +8,14 @@ int startTime;
 
 void cycleGoal(std::string alliance, int ballCount){
   setLift(65);
-  setIntake(65);
+  // setIntake(65);
   setDelivery(127); //Deliver ball
 
   std::string ballState="none";
   int targetBallCount=ballCount+ballCount;
   int targetRotM=0;
   int noBallTimeout=pros::millis()+3000;
-  while((ballCount<targetBallCount) & ((noBallTimeout>pros::millis()))){
+  while(!((ballOut())&(CheckColor("top")==alliance)) & ((noBallTimeout>pros::millis()))){
     if((ballOut())&(CheckColor("top")==alliance)&bottomFollower.get_value()>2800){
       setDelivery(0);
     }
