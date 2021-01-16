@@ -1,63 +1,63 @@
 #include "main.h"
 using namespace okapi;
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+/*--------------------------------------------------------
 
-$$$$$$$\                      $$\ $$\
-$$  __$$\                     $$ |\__|
-$$ |  $$ | $$$$$$\   $$$$$$\  $$ |$$\  $$$$$$\  $$$$$$$\
-$$$$$$$  |$$  __$$\  \____$$\ $$ |$$ |$$  __$$\ $$  __$$\
-$$  __$$< $$$$$$$$ | $$$$$$$ |$$ |$$ |$$ /  $$ |$$ |  $$ |
-$$ |  $$ |$$   ____|$$  __$$ |$$ |$$ |$$ |  $$ |$$ |  $$ |
-$$ |  $$ |\$$$$$$$\ \$$$$$$$ |$$ |$$ |\$$$$$$$ |$$ |  $$ |
-\__|  \__| \_______| \_______|\__|\__| \____$$ |\__|  \__|
-                                      $$\   $$ |
-                                      \$$$$$$  |
+-------\                      --\ --\
+--  __--\                     -- |\__|
+-- |  -- | ------\   ------\  -- |--\  ------\  -------\
+-------  |--  __--\  \____--\ -- |-- |--  __--\ --  __--\
+--  __--< -------- | ------- |-- |-- |-- /  -- |-- |  -- |
+-- |  -- |--   ____|--  __-- |-- |-- |-- |  -- |-- |  -- |
+-- |  -- |\-------\ \------- |-- |-- |\------- |-- |  -- |
+\__|  \__| \_______| \_______|\__|\__| \____-- |\__|  \__|
+                                      --\   -- |
+                                      \------  |
                                        \______/
   Blah Blah Blah Blah Explanations, esessesfsdfafsadfdsf
 
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+--------------------------------------------------------*/
 
-// $$$$$$$$$$$$$$$$$$$$ thetaVal $$$$$$$$$$$$$$$$$$$$ //
+// -------------------- thetaVal -------------------- //
 // Recorded new Theta(angle) value.                   //
 double thetaVal;
 
-// $$$$$$$$$$$$$$$$$$$$ XYVal $$$$$$$$$$$$$$$$$$$$ //
+// -------------------- XYVal -------------------- //
 // Recorded new distance from wall.                //
 // Can be used for either X or Y.                  //
 double XYVal;
 
-// $$$$$$$$$$$$$$$$$$$$ baseA $$$$$$$$$$$$$$$$$$$$ //
+// -------------------- baseA -------------------- //
 // Base of triangle used for Theta.                //
 // Set as the distance between distance sensors.   //
 double baseA;
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$$$ heightA $$$$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// ---------------------------- heightA ---------------------------- //
 // Height of triangle used for Theta.                                //
 // Set as the difference between front and back distance sensors.    //
 double heightA;
 
-// $$$$$$$$$$$$$$$$$$$$$$$ sf $$$$$$$$$$$$$$$$$$$$$$$ //
+// ----------------------- sf ----------------------- //
 // Distance between front distance sensor and wall.   //
 double sf=0;
 
-// $$$$$$$$$$$$$$$$$$$$$ sb $$$$$$$$$$$$$$$$$$$$$ //
+// --------------------- sb --------------------- //
 // Distance between back distance snsor and wall. //
 double sb=0;
 
-// $$$$$$$$$$$$$$$$$$$$ RADIANS TO DEGREES $$$$$$$$$$$$$$$$$$$$ //
+// -------------------- RADIANS TO DEGREES -------------------- //
 // Converts radians to degrees.                                 //
 double radToDeg(double radians){
   return radians*180.0/3.14159265;
 }
 
-// $$$$$$$$$$$$$$$$$$$$ DEGREES TO RADIANS $$$$$$$$$$$$$$$$$$$$ //
+// -------------------- DEGREES TO RADIANS -------------------- //
 // Converts degrees to radians.                                 //
 double degToRad(double degrees){
   return degrees*3.14159265/180.0;
 }
 
-// $$$$$$$$$$$$$$$$$$$$ THETA CALCULATION $$$$$$$$$$$$$$$$$$$$ //
+// -------------------- THETA CALCULATION -------------------- //
 // Calculates Theta from given base and height.                //
 //             Diagram                                         //
 //                                                             //
@@ -77,7 +77,7 @@ double getThetaVal(double bVal, double hVal){
   return (atan(hVal/bVal));
 }
 
-// $$$$$$$$$$$$$$$$$$$$ X/Y CALCULATION $$$$$$$$$$$$$$$$$$$$ //
+// -------------------- X/Y CALCULATION -------------------- //
 // Calculates X/Y from given hypotenuse and angle.           //
 //             Diagram                                       //
 //           _____________                                   //

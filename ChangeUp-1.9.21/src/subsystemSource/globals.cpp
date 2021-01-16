@@ -1,22 +1,22 @@
 #include "main.h"
 using namespace okapi;
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+/*---------------------------------------------------------
 
- $$$$$$\  $$\           $$\                 $$\
-$$  __$$\ $$ |          $$ |                $$ |
-$$ /  \__|$$ | $$$$$$\  $$$$$$$\   $$$$$$\  $$ | $$$$$$$\
-$$ |$$$$\ $$ |$$  __$$\ $$  __$$\  \____$$\ $$ |$$  _____|
-$$ |\_$$ |$$ |$$ /  $$ |$$ |  $$ | $$$$$$$ |$$ |\$$$$$$\
-$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ | \____$$\
-\$$$$$$  |$$ |\$$$$$$  |$$$$$$$  |\$$$$$$$ |$$ |$$$$$$$  |
+ ------\  --\           --\                 --\
+--  __--\ -- |          -- |                -- |
+-- /  \__|-- | ------\  -------\   ------\  -- | -------\
+-- |----\ -- |--  __--\ --  __--\  \____--\ -- |--  _____|
+-- |\_-- |-- |-- /  -- |-- |  -- | ------- |-- |\------\
+-- |  -- |-- |-- |  -- |-- |  -- |--  __-- |-- | \____--\
+\------  |-- |\------  |-------  |\------- |-- |-------  |
  \______/ \__| \______/ \_______/  \_______|\__|\_______/
 
  Created on 10/14/2020 by Logan and Taylor
  Last Updated on 1/15/2021 by Logan
 
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+---------------------------------------------------------*/
 
-// $$$$$$$$$$$$$$$$ MOTORS $$$$$$$$$$$$$$$$ //
+// ---------------- MOTORS ---------------- //
 // 12 - Left front Motor                    //
 // 13 - Left back Motor                     //
 // 1  - Right front Motor                   //
@@ -37,13 +37,13 @@ pros::Motor del_mtr(6, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEG
 int autonomousPreSet = 0;
 
 
-// $$$$$$$$$$$$$$$$ CONTROLLER $$$$$$$$$$$$$$$$ //
+// ---------------- CONTROLLER ---------------- //
 // Controller                                   //
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
 
-// $$$$$$$$$$$$$$$$ ENCODERS $$$$$$$$$$$$$$$$ //
+// ---------------- ENCODERS ---------------- //
 // 9 & 'A''B' - Left Encoder                  //
 // 9 & 'C''D' - Right Encoder                 //
 // 9 & 'E''F' - Middle Encoder                //
@@ -64,7 +64,7 @@ void  waitForADIInit(int time){
 }
 
 
-// $$$$$$$$$$$$$$$$ OPTICAL $$$$$$$$$$$$$$$$ //
+// ---------------- OPTICAL ---------------- //
 // 8  - Bottom Color                         //
 // 18 - Middle Color                         //
 // 7  - Top Color                            //
@@ -74,7 +74,7 @@ pros::Optical middleColor(18);
 pros::Optical topColor(7);
 
 
-// $$$$$$$$$$$$$$$$ OPTICAL $$$$$$$$$$$$$$$$ //
+// ---------------- OPTICAL ---------------- //
 // 8  - Bottom Color                         //
 // 18 - Middle Color                         //
 // 7  - Top Color                            //
@@ -84,13 +84,13 @@ pros::Distance leftTrackBack(2);
 pros::Distance frontTrack(17);
 
 
-// $$$$$$$$$$$$$$$$ LIMIT SWITCH $$$$$$$$$$$$$$$$ //
+// ---------------- LIMIT SWITCH ---------------- //
 // Filter checker                                 //
 
 pros::ADIDigitalIn bottomLimit ({19,'A'});
 
 
-// $$$$$$$$$$$$$$$$ LINE FOLLOWER $$$$$$$$$$$$$$$$ //
+// ---------------- LINE FOLLOWER ---------------- //
 // 19 - Bottom Ball detecting                      //
 // 'A' - Top Ball detecting                     //
 
@@ -100,7 +100,7 @@ pros::ADIAnalogIn leftResetFollower ({19,'C'});
 pros::ADIAnalogIn rightResetFollower ({19,'B'});
 
 
-// $$$$$$$$$$$$$$$$ CHASSIS BUILDER $$$$$$$$$$$$$$$$ //
+// ---------------- CHASSIS BUILDER ---------------- //
 // Motors   : 11, 12, 8, 3                           //
 // Sensors  : l, r, m                                //
 // Forward PID Gains  : 0.00095, 0.00001, 0.0        //

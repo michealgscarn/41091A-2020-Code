@@ -1,16 +1,16 @@
 #include "main.h"
 using namespace okapi;
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+/*--------------------------------------------------------------------------------------------------
 
 
- $$$$$$\  $$\           $$\                 $$\        $$$$$$\            $$\
-$$  __$$\ $$ |          $$ |                $$ |      $$  __$$\           $$ |
-$$ /  \__|$$ | $$$$$$\  $$$$$$$\   $$$$$$\  $$ |      $$ /  \__| $$$$$$\  $$ | $$$$$$\   $$$$$$\
-$$ |$$$$\ $$ |$$  __$$\ $$  __$$\  \____$$\ $$ |      $$ |      $$  __$$\ $$ |$$  __$$\ $$  __$$\
-$$ |\_$$ |$$ |$$ /  $$ |$$ |  $$ | $$$$$$$ |$$ |      $$ |      $$ /  $$ |$$ |$$ /  $$ |$$ |  \__|
-$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |$$  __$$ |$$ |      $$ |  $$\ $$ |  $$ |$$ |$$ |  $$ |$$ |
-\$$$$$$  |$$ |\$$$$$$  |$$$$$$$  |\$$$$$$$ |$$ |      \$$$$$$  |\$$$$$$  |$$ |\$$$$$$  |$$ |
+ ------\  --\           --\                 --\        ------\            --\
+--  __--\ -- |          -- |                -- |      --  __--\           -- |
+-- /  \__|-- | ------\  -------\   ------\  -- |      -- /  \__| ------\  -- | ------\   ------\
+-- |----\ -- |--  __--\ --  __--\  \____--\ -- |      -- |      --  __--\ -- |--  __--\ --  __--\
+-- |\_-- |-- |-- /  -- |-- |  -- | ------- |-- |      -- |      -- /  -- |-- |-- /  -- |-- |  \__|
+-- |  -- |-- |-- |  -- |-- |  -- |--  __-- |-- |      -- |  --\ -- |  -- |-- |-- |  -- |-- |
+\------  |-- |\------  |-------  |\------- |-- |      \------  |\------  |-- |\------  |-- |
  \______/ \__| \______/ \_______/  \_______|\__|       \______/  \______/ \__| \______/ \__|
 
 Created on 11/11/2020 by Taylor and Logan
@@ -44,19 +44,19 @@ COUNT FILTER
 Count the number of balls filtered in the robot.
 Adds one to the filter count if a ball is filtered.
 
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+--------------------------------------------------------------------------------------------------*/
 
-// $$$$$$$$$$$$$$$$$$$$$$ BALL COUNT $$$$$$$$$$$$$$$$$$$$$$ //
+// ---------------------- BALL COUNT ---------------------- //
 // Total number of balls that have gone through the robot.  //
 int ballCount;
 
 
-// $$$$$$$$$$$$$$$$$ FILTER COUNT $$$$$$$$$$$$$$$$$ //
+// ----------------- FILTER COUNT ----------------- //
 // Total number of balls that have been filtered.   //
 int filterCount;
 
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$ BALL IN $$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// -------------------------- BALL IN -------------------------- //
 // Checks if a ball is in the robot                              //
 // Returns if the line follower is dark enough that a ball is in.//
 
@@ -64,7 +64,7 @@ bool ballIn(){
   return (bottomFollower.get_value()<2600 & bottomFollower.get_value()>0);
 }
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$ BALL OUT $$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// -------------------------- BALL OUT -------------------------- //
 // Checks if a ball is in the robot                              //
 // Returns if the line follower is dark enough that a ball is in.//
 
@@ -72,7 +72,7 @@ bool ballOut(){
   return (topFollower.get_value()<2850 & topFollower.get_value()>0);
 }
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$ BALL IN $$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// -------------------------- BALL IN -------------------------- //
 // Check if a ball is being filtered.
 // If the filter band is pulled down, a ball is being filtered.
 bool ballFiltering(){
@@ -80,7 +80,7 @@ bool ballFiltering(){
 }
 
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$ COUNT BALL $$$$$$$$$$$$$$$$$$$$$$$$$ //
+// ------------------------- COUNT BALL ------------------------- //
 // Count the number of balls in the number of balls in the robot. //
 // Adds one to the ball count if a ball is in.                    //
 
@@ -99,7 +99,7 @@ void ballCountTask(){
 }
 
 
-// $$$$$$$$$$$$$$$$$$ COUNT FILTER $$$$$$$$$$$$$$$$$$ //
+// ------------------ COUNT FILTER ------------------ //
 // Count the number of balls filtered in the robot.   //
 // Adds one to the filter count if a ball is filtered.//
 

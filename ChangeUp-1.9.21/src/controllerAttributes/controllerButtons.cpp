@@ -4,49 +4,20 @@
 using namespace std;
 using namespace okapi;
 
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+/*------------------------------------------------------------------
 
-$$$$$$$\              $$\     $$\
-$$  __$$\             $$ |    $$ |
-$$ |  $$ |$$\   $$\ $$$$$$\ $$$$$$\    $$$$$$\  $$$$$$$\   $$$$$$$\
-$$$$$$$\ |$$ |  $$ |\_$$  _|\_$$  _|  $$  __$$\ $$  __$$\ $$  _____|
-$$  __$$\ $$ |  $$ |  $$ |    $$ |    $$ /  $$ |$$ |  $$ |\$$$$$$\
-$$ |  $$ |$$ |  $$ |  $$ |$$\ $$ |$$\ $$ |  $$ |$$ |  $$ | \____$$\
-$$$$$$$  |\$$$$$$  |  \$$$$  |\$$$$  |\$$$$$$  |$$ |  $$ |$$$$$$$  |
+-------\              --\     --\
+--  __--\             -- |    -- |
+-- |  -- |--\   --\ ------\ ------\    ------\  -------\   -------\
+-------\ |-- |  -- |\_--  _|\_--  _|  --  __--\ --  __--\ --  _____|
+--  __--\ -- |  -- |  -- |    -- |    -- /  -- |-- |  -- |\------\
+-- |  -- |-- |  -- |  -- |--\ -- |--\ -- |  -- |-- |  -- | \____--\
+-------  |\------  |  \----  |\----  |\------  |-- |  -- |-------  |
 \_______/  \______/    \____/  \____/  \______/ \__|  \__|\_______/
 
-RIGHT ARROW
------------
-Moves one option to the right for each page.
-Limited to only moving right on any place but the last.
+------------------------------------------------------------------*/
 
-LEFT ARROW
-----------
-Moves one option to the left for each page.
-Limited to only moving left on any place but the first.
-
-A BUTTON
---------
-Selected Option will be the next page.
-Enter down a line after pressed.
-
-B BUTTON
---------
-Go up a line when pressed.
-
-SELECTION BUTTONS
------------------
-Use the buttons in a way to select the current option.
-Uses the right arrow, left arrow, a button, and b button.
-
-INFO BUTTONS
-------------
-Use the buttons in a way to scroll through information.
-Uses the right arrow, left arrow, and a button.
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
-
-// $$$$$$$$$$$$$$$$$$$$$$$ RIGHT ARROW $$$$$$$$$$$$$$$$$$$$$$$ //
+// ----------------------- RIGHT ARROW ----------------------- //
 // Moves one option to the right for each page.                //
 // Limited to only moving right on any place but the last.     //
 void rightButton(){
@@ -55,7 +26,7 @@ void rightButton(){
 }
 
 
-// $$$$$$$$$$$$$$$$$$$$$$ LEFT ARROW $$$$$$$$$$$$$$$$$$$$$$ //
+// ---------------------- LEFT ARROW ---------------------- //
 // Moves one option to the left for each page.              //
 // Limited to only moving left on any place but the first.  //
 
@@ -65,7 +36,7 @@ void leftButton(){
 }
 
 
-// $$$$$$$$$$$$$$$$ A BUTTON $$$$$$$$$$$$$$$$ //
+// ---------------- A BUTTON ---------------- //
 // Selected Option will be the next page.     //
 // Enter down a line after pressed.           //
 
@@ -89,7 +60,7 @@ void aButton(std::string selC[]){
 }
 
 
-// $$$$$$$$$$$$$$$$ B BUTTON $$$$$$$$$$$$$$$$ //
+// ---------------- B BUTTON ---------------- //
 // Go up a line when pressed.                 //
 
 void bButton(){
@@ -102,15 +73,15 @@ void bButton(){
 }
 
 
-// $$$$$$$$$$$$$$$$$$$ SELECTION BUTTONS $$$$$$$$$$$$$$$$$$$ //
+// ------------------- SELECTION BUTTONS ------------------- //
 // Use the buttons in a way to select the current option.    //
 // Uses the right arrow, left arrow, a button, and b button. //
 
 void selectButtons(std::string selC[]){ //Enter the current options and the new options
-  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != sizeof(selC->c_str())-1)){ //If the Right Button was pressed and not on the last option
+  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != 5)){ //If the Right Button was pressed and not on the last option
     rightButton();
   }
-  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ //If the Left Button was pressed and not on the first option
+  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ // If the Left Button was pressed and not on the first option
     leftButton();
   }
   else if(controller.get_digital(DIGITAL_A)){ //If the A Button was pressed
@@ -129,7 +100,7 @@ void selectPage(std::string pageQ,std::string selC[]){ //Enter the Page in Quest
 }
 
 
-// $$$$$$$$$$$$$$$$$$$$$ INFO BUTTONS $$$$$$$$$$$$$$$$$$$$$ //
+// --------------------- INFO BUTTONS --------------------- //
 // Use the buttons in a way to scroll through information.  //
 // Uses the right arrow, left arrow, and a button.          //
 

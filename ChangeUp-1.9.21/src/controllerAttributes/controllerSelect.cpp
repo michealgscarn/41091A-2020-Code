@@ -1,9 +1,12 @@
+// #define _GLIBCXX_USE_CXX11_ABI 0
 #include "main.h"
 #include <iostream>
+#include <sstream>
 #include<string>
+#include <array>
 using namespace std;
 using namespace okapi;
-
+//
 /*----------------------------------------------------------------------------
 
  ------\                       --\                         --\ --\
@@ -73,7 +76,7 @@ void blinkTimer(){
 std::string autoSel="Skills";
 
 std::string lineM[]={"Home","","Skills"}; //Total line memory
-std::string page="Home"; //Current Page
+std::string page="Home"; // Current Page
 void centerText(std::string str){
   int midText=str.length()/2;
   int startPoint=9-midText;
@@ -86,13 +89,21 @@ std::string trackLeft;
 std::string trackRight;
 std::string trackMiddle;
 
+// int arrayLen(std::string arr[5]){
+//   int result;
+//   std::string str = sizeof(arr)/sizeof(arr[0]);
+//   sscanf(str, "%i", &result);
+//   // stringsteam result(sizeof(arr)/sizeof(arr[0]))
+//   return result;
+// }
+
 // ---------------- UPDATEPAGE ---------------- //
 // Update the current line with new values.     //
 
 void updatePage(std::string selC[]){ //Enter current options
-  if(posC != posP || Blink){
-    posP=posC;;
-    for(int i=0;i<sizeof(selC->c_str());i++){ //Loop each option
+  if(posC != posP){
+    posP=posC;
+    for(int i=0;i<posC;i++){ //Loop each option
       if(posC==i+1) //If the current option is found
         centerText(selC[i]);
     }
@@ -172,13 +183,13 @@ void contDisplay(){
     trackMiddle.append(to_string(m.get()));
 
     // Print pages
-    setUpPage("Home",       "Select", "Autonomous",         "Odometry",   "Debug",    "Set Up"); //->
-    setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");             //-->
-    setUpPage("Red",        "Select", "Red 1",              "Red 2",      "Red 3",    "Red 3");  //--->
-    setUpPage("Blue",       "Select", "Blue 1",             "Blue 2",     "Blue 3",   "Blue 3"); //--->
-    setUpPage("Skills",     "Info",   "Skills");                                                 //-->
-    setUpPage("Odometry",   "Info",   odomDetails, trackLeft, trackRight, trackMiddle);          //-->
-    setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                //-->
+    setUpPage("Home",       "Select", "Autonomous",         "Odometry",   "Debug",      "Set Up");             //->
+    setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");                           //-->
+    setUpPage("Red",        "Select", "HR1-HMC-HL1-MM1",    "HMC-HLC-MM1","HMP-HLC-MM1","HMC-HRC","MMF-HLC");  //--->
+    setUpPage("Blue",       "Select", "HR1-HMC-HL1-MM1",    "HMC-HLC-MM1","HMP-HLC-MM1","HMC-HRC","MMF-HLC");  //--->
+    setUpPage("Skills",     "Info",   "Skills");                                                               //-->
+    setUpPage("Odometry",   "Info",   odomDetails, trackLeft, trackRight, trackMiddle);                        //-->
+    setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                              //-->
     pros::delay(1);
   }
   controller.clear();

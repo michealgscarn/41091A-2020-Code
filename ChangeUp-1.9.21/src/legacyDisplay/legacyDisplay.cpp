@@ -1,41 +1,23 @@
 #include "main.h"
 using namespace okapi;
-/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+/*--------------------------------------------------------
 
-$$$$$$$\  $$\                     $$\
-$$  __$$\ \__|                    $$ |
-$$ |  $$ |$$\  $$$$$$$\  $$$$$$\  $$ | $$$$$$\  $$\   $$\
-$$ |  $$ |$$ |$$  _____|$$  __$$\ $$ | \____$$\ $$ |  $$ |
-$$ |  $$ |$$ |\$$$$$$\  $$ /  $$ |$$ | $$$$$$$ |$$ |  $$ |
-$$ |  $$ |$$ | \____$$\ $$ |  $$ |$$ |$$  __$$ |$$ |  $$ |
-$$$$$$$  |$$ |$$$$$$$  |$$$$$$$  |$$ |\$$$$$$$ |\$$$$$$$ |
-\_______/ \__|\_______/ $$  ____/ \__| \_______| \____$$ |
-                        $$ |                    $$\   $$ |
-                        $$ |                    \$$$$$$  |
+-------\  --\                     --\
+--  __--\ \__|                    -- |
+-- |  -- |--\  -------\  ------\  -- | ------\  --\   --\
+-- |  -- |-- |--  _____|--  __--\ -- | \____--\ -- |  -- |
+-- |  -- |-- |\------\  -- /  -- |-- | ------- |-- |  -- |
+-- |  -- |-- | \____--\ -- |  -- |-- |--  __-- |-- |  -- |
+-------  |-- |-------  |-------  |-- |\------- |\------- |
+\_______/ \__|\_______/ --  ____/ \__| \_______| \____-- |
+                        -- |                    --\   -- |
+                        -- |                    \------  |
                         \__|                     \______/
 
-LEGACY DISPLAY POSITION
------------------------
-Display on the Brain screen the current encoder values and Odometry position.
-Print the encoder values on lines 2-4.
-Print the Odometry position on lines 5-7.
-
-LEGACY DISPLAY BALL
--------------------
-Display on the Brain screen the current ball attributes.
-Print the ball count on line 2.
-Print the filter count on line 3.
-Print the color of ball from the bottom optical sensor on line 4.
-
-LEGACY DISPLAY TEMPERATURE
---------------------------
-Display on the Brain screen the drive motor temperature values.
-Print the temperature of the drive motors in celcius on lines 2-5.
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+--------------------------------------------------------*/
 bool pressed=false;
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$ LEGACY DISPLAY POSITION $$$$$$$$$$$$$$$$$$$$$$$$$$ //
+// -------------------------- LEGACY DISPLAY POSITION -------------------------- //
 // Display on the Brain screen the current encoder values and Odometry position. //
 // Print the encoder values on lines 2-4.                                        //
 // Print the Odometry position on lines 5-7.                                     //
@@ -54,7 +36,7 @@ void legacyDisplayPos(){
   }
 }
 
-// $$$$$$$$$$$$$$$$$$$$$$ LEGACY DISPLAY BALL $$$$$$$$$$$$$$$$$$$$$$ //
+// ---------------------- LEGACY DISPLAY BALL ---------------------- //
 // Display on the Brain screen the current ball attributes.          //
 // Print the ball count on line 2.                                   //
 // Print the filter count on line 3.                                 //
@@ -72,11 +54,12 @@ void legacyDisplayBall(){
 }
 
 
-// $$$$$$$$$$$$$$$$$$$$$$ LEGACY DISPLAY BALL $$$$$$$$$$$$$$$$$$$$$$ //
+// ---------------------- LEGACY DISPLAY BALL ---------------------- //
 // Display on the Brain screen the current ball attributes.          //
-// Print the ball count on line 2.                                   //
-// Print the filter count on line 3.                                 //
-// Print the color of ball from the bottom optical sensor on line 4. //
+// Print the left front drive temperature on line 2.                 //
+// Print the right front drive temperature on line 3.                //
+// Print the right back drive temperature on line 4.                 //
+// Print the left back drive temperature on line 5.                  //
 
 void legacyDisplayTemp(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
@@ -90,18 +73,25 @@ void legacyDisplayTemp(){
   }
 }
 
-// $$$$$$$$$$$$$$$$$$$$$$ LEGACY DISPLAY ALIGN $$$$$$$$$$$$$$$$$$$$$$ //
+// ------------------------- LEGACY DISPLAY ALIGN ------------------------- //
+// Display the information needed to debug alignment functions.             //
+// Print the distance between the front distance sensor and wall on line 2. //
+// Print the distance between the back distance sensor and wall on line 3.  //
+// Print the Theta on line 4.                                               //
+// Print the X value on line 5.                                             //
+// Print the Y value on line 6.                                             //
+// Print the Bottom line follower brightness value on line 7.               //
 
 void legacyDisplayAlign(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
     pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
-    pros::lcd::print(1,"Front Distance:%f",leftTrackFront.get()*0.0393701+5.125); //
-    pros::lcd::print(2,"Back Distance: %f",leftTrackBack.get()*0.0393701+5.375); //
-    pros::lcd::print(3,"Theta:         %f",drive->getState().theta.convert(degree)); //
-    pros::lcd::print(4,"X:             %f",drive->getState().x.convert(inch)); //
-    pros::lcd::print(5,"Y:             %f",drive->getState().y.convert(inch)); //
-    pros::lcd::print(6,"Bottom Value:  %d",(leftResetFollower.get_value()+leftResetFollower.get_value())/2); //
+    pros::lcd::print(1,"Front Distance:%f",leftTrackFront.get()*0.0393701+5.125); // Print the distance between the front distance sensor and wall on line 2.
+    pros::lcd::print(2,"Back Distance: %f",leftTrackBack.get()*0.0393701+5.375); // Print the distance between the back distance sensor and wall on line 3.
+    pros::lcd::print(3,"Theta:         %f",drive->getState().theta.convert(degree)); // Print the Theta on line 4.
+    pros::lcd::print(4,"X:             %f",drive->getState().x.convert(inch)); // Print the X value on line 5.
+    pros::lcd::print(5,"Y:             %f",drive->getState().y.convert(inch)); // Print the Y value on line 6.
+    pros::lcd::print(6,"Bottom Value:  %d",(leftResetFollower.get_value()+leftResetFollower.get_value())/2); // Print the Bottom line follower brightness value on line 7.
     pros::delay(200); // Wait for the screen to update
   }
 }
