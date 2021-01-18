@@ -1,15 +1,11 @@
 #include "main.h"
 using namespace okapi;
 /*---------------------------------------------------------
-
- ------\  --\           --\                 --\
---  __--\ -- |          -- |                -- |
--- /  \__|-- | ------\  -------\   ------\  -- | -------\
--- |----\ -- |--  __--\ --  __--\  \____--\ -- |--  _____|
--- |\_-- |-- |-- /  -- |-- |  -- | ------- |-- |\------\
--- |  -- |-- |-- |  -- |-- |  -- |--  __-- |-- | \____--\
-\------  |-- |\------  |-------  |\------- |-- |-------  |
- \______/ \__| \______/ \_______/  \_______|\__|\_______/
+   ____  _         _             _
+  / ___|| |  ___  | |__    __ _ | |
+ | |  _ | | / _ \ | '_ \  / _` || |
+ | |_| || || (_) || |_) || (_| || |
+  \____||_| \___/ |_.__/  \__,_||_|
 
  Created on 10/14/2020 by Logan and Taylor
  Last Updated on 1/15/2021 by Logan
@@ -81,6 +77,7 @@ pros::Optical topColor(7);
 
 pros::Distance leftTrackFront(15);
 pros::Distance leftTrackBack(2);
+pros::Distance ballDetectBottom(17);
 pros::Distance frontTrack(17);
 
 
@@ -88,16 +85,19 @@ pros::Distance frontTrack(17);
 // Filter checker                                 //
 
 pros::ADIDigitalIn bottomLimit ({19,'A'});
+pros::ADIDigitalIn primaryLimit ({19,'D'});
 
 
 // ---------------- LINE FOLLOWER ---------------- //
 // 19 - Bottom Ball detecting                      //
 // 'A' - Top Ball detecting                     //
 
-pros::ADIAnalogIn bottomFollower ({19,'H'});
+// pros::ADIAnalogIn bottomFollower ({19,'H'});
+
 pros::ADIAnalogIn topFollower ('A');
 pros::ADIAnalogIn leftResetFollower ({19,'C'});
 pros::ADIAnalogIn rightResetFollower ({19,'B'});
+pros::ADIAnalogIn bottomFollower ({19,'H'});
 
 
 // ---------------- CHASSIS BUILDER ---------------- //

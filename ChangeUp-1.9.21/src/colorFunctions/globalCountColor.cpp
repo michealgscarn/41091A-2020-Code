@@ -2,16 +2,11 @@
 using namespace okapi;
 
 /*--------------------------------------------------------------------------------------------------
-
-
- ------\  --\           --\                 --\        ------\            --\
---  __--\ -- |          -- |                -- |      --  __--\           -- |
--- /  \__|-- | ------\  -------\   ------\  -- |      -- /  \__| ------\  -- | ------\   ------\
--- |----\ -- |--  __--\ --  __--\  \____--\ -- |      -- |      --  __--\ -- |--  __--\ --  __--\
--- |\_-- |-- |-- /  -- |-- |  -- | ------- |-- |      -- |      -- /  -- |-- |-- /  -- |-- |  \__|
--- |  -- |-- |-- |  -- |-- |  -- |--  __-- |-- |      -- |  --\ -- |  -- |-- |-- |  -- |-- |
-\------  |-- |\------  |-------  |\------- |-- |      \------  |\------  |-- |\------  |-- |
- \______/ \__| \______/ \_______/  \_______|\__|       \______/  \______/ \__| \______/ \__|
+   ____  _         _             _        ____                      _
+  / ___|| |  ___  | |__    __ _ | |      / ___| ___   _   _  _ __  | |_
+ | |  _ | | / _ \ | '_ \  / _` || |     | |    / _ \ | | | || '_ \ | __|
+ | |_| || || (_) || |_) || (_| || |     | |___| (_) || |_| || | | || |_
+  \____||_| \___/ |_.__/  \__,_||_|      \____|\___/  \__,_||_| |_| \__|
 
 Created on 11/11/2020 by Taylor and Logan
 Last updated on 1/7/2021 by Logan
@@ -61,7 +56,8 @@ int filterCount;
 // Returns if the line follower is dark enough that a ball is in.//
 
 bool ballIn(){
-  return (bottomFollower.get_value()<2600 & bottomFollower.get_value()>0);
+  // return (ballDetectBottom.get()<30 & ballDetectBottom.get()>0);
+  return !primaryLimit.get_value();
 }
 
 // -------------------------- BALL OUT -------------------------- //
@@ -85,15 +81,12 @@ bool ballFiltering(){
 // Adds one to the ball count if a ball is in.                    //
 
 void ballCountTask(){
-  bool ballStillIn=false; // Set the ball still
+  ballCount=0;
   while(true){
-    if(ballIn()&!ballStillIn&!ballFiltering()){
+    if(ballIn()){
+      while(ballIn()){pros::delay(10);}
       ballCount++;
-      ballStillIn=true;
-      pros::delay(100);
     }
-    else if(!ballIn())
-      ballStillIn=false;
     pros::delay(10); // Wait for motors to update
   }
 }

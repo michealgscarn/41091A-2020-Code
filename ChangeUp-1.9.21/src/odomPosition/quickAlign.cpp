@@ -2,18 +2,13 @@
 using namespace okapi;
 
 /*--------------------------------------------------------
+  ____               _  _
+ |  _ \  ___   __ _ | |(_)  __ _  _ __
+ | |_) |/ _ \ / _` || || | / _` || '_ \
+ |  _ <|  __/| (_| || || || (_| || | | |
+ |_| \_\\___| \__,_||_||_| \__, ||_| |_|
+                           |___/
 
--------\                      --\ --\
---  __--\                     -- |\__|
--- |  -- | ------\   ------\  -- |--\  ------\  -------\
--------  |--  __--\  \____--\ -- |-- |--  __--\ --  __--\
---  __--< -------- | ------- |-- |-- |-- /  -- |-- |  -- |
--- |  -- |--   ____|--  __-- |-- |-- |-- |  -- |-- |  -- |
--- |  -- |\-------\ \------- |-- |-- |\------- |-- |  -- |
-\__|  \__| \_______| \_______|\__|\__| \____-- |\__|  \__|
-                                      --\   -- |
-                                      \------  |
-                                       \______/
   Blah Blah Blah Blah Explanations, esessesfsdfafsadfdsf
 
 --------------------------------------------------------*/
@@ -118,15 +113,13 @@ void quickAlign(std::string XorY){
   XYVal=getXYVal(hypoXY,angXY);
 
   if(XorY=="X")
-    drive->setState({fabs(XYVal)*1_in,drive->getState().y,radToDeg(thetaVal)*1_deg});
+    drive->setState({fabs(XYVal)*1_in+0.95_in,drive->getState().y,radToDeg(thetaVal)*1_deg});
   else if(XorY=="Y")
-    drive->setState({drive->getState().x,fabs(XYVal)*1_in,thetaVal*1_deg});
+    drive->setState({drive->getState().x,fabs(XYVal)*1_in+0.95_in,thetaVal*1_deg});
 }
 
 
-
-
-void quickAlign(){
+void quickAlignNorthEast(std::string XorY){
   // ----- GET VALUES ----- //
   sf = leftTrackFront.get()*0.0393701+5.125; // Get distance front value
   sb = leftTrackBack.get()*0.0393701+5.375; // Get distance back value
@@ -147,4 +140,9 @@ void quickAlign(){
   // ----- SOLVE BASE LENGTH / GET X/Y ----- //
   // XYVal = getXYVal(hypoXY, angXY)-1;
   XYVal=getXYVal(hypoXY,angXY);
+
+  if(XorY=="X")
+    drive->setState({143_in-fabs(XYVal)*1_in+0.95_in,drive->getState().y,180_deg+radToDeg(thetaVal)*1_deg});
+  else if(XorY=="Y")
+    drive->setState({drive->getState().x,143_in-fabs(XYVal)*1_in+0.95_in,thetaVal*1_deg});
 }

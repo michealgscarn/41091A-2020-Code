@@ -1,15 +1,11 @@
 #include "main.h"
  using namespace okapi;
  /*------------------------------------
-
- ------\            --\               --\
- \_--  _|           -- |              -- |
-   -- |  -------\ ------\    ------\  -- |  --\  ------\
-   -- |  --  __--\\_--  _|   \____--\ -- | --  |--  __--\
-   -- |  -- |  -- | -- |     ------- |------  / -------- |
-   -- |  -- |  -- | -- |--\ --  __-- |--  _--<  --   ____|
- ------\ -- |  -- | \----  |\------- |-- | \--\ \-------\
- \______|\__|  \__|  \____/  \_______|\__|  \__| \_______|
+    ___         _          _
+  |_ _| _ __  | |_  __ _ | | __ ___
+   | | | '_ \ | __|/ _` || |/ // _ \
+   | | | | | || |_| (_| ||   <|  __/
+  |___||_| |_| \__|\__,_||_|\_\\___|
 
  Created on 10/14/2020 by Logan and Taylor
  Last Updated on 1/15/2021 by Logan
@@ -30,6 +26,6 @@ void setIntake(int power){
 // Set the velocity of the Intake using the Controller.//
 
  void setIntakeMotors(){
-   int power = 127 * (controller.get_digital(DIGITAL_L1) - controller.get_digital(DIGITAL_L2)-controller.get_digital(DIGITAL_A));    // Set intake speed based on button presses
+   int power = 127 * (controller.get_digital(DIGITAL_L1) - controller.get_digital(DIGITAL_L2));    // Set intake speed based on button presses
    setIntake(power); // Appy the velocity to the Intake
  }

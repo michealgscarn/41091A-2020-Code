@@ -1,16 +1,11 @@
 #include "main.h"
 using namespace okapi;
 /*--------------------------------------------------------------------------------------------------
-
-
---------\ --\ --\   --\                                ------\            --\
---  _____|\__|-- |  -- |                              --  __--\           -- |
--- |      --\ -- |------\    ------\   ------\        -- /  \__| ------\  -- | ------\   ------\
------\    -- |-- |\_--  _|  --  __--\ --  __--\       -- |      --  __--\ -- |--  __--\ --  __--\
---  __|   -- |-- |  -- |    -------- |-- |  \__|      -- |      -- /  -- |-- |-- /  -- |-- |  \__|
--- |      -- |-- |  -- |--\ --   ____|-- |            -- |  --\ -- |  -- |-- |-- |  -- |-- |
--- |      -- |-- |  \----  |\-------\ -- |            \------  |\------  |-- |\------  |-- |
-\__|      \__|\__|   \____/  \_______|\__|             \______/  \______/ \__| \______/ \__|
+  _____  _  _  _
+ |  ___|(_)| || |_  ___  _ __
+ | |_   | || || __|/ _ \| '__|
+ |  _|  | || || |_|  __/| |
+ |_|    |_||_| \__|\___||_|
 
 Created on 11/11/2020 by Taylor and Logan
 Last updated on 1/7/2021 by Logan
@@ -37,29 +32,34 @@ void FilterBall(std::string alliance, int deltaBallCount){
   std::string ballState="none";
   int targetBallCount=ballCount+deltaBallCount;
   int targetRotM=0;
-  int noBallTimeout=pros::millis()+3000;
+  int noBallTimeout=pros::millis()+30000000000;
+  int ballCheckTime = 0;
   while((ballCount<targetBallCount) & ((noBallTimeout>pros::millis()))){
-    if((ballState=="detected")&(CheckColor("bottom")==alliance || CheckColor("middle")==alliance)&bottomFollower.get_value()>2800){
+    if((ballState=="detected")&(CheckColor("bottom")==alliance || CheckColor("middle")==alliance)){
       setIntake(0);
+      setLift(-80);
       setDelivery(-127);    //...Run the delivery in reverse until ...
-      pros::delay(10);   //... The limit switch is pressed and ...
-      noBallTimeout=pros::millis()+1000;
+      pros::delay(100);   //... The limit switch is pressed and ...
+      setLift(65);
+      noBallTimeout=pros::millis()+1000000000;
       while(!ballFiltering() & ((noBallTimeout>pros::millis()))){pros::delay(10);} //Wait for filter switch to gather a ball
       while(ballFiltering() & ((noBallTimeout>pros::millis()))){pros::delay(10);}
-      noBallTimeout=pros::millis()+3000;
+      noBallTimeout=pros::millis()+30000000000;
       pros::delay(00);   //Wait for ball to filter out
       ballState="none"; //Set ball status to none
       setIntake(65);
       setDelivery(127); //Deliver ball
     }
-    // if(ballState=="detected")//Check to see if ball has been detected
-    //   ballState="held";//...Mark the ball as held
-    if(bottomFollower.get_value()>2800){//If there are no balls in the robot
+    if(ballState=="detected")//Check to see if ball has been detected
+      ballState="held";//...Mark the ball as held
+    // if(ballDetectBottom.get()>60){//If there are no balls in the robot
+    //   ballState="none";//... update the robot to no balls
+    // }
+    if(!ballIn())//If there are no balls in the robot
       ballState="none";//... update the robot to no balls
-    }
     if(ballIn()&(ballState=="none")){//If a ball comes in for the first time
       ballState="detected";//...Mark the ball as detected
-      noBallTimeout=pros::millis()+3000;
+      noBallTimeout=pros::millis()+30000000;
       pros::delay(100);
     }
     pros::delay(10);//Wait for sensors to update
@@ -68,35 +68,35 @@ void FilterBall(std::string alliance, int deltaBallCount){
 
 void FilterBallNoIn(std::string alliance, int deltaBallCount){
   setDelivery(127); //Deliver ball
-
-  std::string ballState="none";
-  int targetBallCount=ballCount+deltaBallCount;
-  int targetRotM=0;
-  int noBallTimeout=pros::millis()+3000;
-  while((ballCount<targetBallCount) & ((noBallTimeout>pros::millis()))){
-    if((ballState=="detected")&(CheckColor("bottom")==alliance || CheckColor("middle")==alliance)&bottomFollower.get_value()>2800){
-      setIntake(0);
-      setDelivery(-127);    //...Run the delivery in reverse until ...
-      pros::delay(10);   //... The limit switch is pressed and ...
-      noBallTimeout=pros::millis()+1000;
-      while(!ballFiltering() & ((noBallTimeout>pros::millis()))){pros::delay(10);} //Wait for filter switch to gather a ball
-      while(ballFiltering() & ((noBallTimeout>pros::millis()))){pros::delay(10);}
-      noBallTimeout=pros::millis()+3000;
-      pros::delay(00);   //Wait for ball to filter out
-      ballState="none"; //Set ball status to none
-      setIntake(65);
-      setDelivery(127); //Deliver ball
-    }
-    // if(ballState=="detected")//Check to see if ball has been detected
-    //   ballState="held";//...Mark the ball as held
-    if(bottomFollower.get_value()>2800){//If there are no balls in the robot
-      ballState="none";//... update the robot to no balls
-    }
-    if(ballIn()&(ballState=="none")){//If a ball comes in for the first time
-      ballState="detected";//...Mark the ball as detected
-      noBallTimeout=pros::millis()+3000;
-      pros::delay(100);
-    }
-    pros::delay(10);//Wait for sensors to update
-  }
+  //
+  // std::string ballState="none";
+  // int targetBallCount=ballCount+deltaBallCount;
+  // int targetRotM=0;
+  // int noBallTimeout=pros::millis()+3000;
+  // while((ballCount<targetBallCount) & ((noBallTimeout>pros::millis()))){
+  //   if((ballState=="detected")&(CheckColor("bottom")==alliance || CheckColor("middle")==alliance)&bottomFollower.get_value()>2800){
+  //     setIntake(0);
+  //     setDelivery(-127);    //...Run the delivery in reverse until ...
+  //     pros::delay(10);   //... The limit switch is pressed and ...
+  //     noBallTimeout=pros::millis()+1000;
+  //     while(!ballFiltering() & ((noBallTimeout>pros::millis()))){pros::delay(10);} //Wait for filter switch to gather a ball
+  //     while(ballFiltering() & ((noBallTimeout>pros::millis()))){pros::delay(10);}
+  //     noBallTimeout=pros::millis()+3000;
+  //     pros::delay(00);   //Wait for ball to filter out
+  //     ballState="none"; //Set ball status to none
+  //     setIntake(65);
+  //     setDelivery(127); //Deliver ball
+  //   }
+  //   // if(ballState=="detected")//Check to see if ball has been detected
+  //   //   ballState="held";//...Mark the ball as held
+  //   if(bottomFollower.get_value()>2800){//If there are no balls in the robot
+  //     ballState="none";//... update the robot to no balls
+  //   }
+  //   if(ballIn()&(ballState=="none")){//If a ball comes in for the first time
+  //     ballState="detected";//...Mark the ball as detected
+  //     noBallTimeout=pros::millis()+3000;
+  //     pros::delay(100);
+  //   }
+  //   pros::delay(10);//Wait for sensors to update
+  // }
 }

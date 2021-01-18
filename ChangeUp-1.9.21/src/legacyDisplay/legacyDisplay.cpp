@@ -1,18 +1,15 @@
 #include "main.h"
 using namespace okapi;
 /*--------------------------------------------------------
+  ____   _              _
+ |  _ \ (_) ___  _ __  | |  __ _  _   _
+ | | | || |/ __|| '_ \ | | / _` || | | |
+ | |_| || |\__ \| |_) || || (_| || |_| |
+ |____/ |_||___/| .__/ |_| \__,_| \__, |
+                |_|               |___/
 
--------\  --\                     --\
---  __--\ \__|                    -- |
--- |  -- |--\  -------\  ------\  -- | ------\  --\   --\
--- |  -- |-- |--  _____|--  __--\ -- | \____--\ -- |  -- |
--- |  -- |-- |\------\  -- /  -- |-- | ------- |-- |  -- |
--- |  -- |-- | \____--\ -- |  -- |-- |--  __-- |-- |  -- |
--------  |-- |-------  |-------  |-- |\------- |\------- |
-\_______/ \__|\_______/ --  ____/ \__| \_______| \____-- |
-                        -- |                    --\   -- |
-                        -- |                    \------  |
-                        \__|                     \______/
+  Created on 10/20/2020 by Logan and Taylor
+  Last Updated on 1/16/2021 by Logan
 
 --------------------------------------------------------*/
 bool pressed=false;
@@ -33,6 +30,20 @@ void legacyDisplayPos(){
     pros::lcd::print(5, "YPosition (in): %f", drive->getState().y.convert(inch)); // Print Y position on line 6
     pros::lcd::print(6, "Angle: %f", drive->getState().theta); // Print theta on line 7
     pros::delay(200); // Wait for the screen to update
+  }
+}
+
+// -------------------------- LEGACY DISPLAY POSITION -------------------------- //
+// Display on the Brain screen the current encoder values and Odometry position. //
+// Print the encoder values on lines 2-4.                                        //
+// Print the Odometry position on lines 5-7.                                     //
+
+void legacyDisplayGrid(){
+  pros::lcd::initialize();  //initialize Brain screen so we can see info later
+  while(true){ // Loop infinitly
+    OdomDebug display(lv_scr_act(), LV_COLOR_NAVY);
+    display.setData({drive->getState().x, drive->getState().y, drive->getState().theta}, {l.get(), r.get(), m.get()}); // QUnits used for state (x,y,theta)
+    pros::delay(20); // Wait for the screen to update
   }
 }
 

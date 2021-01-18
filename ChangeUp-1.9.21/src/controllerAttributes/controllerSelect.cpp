@@ -7,18 +7,17 @@
 using namespace std;
 using namespace okapi;
 //
-/*----------------------------------------------------------------------------
+/*------------------------------------------------------------------------------------
+   ____               _                _  _                   __  __         _
+  / ___| ___   _ __  | |_  _ __  ___  | || |  ___  _ __      |  \/  |  __ _ (_) _ __
+ | |    / _ \ | '_ \ | __|| '__|/ _ \ | || | / _ \| '__|     | |\/| | / _` || || '_ \
+ | |___| (_) || | | || |_ | |  | (_) || || ||  __/| |        | |  | || (_| || || | | |
+  \____|\___/ |_| |_| \__||_|   \___/ |_||_| \___||_|        |_|  |_| \__,_||_||_| |_|
 
- ------\                       --\                         --\ --\
---  __--\                      -- |                        -- |-- |
--- /  \__| ------\  -------\ ------\    ------\   ------\  -- |-- | ------\   ------\
--- |      --  __--\ --  __--\\_--  _|  --  __--\ --  __--\ -- |-- |--  __--\ --  __--\
--- |      -- /  -- |-- |  -- | -- |    -- |  \__|-- /  -- |-- |-- |-------- |-- |  \__|
--- |  --\ -- |  -- |-- |  -- | -- |--\ -- |      -- |  -- |-- |-- |--   ____|-- |
-\------  |\------  |-- |  -- | \----  |-- |      \------  |-- |-- |\-------\ -- |
- \______/  \______/ \__|  \__|  \____/ \__|       \______/ \__|\__| \_______|\__|
+  Created on 1/10/2021 by Logan
+  Last updated on 1/16/2021 by Logan
 
-----------------------------------------------------------------------------*/
+------------------------------------------------------------------------------------*/
 
 // ---------------- posC ---------------- //
 // Current position in the selection.     //
@@ -73,9 +72,9 @@ void blinkTimer(){
 // Runs the autonomous program set.                      //
 // Preset to Skills.                                     //
 
-std::string autoSel="Skills";
+std::string autoSel="";
 
-std::string lineM[]={"Home","","Skills"}; //Total line memory
+std::string lineM[]={"Home","",""}; //Total line memory
 std::string page="Home"; // Current Page
 void centerText(std::string str){
   int midText=str.length()/2;
@@ -158,7 +157,7 @@ void setUpPage(std::string pageQ, std::string pageType, std::string a){
 void initilizeController(){
   controller.clear();
   lineC=2;
-  centerText(autoSel);
+  // centerText("Quick");
   lineC=0;
 }
 
@@ -187,7 +186,7 @@ void contDisplay(){
     setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");                           //-->
     setUpPage("Red",        "Select", "HR1-HMC-HL1-MM1",    "HMC-HLC-MM1","HMP-HLC-MM1","HMC-HRC","MMF-HLC");  //--->
     setUpPage("Blue",       "Select", "HR1-HMC-HL1-MM1",    "HMC-HLC-MM1","HMP-HLC-MM1","HMC-HRC","MMF-HLC");  //--->
-    setUpPage("Skills",     "Info",   "Skills");                                                               //-->
+    setUpPage("Skills",     "Select",   "Skills");                                                             //-->
     setUpPage("Odometry",   "Info",   odomDetails, trackLeft, trackRight, trackMiddle);                        //-->
     setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                              //-->
     pros::delay(1);

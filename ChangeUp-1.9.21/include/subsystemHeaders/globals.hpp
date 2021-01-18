@@ -29,8 +29,10 @@ extern pros::Optical topColor;   //Top color sensor
 extern pros::Distance leftTrackBack;
 extern pros::Distance leftTrackFront;
 extern pros::Distance frontTrack;
+extern pros::Distance ballDetectBottom;
 
 extern pros::ADIDigitalIn bottomLimit;
+extern pros::ADIDigitalIn primaryLimit;
 extern pros::ADIAnalogIn bottomFollower;
 extern pros::ADIAnalogIn topFollower;
 extern pros::ADIAnalogIn leftResetFollower;

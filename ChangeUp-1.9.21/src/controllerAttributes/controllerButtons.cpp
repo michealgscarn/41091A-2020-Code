@@ -5,16 +5,14 @@ using namespace std;
 using namespace okapi;
 
 /*------------------------------------------------------------------
+  ____          _    _
+ | __ )  _   _ | |_ | |_  ___   _ __   ___
+ |  _ \ | | | || __|| __|/ _ \ | '_ \ / __|
+ | |_) || |_| || |_ | |_| (_) || | | |\__ \
+ |____/  \__,_| \__| \__|\___/ |_| |_||___/
 
--------\              --\     --\
---  __--\             -- |    -- |
--- |  -- |--\   --\ ------\ ------\    ------\  -------\   -------\
--------\ |-- |  -- |\_--  _|\_--  _|  --  __--\ --  __--\ --  _____|
---  __--\ -- |  -- |  -- |    -- |    -- /  -- |-- |  -- |\------\
--- |  -- |-- |  -- |  -- |--\ -- |--\ -- |  -- |-- |  -- | \____--\
--------  |\------  |  \----  |\----  |\------  |-- |  -- |-------  |
-\_______/  \______/    \____/  \____/  \______/ \__|  \__|\_______/
-
+ Created on 1/10/2021 by Logan
+ Last update on 1/16/2021 by Logan
 ------------------------------------------------------------------*/
 
 // ----------------------- RIGHT ARROW ----------------------- //
@@ -72,6 +70,31 @@ void bButton(){
     while(controller.get_digital(DIGITAL_B)){}; //Wait until button not pressed
 }
 
+
+// ----------------------- Y BUTTON ----------------------- //
+// This function is Reserved to any action for the time.    //
+// Commands run in driver Control.                          //
+void yButton(){
+  if(controller.get_digital(DIGITAL_Y)){
+    quickAlign("X");
+  }
+}
+
+
+// ----------------------- X BUTTON ----------------------- //
+// This function is Reserved to any action for the time.    //
+// Commands run in driver Control.                          //
+void xButton(){
+  if(controller.get_digital(DIGITAL_X)){
+  }
+}
+
+// ---------------- EXTRA BUTTONS ---------------- //
+// Collection of all extra Buttons.                //
+void extraDriver(){
+  yButton();
+  xButton();
+}
 
 // ------------------- SELECTION BUTTONS ------------------- //
 // Use the buttons in a way to select the current option.    //
