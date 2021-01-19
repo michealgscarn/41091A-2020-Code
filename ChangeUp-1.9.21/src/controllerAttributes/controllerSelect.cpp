@@ -184,8 +184,8 @@ void contDisplay(){
     // Print pages
     setUpPage("Home",       "Select", "Autonomous",         "Odometry",   "Debug",      "Set Up");             //->
     setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");                           //-->
-    setUpPage("Red",        "Select", "HR1-HMC-HL1-MM1",    "HMC-HLC-MM1","HMP-HLC-MM1","HMC-HRC","MMF-HLC");  //--->
-    setUpPage("Blue",       "Select", "HR1-HMC-HL1-MM1",    "HMC-HLC-MM1","HMP-HLC-MM1","HMC-HRC","MMF-HLC");  //--->
+    setUpPage("Red",        "Select", "a_HR1_HMC_HL1_MM1",    "a_HMC_HLC","a_HMC_HRC","a_MMF_HLC_HMC","Skills");  //--->
+    setUpPage("Blue",       "Select", "a_HR1_HMC_HL1_MM1",    "a_HMC_HLC","a_HMC_HRC","a_MMF_HLC_HMC","Skills");  //--->
     setUpPage("Skills",     "Select",   "Skills");                                                             //-->
     setUpPage("Odometry",   "Info",   odomDetails, trackLeft, trackRight, trackMiddle);                        //-->
     setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                              //-->

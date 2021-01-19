@@ -144,5 +144,5 @@ void quickAlignNorthEast(std::string XorY){
   if(XorY=="X")
     drive->setState({143_in-fabs(XYVal)*1_in+0.95_in,drive->getState().y,180_deg+radToDeg(thetaVal)*1_deg});
   else if(XorY=="Y")
-    drive->setState({drive->getState().x,143_in-fabs(XYVal)*1_in+0.95_in,thetaVal*1_deg});
+    drive->setState({drive->getState().x,143_in-fabs(XYVal)*1_in+0.95_in,90_deg+radToDeg(thetaVal)*1_deg});
 }

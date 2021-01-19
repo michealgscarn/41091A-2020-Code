@@ -15,8 +15,8 @@ void cycleGoal(std::string alliance, int ballCount){
   int targetBallCount=ballCount+ballCount;
   int targetRotM=0;
   int noBallTimeout=pros::millis()+3000;
-  while(!((ballOut())&(CheckColor("top")==alliance)) & ((noBallTimeout>pros::millis()))){
-    if((ballOut())&(CheckColor("top")==alliance)&bottomFollower.get_value()>2800){
+  while((CheckColor("top")==alliance) & ((noBallTimeout>pros::millis()))){
+    if((CheckColor("top")==alliance)){
       setDelivery(0);
     }
     pros::delay(10);//Wait for sensors to update

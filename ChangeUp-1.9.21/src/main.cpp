@@ -66,8 +66,8 @@ void autonomous() {
   // 2 Blue ball                      //
   // 3 Goals                          //
   // Home row bonus                   //
-  if(autoSel=="HR1-HMC-HL1-MM1")
-    a_HMP_HL1_HR1();
+  if(autoSel=="a_HR1_HMC_HL1_MM1")
+    a_HR1_HMC_HL1_MM1();
   // -------------------------------- //
 
   // ----------- HOME MIDDLE CYCLE + LEFT CYCLE ----------- //
@@ -75,9 +75,8 @@ void autonomous() {
   // 2 Red balls                                            //
   // 2 Blue ball                                            //
   // 2 Goals                                                //
-  else if(autoSel=="HMC-HLC-MM1")
-    // a_HMC_HLC_MM1();
-    pros::delay(0);
+  else if(autoSel=="a_HMC_HLC")
+    a_HMC_HLC();
   // ----------------------------------------------------- //
 
   // ----------- HOME MIDDLE + LEFT CYCLE + CENTER ----------- //
@@ -86,8 +85,8 @@ void autonomous() {
   // 1 Blue ball                                               //
   // 3 Goals                                                   //
   // Center Goal                                               //
-  else if(autoSel=="HMP-HLC-MM1")
-    A_HMP_HLC_MM1();
+  else if(autoSel=="a_HMC_HRC")
+    a_HMC_HRC();
   // --------------------------------------------------------- //
 
   // ----------- RIGHT CYCLE ----------- //
@@ -95,18 +94,9 @@ void autonomous() {
   // 2 Red balls                         //
   // 1 Blue balls                        //
   // 1 Goal                              //
-  else if(autoSel=="HMC-HRC")
-    a_HRF();
+  else if(autoSel=="a_MMF_HLC_HMC")
+    a_MMF_HLC_HMC();
   // ----------------------------------- //
-
-  // ----------- HOME MIDDLE CYCLE + RIGHT CYCLE ----------- //
-  // 15 second autonomous                                      //
-  // 2 Red balls                                               //
-  // 2 Blue balls                                              //
-  // 2 Goals                                                   //
-  else if(autoSel=="MMF-HLC")
-    a_HMC_HRC();
-  // --------------------------------------------------------- //
 
   // ----------- SKILLS ----------- //
   // 1 minute autonomous            //
@@ -119,81 +109,12 @@ void autonomous() {
 
   // ----------- DEFAULT ----------- //
   else
+  // a_HMC_HRC();
+  // a_HMC_HLC();
   // a_HR1_HMC_HL1_MM1();
-  a_MMF_HLC_HMC();
-  // a_SKILLS_BROKEN_ARM_DISTANCE_FILTER_115();
+  // a_MMF_HLC_HMC();
+  a_SKILLS_BROKEN_ARM_DISTANCE_FILTER();
   // ------------------------------- //
-
-  // switch (auton_sel) {
-   //  // ----------- HOME ROW ----------- //
-   //  // 15 second autonomous             //
-   //  // 2 Red balls                      //
-   //  // 2 Blue ball                      //
-   //  // 3 Goals                          //
-   //  // Home row bonus                   //
-   //  case 1:
-   //    a_HMP_HL1_HR1();
-   //  break;
-   //  // -------------------------------- //
-   //
-   // // ----------- HOME MIDDLE CYCLE + LEFT CYCLE ----------- //
-   // // 15 second autonomous                                   //
-   // // 2 Red balls                                            //
-   // // 2 Blue ball                                            //
-   // // 2 Goals                                                //
-   //  case 2:
-   //    a_HMC_HLC();
-   //  break;
-   //  // ----------------------------------------------------- //
-   //
-   //  // ----------- HOME MIDDLE + LEFT CYCLE + CENTER ----------- //
-   //  // 15 second autonomous                                      //
-   //  // 3 Red balls                                               //
-   //  // 1 Blue ball                                               //
-   //  // 3 Goals                                                   //
-   //  // Center Goal                                               //
-   //  case 3:
-   //    A_HMP_HLC_MM1();
-   //  break;
-   //  // --------------------------------------------------------- //
-   //
-   //  // ----------- RIGHT CYCLE ----------- //
-   //  // 10 second autonomous                //
-   //  // 2 Red balls                         //
-   //  // 1 Blue balls                        //
-   //  // 1 Goal                              //
-   //  case 4:
-   //    a_HRF();
-   //  break;
-   //  // ----------------------------------- //
-   //
-   //  // ----------- HOME MIDDLE CYCLE + RIGHT CYCLE ----------- //
-   //  // 15 second autonomous                                      //
-   //  // 2 Red balls                                               //
-   //  // 2 Blue balls                                              //
-   //  // 2 Goals                                                   //
-   //  case 5:
-   //    a_HMC_HRC();
-   //  break;
-   //  // --------------------------------------------------------- //
-   //
-   //  // ----------- SKILLS ----------- //
-   //  // 1 minute autonomous            //
-   //  // 11 Red balls                   //
-   //  // 7 Blue balls                   //
-   //  // 9 Goals                        //
-   //  case 6:
-   //    a_SKILLS_BROKEN_ARM_DISTANCE_FILTER();
-   //  break;
-   //  // ------------------------------ //
-   //
-   //  // ----------- DEFAULT ----------- //
-   //  default:
-   //  // a_HR1_HMC_HL1_MM1();
-   //  a_MMF_HLC_HMC();
-   //  // a_SKILLS_BROKEN_ARM_DISTANCE_FILTER_115();
-   //  break;
-   //  // ------------------------------- //
 }
 
 
@@ -203,6 +124,8 @@ void autonomous() {
 // Display Odometry details.                        //
 
 void opcontrol() {
+  drive->setState({86.5_in,14.5_in,180_deg});   //Set the state for odometry
+
 // Continually update the screen to show OdomDebug information.
   while(true){
 

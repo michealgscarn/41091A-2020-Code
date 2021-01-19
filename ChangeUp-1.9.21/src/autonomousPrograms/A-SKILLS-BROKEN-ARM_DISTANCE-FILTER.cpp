@@ -92,7 +92,7 @@ maxSpeed=200;
 
 // ---------- Goal 1 (Home Row Left Corner) ---------- //
   // ----- Preparation ----- //
-  DriveCoordShort(18.5,16,-126,0.55);   //Turn to face goal
+  DriveCoordShort(18.5,16,-131,0.55);   //Turn to face goal
 
   // ----- Score in Goal ----- //
   setDelivery(127);   //Start running delivery
@@ -115,12 +115,15 @@ maxSpeed=200;
   pros::delay(200);   //Wait for ball to pick up
   setIntake(0);    //Stop intake
   DriveCoordShort(22,71.8,-90,0.5);   //Drive into goal
-
+  pros::delay(400);
   // ----- Score in Goal ----- //
   setDelivery(-40);   //Start running delivery slowly in reverse
   setLift(-40);   //Start running lift slowly in reverse
   pros::delay(400);   //Wait for ball to slowly move down
   FilterBall("blue",1);
+  pros::delay(200);
+  setLift(0);
+  pros::delay(400);
 
   // setDelivery(127);   //Start running delivery
   // setLift(80);   //Start running lift
@@ -132,24 +135,24 @@ maxSpeed=200;
 
 // ---------- Goal 3 (Back Left Corner) ---------- //
   // ----- Transition to Goal----- //
-  DriveCoordShort(46,71.8,-90,0.9);   //Back away from goal
-  DriveCoordShort(43,95,6.7,1.1);   //Line up with ball
+  DriveCoordShort(46,71.8,-90,1.2);   //Back away from goal
+  DriveCoordShort(42,95,6.7,1.4);   //Line up with ball
   pros::delay(300);
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
-  DriveCoordShort(43,122,6.3,1);   //Pick up ball
-  DriveCoordShort(31,119,-32.2,0.9);  //Line up with goal
+  DriveCoordShort(42,120,1,1.3);   //Pick up ball
+  DriveCoordShort(24,118,-41.2,1.2);  //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(25,127,-37,0.75); //Drive into goal
+  DriveCoordShort(20,124,-40,0.75); //Drive into goal
 
   // ----- Score in Goal ----- //
   // setDelivery(127);   //Start running delivery
   // setIntake(0);   //Stop intake
   // pros::delay(550);   //Wait for ball to score
   FilterBall("blue", 1);
-  pros::delay(100);
+  pros::delay(400);
   setIntake(-127);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
@@ -162,7 +165,7 @@ maxSpeed=200;
   pros::Task yeet(filterWhileAlign);
   filtered=false;
   //While the left back and left front distance sensors are not equal within a margin of error and those values are not within a specific range...
-  while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || ((frontTrack.get() > 1500) || (frontTrack.get() < 900)) || (!filtered)){
+  while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || !((frontTrack.get() < 1200) || (frontTrack.get() > 500))) {
     double pow=(leftTrackBack.get()-leftTrackFront.get());    //Create a local variable that calculates the difference in sensor values
 
     if(leftTrackBack.get()>leftTrackFront.get())    //if the back value is greater than the front value...
@@ -186,12 +189,12 @@ maxSpeed=200;
   setDrive(0,0,0,0);    //Stop the drive
 // ---------- Goal 4 (Back wall) ---------- //
   // ----- Transition to Goal ----- //
-  DriveCoordShort(48,99,90,2);   //Line up with ball
+  DriveCoordShort(48,101,90,2);   //Line up with ball
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
-  DriveCoordShort(69,99,90,0.85);   //Pick up ball
+  DriveCoordShort(69,101,90,0.85);   //Pick up ball
   DriveCoordShort(71,121,0,1.2);    //Line up with goal
   setIntake(0);   //Stop running intake
   DriveCoordShort(71,131,0,0.6);    //Drive into goal
@@ -201,6 +204,7 @@ maxSpeed=200;
   // setIntake(0);   //Stop running intake
   // pros::delay(550);   //Wait for ball to score
   FilterBall("blue",1);
+  pros::delay(300);
   setIntake(-127);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
@@ -211,7 +215,7 @@ maxSpeed=200;
   setIntake(127);    //Run intake in reverse
   setDelivery(-127);   //Stop running delivery
   setLift(60);   //Stop running lift
-  DriveCoordShort(87,124,90,1.15); //Drive in front of ball
+  DriveCoordShort(87,126,90,1.15); //Drive in front of ball
   pros::delay(100);
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
@@ -220,13 +224,14 @@ maxSpeed=200;
   DriveCoordShort(110,124,87,1.9);    //Pick up ball
   DriveCoordShort(110,120,52,0.75);    //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(128.3,129.5,52.6,1);    //Drive into goal
+  DriveCoordShort(123,136.5,53,1);    //Drive into goal
 
   // ----- Score in Goal ----- //
   // setDelivery(127);   //Start running delivery
   // setIntake(0);   //Stop running intake
   // pros::delay(750);   //Wait for ball to score
   FilterBall("blue",1);
+  pros::delay(500);
   setIntake(-127);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
@@ -239,7 +244,7 @@ maxSpeed=200;
   pros::Task yeet2(filterWhileAlign);
   filtered=false;
   //While the left back and left front distance sensors are not equal within a margin of error and those values are not within a specific range...
-  while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || ((frontTrack.get() > 1200) || (frontTrack.get() < 500)) || (!filtered)){
+  while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || !((frontTrack.get() < 1200) || (frontTrack.get() > 500))) {
     double pow=(leftTrackBack.get()-leftTrackFront.get());    //Create a local variable that calculates the difference in sensor values
 
     if(leftTrackBack.get()>leftTrackFront.get())    //if the back value is greater than the front value...
@@ -270,12 +275,12 @@ maxSpeed=200;
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(60);   //Start running lift
-  DriveCoordShort(90,69.8,184.5,1);   //Drive forward to pick up ball
-  DriveCoordShort(90.9,71,92.9,0.75);   //Turn to face next ball
+  DriveCoordShort(91,69.8,184.5,1);   //Drive forward to pick up ball
+  DriveCoordShort(91,71,92.9,0.75);   //Turn to face next ball
   DriveCoordShort(109,70,94,1.1);   //Line up with goal
   pros::delay(200);   //Wait for ball to pick up
   setIntake(0);   //Stop running the intake
-  DriveCoordShort(119,71,91,1);   //Drive into goal
+  DriveCoordShort(121,71,91,1);   //Drive into goal
 
   // ----- Score in Goal ----- //
   setDelivery(-20);   //Start running delivery slowly in reverse
@@ -303,7 +308,7 @@ maxSpeed=200;
   DriveCoordShort(111,21,134,0.65);    //Line up with goal
   setIntake(0);   //Stop running intake
   pros::delay(200);   //Wait a bit
-  DriveCoordShort(122,11,138,0.75);    //Drive into goal
+  DriveCoordShort(125,11,138,0.75);    //Drive into goal
 
   //-----Score in Goal-----//
   setDelivery(127);   //Start running delivery
@@ -322,7 +327,7 @@ maxSpeed=200;
   pros::Task yeet3(filterWhileAlign);
   filtered=false;
   //While the left back and left front distance sensors are not equal within a margin of error and those values are not within a specific range...
-  while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || ((frontTrack.get() > 1400) || (frontTrack.get() < 500)) & (!filtered)){
+  while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || !((frontTrack.get() < 1200) || (frontTrack.get() > 500))){
     double pow=(leftTrackBack.get()-leftTrackFront.get());    //Create a local variable that calculates the difference in sensor values
 
     if(leftTrackBack.get()>leftTrackFront.get())    //if the back value is greater than the front value...
