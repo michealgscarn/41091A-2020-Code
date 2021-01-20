@@ -45,12 +45,12 @@ void a_MMF_HLC(){
   setIntake(-127); // Unfold Intake
   setDelivery(30); // Unfold Hood
 
-  DriveCoordShort(38, 42, 0, 1.5); // Line up with ball
+  DriveCoordShort(36, 42, 0, 1.5); // Line up with ball
   setIntake(127); // Start Intake
   setLift(80); // Start Lift
   setDelivery(0); // Stop Delivery
   maxSpeed=100; // Set Maximum Speed
-  DriveCoordShort(38, 61, 1, 1); // Pick up Ball
+  DriveCoordShort(36, 61, 1, 1); // Pick up Ball
 
   // ----- Ball 2 ----- //
   maxSpeed=800; // Set Maximum Speed
@@ -89,6 +89,7 @@ void a_MMF_HLC(){
   setLift(80); // Start lift to lift ball into goal
   pros::delay(200); // Wait for ball to deliver
   FilterBall("no",2); // Score ball into goal
+  pros::delay(300);
   setIntake(-127); // Stop intake
   pros::delay(500);
   setLift(0); // Continue Lift to filter

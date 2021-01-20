@@ -77,7 +77,7 @@ void a_HM1_HLC_MM1(){
   maxSpeed=600; // Drive Faster
   DriveCoordShort(27,28,223,1.5); //Back from goal
   setIntake(0); // Stop Intake
-  DriveCoordShort(64.5,55,353,2.5); // Push Ball into Goal
+  DriveCoordShort(64.5,58,370,2.5); // Push Ball into Goal
   setIntake(-5);  // Spin intake in reverse
   DriveCoordShort(38.9,44,364,1); // Back Away from Goal
 }

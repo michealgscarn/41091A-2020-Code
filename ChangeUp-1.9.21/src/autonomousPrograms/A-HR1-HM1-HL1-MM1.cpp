@@ -58,11 +58,11 @@ void a_HR1_HM1_HL1_MM1(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
-  DriveCoordShort(126,21,139,1);  // Line up with the Home right Goal
-  setLift(60);  // Start Lift to Pick up Ball in front of Ball
-  DriveCoordShort(130,13,140,0.6);  // Drive into the Home right Goal
-  setLift(127); // Spin the lift forward to deliver
+  DriveCoordShort(125,22,139,1);  // Line up with the Home right Goal
+  setLift(100);  // Start Lift to Pick up Ball in front of Ball
   setDelivery(127); // Spin the Delivery forward to score the ball into the Goal
+  DriveCoordShort(129,14,140,0.6);  // Drive into the Home right Goal
+  setLift(127); // Spin the lift forward to deliver
   FilterBallNoIn("",1); // Score in the goal until bottom Ball is detected
   setDelivery(80);  // Slow Delivery down to prevent shooting both Balls in
   pros::delay(400); // Give preload more time to score
@@ -93,12 +93,12 @@ void a_HR1_HM1_HL1_MM1(){
   setIntake(-127);  // Unfold Intake
   pros::delay(800); // Wait for Intake to unfold
   setIntake(127); // Spin Intake forward to pick up Ball
-  DriveCoordShort(21.6,29.5,236,1.5); // Drive to pick up Ball
+  DriveCoordShort(21.6,29.5,232,1.5); // Drive to pick up Ball
 
   // ----- Goal ----- //
   setIntake(0); // Stop Intake to Prevent picking up more Balls
   maxSpeed=100; //  Slow down the Robot
-  DriveCoordShort(14,24.6,235.5,1.5); // Drive into Home left Goal
+  DriveCoordShort(14,24.6,232,1.5); // Drive into Home left Goal
   setDelivery(127); // Spin the Delivery forward to score
   pros::delay(300); // Wait
   cycleGoal("blue",1);  // Score until picked up ball has reached the top of Robot
