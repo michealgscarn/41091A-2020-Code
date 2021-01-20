@@ -1,7 +1,12 @@
 #include "main.h"
 using namespace okapi;
 /*
-INSERT ASCII ART HERE
+     _                _   _  __  __  _             _   _  _      ____             __  __  __  __  _
+    / \              | | | ||  \/  |/ |           | | | || |    / ___|           |  \/  ||  \/  |/ |
+   / _ \     _____   | |_| || |\/| || |   _____   | |_| || |   | |       _____   | |\/| || |\/| || |
+  / ___ \   |_____|  |  _  || |  | || |  |_____|  |  _  || |___| |___   |_____|  | |  | || |  | || |
+ /_/   \_\           |_| |_||_|  |_||_|           |_| |_||_____|\____|           |_|  |_||_|  |_||_|
+Autonomous       Home row | Middle | 1 Ball     Home row | Left | Cycle               Center    | 1 Ball
 
 Created on 10/10/2021 by Logan and Taylor
 Updated on 1/19/2021 by Logan and Taylor
@@ -20,16 +25,19 @@ Set up the robot's Odometry positon.
 
 GOAL 1
 ------
-
+Line up with the Home middle Goal and score preload
 
 GOAL 2
 ------
+Line up with the Home left Goal and pick up Ball
+Score picked up Ball into the Home left Goal
 
 GOAL 3
 ------
+Drive towards Center Goal and push a Ball in
 
  */
-void a_HMC_HLC(){
+void a_HM1_HLC_MM1(){
 
 // ---------- Preparation ---------- //
   //Capture the start time so we can score at the last moment

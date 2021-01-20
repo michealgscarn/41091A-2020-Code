@@ -82,18 +82,11 @@ void opcontrol(void);
 #include "legacyDisplay/legacyDisplay.hpp" //older vex display
 #include "legacyDisplay/legacyButtons.hpp" //older vex display
 //#include "legacyDisplay/dwightImage.h" //image file for dwight schrute
-#include "autonomousPrograms/A-HMC-HRC.hpp"
-#include "autonomousPrograms/A-HMC-HLC.hpp"
-#include "autonomousPrograms/A-HLC-MM1.hpp"
-#include "autonomousPrograms/A-MMF-HL1.hpp"
-#include "autonomousPrograms/A-HRC-MM1.hpp"
-#include "autonomousPrograms/A-HRF.hpp"
-#include "autonomousPrograms/A-HLF-MM1.hpp"
-#include "autonomousPrograms/A-HMP-HLC-MM1.hpp"
-#include "autonomousPrograms/A-HMP-HLC-MM1-I.hpp"
-#include "autonomousPrograms/A-HMC-HLC-MM1.hpp"
-#include "autonomousPrograms/A-HMP-HLC-HRC.hpp"
-#include "autonomousPrograms/A-HR1-HMC-HL1-MM1.hpp"
+#include "autonomousPrograms/A-HM1-HRC.hpp"
+#include "autonomousPrograms/A-MMF-HLC.hpp"
+#include "autonomousPrograms/A-HM1-HLC-MM1.hpp"
+#include "autonomousPrograms/A-HM1-HLC-MM1.hpp"
+#include "autonomousPrograms/A-HR1-HM1-HL1-MM1.hpp"
 #include "autonomousPrograms/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER.hpp"
 #include "autonomousPrograms/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER-115.hpp"
 #include "autonomousPrograms/A-SKILLS-JANUARY.hpp"

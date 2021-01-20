@@ -1,15 +1,14 @@
 #include "main.h"
 using namespace okapi;
 /*------------------------------------------
+  ____   _  __ ___  _      _      ____
+ / ___| | |/ /|_ _|| |    | |    / ___|
+ \___ \ | ' /  | | | |    | |    \___ \
+  ___) || . \  | | | |___ | |___  ___) |
+ |____/ |_|\_\|___||_____||_____||____/
 
- ------\  --\       --\ --\ --\
---  __--\ -- |      \__|-- |-- |
--- /  \__|-- |  --\ --\ -- |-- | -------\
-\------\  -- | --  |-- |-- |-- |--  _____|
- \____--\ ------  / -- |-- |-- |\------\
---\   -- |--  _--<  -- |-- |-- | \____--\
-\------  |-- | \--\ -- |-- |-- |-------  |
- \______/ \__|  \__|\__|\__|\__|\_______/
+ Created on 1/2/2021 by Logan and Taylor
+ Last Updated on 1/19/2021 by Logan and Taylor
 
 1 minute Autonomous
 
@@ -121,13 +120,14 @@ maxSpeed=200;
   setLift(-40);   //Start running lift slowly in reverse
   pros::delay(400);   //Wait for ball to slowly move down
   FilterBall("blue",1);
-  pros::delay(200);
+  pros::delay(300);
+  setIntake(-127);
   setLift(0);
-  pros::delay(400);
+  pros::delay(500);
 
-  // setDelivery(127);   //Start running delivery
-  // setLift(80);   //Start running lift
-  // pros::delay(1000);   //Wait for ball to score
+  setDelivery(-80);   //Start running delivery
+  setLift(-80);   //Start running lift
+  pros::delay(400);   //Wait for ball to score
 
   setIntake(-127);    //Run intake in reverse
   setDelivery(-127);   //Stop running delivery
@@ -145,15 +145,15 @@ maxSpeed=200;
   DriveCoordShort(42,120,1,1.3);   //Pick up ball
   DriveCoordShort(24,118,-41.2,1.2);  //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(20,124,-40,0.75); //Drive into goal
+  DriveCoordShort(19.5,124.5,-40,0.75); //Drive into goal
 
   // ----- Score in Goal ----- //
   // setDelivery(127);   //Start running delivery
   // setIntake(0);   //Stop intake
   // pros::delay(550);   //Wait for ball to score
   FilterBall("blue", 1);
-  pros::delay(400);
   setIntake(-127);    //Run intake in reverse
+  pros::delay(400);
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
 
@@ -215,7 +215,7 @@ maxSpeed=200;
   setIntake(127);    //Run intake in reverse
   setDelivery(-127);   //Stop running delivery
   setLift(60);   //Stop running lift
-  DriveCoordShort(87,126,90,1.15); //Drive in front of ball
+  DriveCoordShort(85,126,90,1.15); //Drive in front of ball
   pros::delay(100);
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
@@ -224,15 +224,15 @@ maxSpeed=200;
   DriveCoordShort(110,124,87,1.9);    //Pick up ball
   DriveCoordShort(110,120,52,0.75);    //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(123,136.5,53,1);    //Drive into goal
+  DriveCoordShort(124,136.5,53,1);    //Drive into goal
 
   // ----- Score in Goal ----- //
-  // setDelivery(127);   //Start running delivery
-  // setIntake(0);   //Stop running intake
-  // pros::delay(750);   //Wait for ball to score
+  setDelivery(127);   //Start running delivery
+  setLift(127);   //Stop running intake
+  pros::delay(500);   //Wait for ball to score
   FilterBall("blue",1);
-  pros::delay(500);
   setIntake(-127);    //Run intake in reverse
+  pros::delay(400);
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
 
@@ -269,18 +269,18 @@ maxSpeed=200;
 
 // ---------- Goal 6 (Right wall) ---------- //
   // ---- Transition to Goal ---- //
-  DriveCoordShort(91,93.8,184.5,11.7);   //Line up with next ball
+  DriveCoordShort(94,93.8,184.5,11.7);   //Line up with next ball
   pros::delay(300);
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(60);   //Start running lift
-  DriveCoordShort(91,69.8,184.5,1);   //Drive forward to pick up ball
-  DriveCoordShort(91,71,92.9,0.75);   //Turn to face next ball
-  DriveCoordShort(109,70,94,1.1);   //Line up with goal
+  DriveCoordShort(94,69.8,184.5,1);   //Drive forward to pick up ball
+  DriveCoordShort(93,73,92.9,0.75);   //Turn to face next ball
+  DriveCoordShort(109,73,94,1.1);   //Line up with goal
   pros::delay(200);   //Wait for ball to pick up
   setIntake(0);   //Stop running the intake
-  DriveCoordShort(121,71,91,1);   //Drive into goal
+  DriveCoordShort(122,71,91,1);   //Drive into goal
 
   // ----- Score in Goal ----- //
   setDelivery(-20);   //Start running delivery slowly in reverse
@@ -299,16 +299,16 @@ maxSpeed=200;
 // ---------- Goal 7 (Bottom Right Corner) ---------- //
   // ----- Transition to Goal ----- //
   DriveCoordShort(104,70,94,1);   //Back up from goal
-  DriveCoordShort(100,45,184,8);   //Line up with ball
+  DriveCoordShort(103,45,184,8);   //Line up with ball
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
-  DriveCoordShort(100,20,183,0.9);    //Drive forward to pick up ball
-  DriveCoordShort(111,21,134,0.65);    //Line up with goal
+  DriveCoordShort(103,20,183,0.9);    //Drive forward to pick up ball
+  DriveCoordShort(112,21,134,0.65);    //Line up with goal
   setIntake(0);   //Stop running intake
   pros::delay(200);   //Wait a bit
-  DriveCoordShort(125,11,138,0.75);    //Drive into goal
+  DriveCoordShort(130,11,138,0.75);    //Drive into goal
 
   //-----Score in Goal-----//
   setDelivery(127);   //Start running delivery
@@ -374,14 +374,14 @@ maxSpeed=200;
   //
   DriveCoordShort(84.5,74,274,1);    //Drive in front of goal
   DriveCoordShort(93,74,274,0.75);   //Back away
-  //
-   DriveCoordShort(84.5,74,274,0.75);    //Drive in front of goal
-   DriveCoordShort(93,74,274,0.75);   //Back away
-  //
-  //DriveCoordShort(84.5,75,274,0.75);    //Drive in front of goal
-  //DriveCoordShort(95.8,73.1,277,0.75);   //Back away
 
-  maxSpeed=200;
+  DriveCoordShort(84.5,74,274,0.75);    //Drive in front of goal
+  DriveCoordShort(93,74,274,0.75);   //Back away
+
+  DriveCoordShort(84.5,75,274,0.75);    //Drive in front of goal
+  DriveCoordShort(95.8,73.1,277,0.75);   //Back away
+
+  // maxSpeed=200;
 
   // ----- Transition to Score ----- //
   DriveCoordShort(90,63,313,2);   //Line up with goal
@@ -402,13 +402,13 @@ maxSpeed=200;
   DriveCoordShort(70,55,266,1.15);    //Pick up ball
   DriveCoordShort(70,31,180,1.3);    //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(70,23,180,0.5);    //Drive into goal
+  DriveCoordShort(70,24,180,0.5);    //Drive into goal
 
   // ----- Score in Goal ----- //
   // setDelivery(127);   //Start running delivery
   // pros::delay(550);   //Wait for ball to score
   FilterBall("blue",1);
-  setIntake(-127);    //Run intake in reverse
+  setIntake(-25);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(0);   //Stop running lift
 

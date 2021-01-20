@@ -213,66 +213,66 @@ void DriveCoordShort(double xCoord, double yCoord, double angle, double timeToDr
 // Drives to a point at the highest velocity possible.                 //
 void DriveCoordShortNoPID(double xCoord, double yCoord, double angle, double timeToDrive){
   //Capture Starting time
-    double lastTime=pros::millis();
+  double lastTime=pros::millis();
 
-    //Define PID attributes across the X axis
-    double xP = 100;
-    double xI = 0.001;
-    double xD = 0;
-    double xError = xCoord;
-    double xErrorSum = 0;
-    double xErrorLast = xError;
-    double xSpeed;
+  //Define PID attributes across the X axis
+  double xP = 50;
+  double xI = 0.001;
+  double xD = 0;
+  double xError = xCoord;
+  double xErrorSum = 0;
+  double xErrorLast = xError;
+  double xSpeed;
 
-    //Define PID attributes across the Y axis
-    double yP = 100;
-    double yI = 0.001;
-    double yD = 0;
-    double yError = yCoord;
-    double yErrorSum = 0;
-    double yErrorLast = yError;
-    double ySpeed;
+  //Define PID attributes across the Y axis
+  double yP = 50;
+  double yI = 0.001;
+  double yD = 0;
+  double yError = yCoord;
+  double yErrorSum = 0;
+  double yErrorLast = yError;
+  double ySpeed;
 
-    //Define PID attributes for Turning
-    double aP = 100;
-    double aI = 0;
-    double aD = 0;
-    double aError = angle;
-    double aErrorSum = 0;
-    double aErrorLast = aError;
-    double aSpeed;
+  //Define PID attributes for Turning
+  double aP = 50;
+  double aI = 0;
+  double aD = 0;
+  double aError = angle;
+  double aErrorSum = 0;
+  double aErrorLast = aError;
+  double aSpeed;
 
-    //Check if the position for x, y and angle have been met
-    while(((drive->getState().y.convert(inch) < yCoord-1 || drive->getState().y.convert(inch)  >yCoord + 1) ||
-    (drive->getState().x.convert(inch) < xCoord -1|| drive->getState().x.convert(inch) > xCoord + 1)
-    || (drive->getState().theta.convert(degree)<angle -3|| drive->getState().theta.convert(degree)>angle + 3))
-    & (pros::millis()-lastTime<(timeToDrive)*1000)){
+  //Check if the position for x, y and angle have been met
+  while(((drive->getState().y.convert(inch) < yCoord-1.5 || drive->getState().y.convert(inch)  >yCoord + 1.5) ||
+  (drive->getState().x.convert(inch) < xCoord -1.5|| drive->getState().x.convert(inch) > xCoord + 1.5)
+  || (drive->getState().theta.convert(degree)<angle -3|| drive->getState().theta.convert(degree)>angle + 3))
+  & (pros::millis()-lastTime<(timeToDrive)*1000)){
 
 
-    //Update the Last Error to adapt to change
-    xErrorLast=xError;
-    yErrorLast=yError;
-    aErrorLast=aError;
+  //Update the Last Error to adapt to change
+  xErrorLast=xError;
+  yErrorLast=yError;
+  aErrorLast=aError;
 
-    //Set the distance from the target as ERROR
-    xError=xCoord-drive->getState().x.convert(inch);
-    yError=yCoord-drive->getState().y.convert(inch);
-    aError=angle-drive->getState().theta.convert(degree);
+  //Set the distance from the target as ERROR
+  xError=xCoord-drive->getState().x.convert(inch);
+  yError=yCoord-drive->getState().y.convert(inch);
+  aError=angle-drive->getState().theta.convert(degree);
 
-    //Add to the cumilative Errors over time
-    xErrorSum+=xError/**(pros::millis()-lastTime)*/;
-    yErrorSum+=yError/**(pros::millis()-lastTime)*/;
-    aErrorSum+=aError/**(pros::millis()-lastTime)*/;
+  //Add to the cumilative Errors over time
+  xErrorSum+=xError/**(pros::millis()-lastTime)*/;
+  yErrorSum+=yError/**(pros::millis()-lastTime)*/;
+  aErrorSum+=aError/**(pros::millis()-lastTime)*/;
 
-    //Set the speeds based on these attributes
-    xSpeed=(xP*xError)+(xI*xErrorSum)+(xD*(xError-xErrorLast));
-    ySpeed=(yP*yError)+(yI*yErrorSum)+(yD*(yError-yErrorLast));
-    aSpeed=(aP*aError)+(aI*aErrorSum)+(aD*(aError-aErrorLast));
+  //Set the speeds based on these attributes
+  xSpeed=(xP*xError)+(xI*xErrorSum)+(xD*(xError-xErrorLast));
+  ySpeed=(yP*yError)+(yI*yErrorSum)+(yD*(yError-yErrorLast));
+  aSpeed=(aP*aError)+(aI*aErrorSum)+(aD*(aError-aErrorLast));
 
-    //Set the speed in driving field centric
-    DriveFieldCentric(xSpeed,ySpeed,aSpeed);
-    //Wait for motors to update
-    pros::delay(10);
-    }
-    DriveFieldCentric(0,0,0);
+  //Set the speed in driving field centric
+  DriveFieldCentric(xSpeed,ySpeed,aSpeed);
+  //Wait for motors to update
+  pros::delay(10);
+  }
+  DriveFieldCentric(0,0,0);
 }

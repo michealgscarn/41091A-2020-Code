@@ -67,7 +67,7 @@ void autonomous() {
   // 3 Goals                          //
   // Home row bonus                   //
   if(autoSel=="a_HR1_HMC_HL1_MM1")
-    a_HR1_HMC_HL1_MM1();
+    a_HR1_HM1_HL1_MM1();
   // -------------------------------- //
 
   // ----------- HOME MIDDLE CYCLE + LEFT CYCLE ----------- //
@@ -76,7 +76,7 @@ void autonomous() {
   // 2 Blue ball                                            //
   // 2 Goals                                                //
   else if(autoSel=="a_HMC_HLC")
-    a_HMC_HLC();
+    a_HM1_HLC_MM1();
   // ----------------------------------------------------- //
 
   // ----------- HOME MIDDLE + LEFT CYCLE + CENTER ----------- //
@@ -86,7 +86,7 @@ void autonomous() {
   // 3 Goals                                                   //
   // Center Goal                                               //
   else if(autoSel=="a_HMC_HRC")
-    a_HMC_HRC();
+    a_HM1_HRC();
   // --------------------------------------------------------- //
 
   // ----------- RIGHT CYCLE ----------- //
@@ -95,7 +95,7 @@ void autonomous() {
   // 1 Blue balls                        //
   // 1 Goal                              //
   else if(autoSel=="a_MMF_HLC_HMC")
-    a_MMF_HLC_HMC();
+    a_MMF_HLC();
   // ----------------------------------- //
 
   // ----------- SKILLS ----------- //

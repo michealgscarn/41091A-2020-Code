@@ -32,7 +32,7 @@ void FilterBall(std::string alliance, int deltaBallCount){
   std::string ballState="none";
   int targetBallCount=ballCount+deltaBallCount;
   int targetRotM=0;
-  int noBallTimeout=pros::millis()+30000000000;
+  int noBallTimeout=pros::millis()+1000;
   int ballCheckTime = 0;
   while((ballCount<targetBallCount) & ((noBallTimeout>pros::millis()))){
     if((ballState=="detected")&(CheckColor("bottom")==alliance || CheckColor("middle")==alliance)){
@@ -41,10 +41,10 @@ void FilterBall(std::string alliance, int deltaBallCount){
       setDelivery(-127);    //...Run the delivery in reverse until ...
       pros::delay(100);   //... The limit switch is pressed and ...
       setLift(65);
-      noBallTimeout=pros::millis()+1000000000;
+      noBallTimeout=pros::millis()+1000;
       while(!ballFiltering() & ((noBallTimeout>pros::millis()))){pros::delay(10);} //Wait for filter switch to gather a ball
       while(ballFiltering() & ((noBallTimeout>pros::millis()))){pros::delay(10);}
-      noBallTimeout=pros::millis()+30000000000;
+      noBallTimeout=pros::millis()+1000;
       pros::delay(00);   //Wait for ball to filter out
       ballState="none"; //Set ball status to none
       setIntake(65);
@@ -59,7 +59,7 @@ void FilterBall(std::string alliance, int deltaBallCount){
       ballState="none";//... update the robot to no balls
     if(ballIn()&(ballState=="none")){//If a ball comes in for the first time
       ballState="detected";//...Mark the ball as detected
-      noBallTimeout=pros::millis()+30000000;
+      noBallTimeout=pros::millis()+1000;
       pros::delay(100);
     }
     pros::delay(10);//Wait for sensors to update

@@ -1,7 +1,18 @@
 #include "main.h"
 using namespace okapi;
 /*----------------------------------
-INSERT ASCII ART HERE
+     _                _   _  ____   _             _   _  __  __  _
+    / \              | | | ||  _ \ / |           | | | ||  \/  |/ |
+   / _ \     _____   | |_| || |_) || |   _____   | |_| || |\/| || |
+  / ___ \   |_____|  |  _  ||  _ < | |  |_____|  |  _  || |  | || |
+ /_/   \_\           |_| |_||_| \_\|_|           |_| |_||_|  |_||_|
+Autonomous          Home | Right | 1 Ball       Home | Middle | 1 Ball
+          _   _  _      _             __  __  __  __  _
+          | | | || |    / |           |  \/  ||  \/  |/ |
+          | |_| || |    | |   _____   | |\/| || |\/| || |
+          |  _  || |___ | |  |_____|  | |  | || |  | || |
+          |_| |_||_____||_|           |_|  |_||_|  |_||_|
+          Home | Left | 1 Ball             Center | 1 Ball
 
 Created on 1/17/2021 by Logan and Taylor
 Updated on 1/19/2021 by Logan and Taylor
@@ -39,7 +50,7 @@ Drive towards the center Goal and push the ball left towards the Goal into.
 ----------------------------------*/
 
 
-void a_HR1_HMC_HL1_MM1(){
+void a_HR1_HM1_HL1_MM1(){
 // ---------- Set Up ---------- //
   startTime=pros::millis(); // Set up a timer for autonomous
   drive->setState({117.5_in,16.75_in,90_deg});   //Set the state for odometry

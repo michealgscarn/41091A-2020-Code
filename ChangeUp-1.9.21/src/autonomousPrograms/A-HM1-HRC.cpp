@@ -1,7 +1,12 @@
 #include "main.h"
 using namespace okapi;
 /*-----------------------------------
-INSERT ASCII ART HERE
+     _                _   _  __  __  _             _   _  ____    ____
+    / \              | | | ||  \/  |/ |           | | | ||  _ \  / ___|
+   / _ \     _____   | |_| || |\/| || |   _____   | |_| || |_) || |
+  / ___ \   |_____|  |  _  || |  | || |  |_____|  |  _  ||  _ < | |___
+ /_/   \_\           |_| |_||_|  |_||_|           |_| |_||_| \_\ \____|
+Autonomous       Home Row | Middle | Cycle     Home Row | Right | Cycle
 
 Created on 10/10/2021 by Logan and Taylor
 Updated on 1/19/2021 by Logan and Taylor
@@ -28,7 +33,7 @@ Line up with the Home left Goal and pick up Ball in front
 Cycle the Goal until the Robot has the opposing alliance ball
 
 -------------------------------------*/
-void a_HMC_HRC(){
+void a_HM1_HRC(){
 // ---------- Preparation ---------- //
   //Capture the start time so we can score at the last moment
   startTime=pros::millis();

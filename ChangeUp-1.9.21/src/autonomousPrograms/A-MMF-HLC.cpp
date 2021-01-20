@@ -33,7 +33,7 @@ Pick up bottom left corner ball and score in goal.
 
 -------------------------------------------------------------------------------------------------------*/
 
-void a_MMF_HLC_HMC(){
+void a_MMF_HLC(){
   drive->setState({32_in,15.5_in,0_deg}); // Set up State
   startTime=pros::millis();   //Set up the timer
   maxSpeed=800; // Set Maximum Speed
