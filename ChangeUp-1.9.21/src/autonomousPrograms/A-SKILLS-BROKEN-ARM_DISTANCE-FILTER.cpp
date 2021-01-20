@@ -136,16 +136,16 @@ maxSpeed=200;
 // ---------- Goal 3 (Back Left Corner) ---------- //
   // ----- Transition to Goal----- //
   DriveCoordShort(46,71.8,-90,1.2);   //Back away from goal
-  DriveCoordShort(42,95,6.7,1.4);   //Line up with ball
+  DriveCoordShort(41,95,6.7,1.4);   //Line up with ball
   pros::delay(300);
   while(ballFiltering()){pros::delay(10);}
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
-  DriveCoordShort(42,120,1,1.3);   //Pick up ball
+  DriveCoordShort(41,120,1,1.3);   //Pick up ball
   DriveCoordShort(24,118,-41.2,1.2);  //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(19.5,124.5,-40,0.75); //Drive into goal
+  DriveCoordShort(18.5,126.5,-40,0.75); //Drive into goal
 
   // ----- Score in Goal ----- //
   // setDelivery(127);   //Start running delivery
@@ -166,7 +166,7 @@ maxSpeed=200;
   filtered=false;
   //While the left back and left front distance sensors are not equal within a margin of error and those values are not within a specific range...
   while((leftTrackFront.get()<leftTrackBack.get()-0.5 || leftTrackFront.get()>leftTrackBack.get()+0.5) || !((frontTrack.get() < 1200) || (frontTrack.get() > 500))) {
-    double pow=(leftTrackBack.get()-leftTrackFront.get());    //Create a local variable that calculates the difference in sensor values
+    double pow=(leftTrackBack.get()-leftTrackFront.get())*0.5;    //Create a local variable that calculates the difference in sensor values
 
     if(leftTrackBack.get()>leftTrackFront.get())    //if the back value is greater than the front value...
       pow+=10;    //...Add 10 to the local variable "pow"
@@ -178,7 +178,7 @@ maxSpeed=200;
   }
 
   //Reset state: X-Subtract 1 inch from the left front sensor distance plus distance from the center Y-Subtract the front sensor from 142 plus distance from the center THETA-0
-  drive->setState({-1_in+(leftTrackFront.get()*0.0393701_in)+8.5_in,(142*1_in)-(frontTrack.get()*0.0393701_in)+5_in,0_deg});
+  drive->setState({-1_in+(leftTrackFront.get()*0.0393701_in)+8.5_in,(142*1_in)-(frontTrack.get()*0.0393701_in)+4_in,0_deg});
 
   // ----- Put all motors on brake type hold to get accurate values ----- //
     left_fr_mtr.set_brake_mode(MOTOR_BRAKE_HOLD);
@@ -222,13 +222,13 @@ maxSpeed=200;
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
   DriveCoordShort(110,124,87,1.9);    //Pick up ball
-  DriveCoordShort(110,120,52,0.75);    //Line up with goal
+  DriveCoordShort(111,120,52,0.75);    //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(124,136.5,53,1);    //Drive into goal
+  DriveCoordShort(126,136.5,53,1);    //Drive into goal
 
   // ----- Score in Goal ----- //
   setDelivery(127);   //Start running delivery
-  setLift(127);   //Stop running intake
+  setLift(80);   //Stop running intake
   pros::delay(500);   //Wait for ball to score
   FilterBall("blue",1);
   setIntake(-127);    //Run intake in reverse
@@ -288,7 +288,7 @@ maxSpeed=200;
   pros::delay(300);   //Wait for ball to slowly move down
 
   setDelivery(127);   //Start running lift again
-  setLift(127);   //Start running delivery
+  setLift(100);   //Start running delivery
   pros::delay(1250);   //Wait for ball to score
   // FilterBall("blue",1);
   // pros::delay(400);
@@ -364,22 +364,23 @@ maxSpeed=200;
   setLift(127);   //Start running lift
   setDelivery(0);
   DriveCoordShort(94,74,274,2.3);    //Drive in front of goal
+  pros::delay(400);
 
   // ----- Descore from Goal ----- //
-  setIntake(127);   //Run intake in reverse
+  setIntake(-127);   //Run intake in reverse
   setLift(0);   //Stop running lift
   setDelivery(0);
 
   // maxSpeed=600;
   //
-  DriveCoordShort(84.5,74,274,1);    //Drive in front of goal
-  DriveCoordShort(93,74,274,0.75);   //Back away
+  DriveCoordShort(84.5,73,274,1);    //Drive in front of goal
+  DriveCoordShort(93,73,274,0.75);   //Back away
 
-  DriveCoordShort(84.5,74,274,0.75);    //Drive in front of goal
-  DriveCoordShort(93,74,274,0.75);   //Back away
+  DriveCoordShort(84.5,73,274,0.75);    //Drive in front of goal
+  DriveCoordShort(100,73,274,0.75);   //Back away
 
-  DriveCoordShort(84.5,75,274,0.75);    //Drive in front of goal
-  DriveCoordShort(95.8,73.1,277,0.75);   //Back away
+  // DriveCoordShort(84.5,73,274,0.75);    //Drive in front of goal
+  // DriveCoordShort(95.8,73,277,0.75);   //Back away
 
   // maxSpeed=200;
 
@@ -390,6 +391,7 @@ maxSpeed=200;
 
   //-----Score in Goal-----//
   setDelivery(127);   //Start running delivery
+  setLift(127);
   pros::delay(1100);   //Wait for ball to score
   setDelivery(0);   //Stop running delivery
 
