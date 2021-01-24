@@ -39,22 +39,22 @@ Pick up bottom left corner ball and score in goal.
 void a_MMF_HLC(){
   drive->setState({32_in,15.5_in,0_deg}); // Set up State
   startTime=pros::millis();   //Set up the timer
-  maxSpeed=800; // Set Maximum Speed
+  maxSpeed=300; // Set Maximum Speed
 //---------- GOAL 1 (CENTER) ----------//
   // ----- Ball 1 ----- //
   setIntake(-127); // Unfold Intake
   setDelivery(30); // Unfold Hood
 
-  DriveCoordShort(36, 42, 0, 1.5); // Line up with ball
+  DriveCoordShort(38, 40, 0, 1.5); // Line up with ball
   setIntake(127); // Start Intake
   setLift(80); // Start Lift
   setDelivery(0); // Stop Delivery
   maxSpeed=100; // Set Maximum Speed
-  DriveCoordShort(36, 61, 1, 1); // Pick up Ball
+  DriveCoordShort(38, 63, 1, 1); // Pick up Ball
 
   // ----- Ball 2 ----- //
-  maxSpeed=800; // Set Maximum Speed
-  DriveCoordShort(59.1, 61.7, 10, 1); // Push Ball into Center goal
+  maxSpeed=400; // Set Maximum Speed
+  DriveCoordShort(59.1, 63.2, 1, 1); // Push Ball into Center goal
   setLift(0);
 
   // ----- Goal ----- //
@@ -62,7 +62,7 @@ void a_MMF_HLC(){
   DriveCoordShort(56.6, 54.2, 44, 0.75); // Line up with goal
   setIntake(0); // Stop intake
   maxSpeed=200; // Set Maximum Speed
-  DriveCoordShort(61.4, 61.4, 42, 0.9); // Drive into goal
+  DriveCoordShort(61.4, 61.4, 45, 1.2); // Drive into goal
   setDelivery(-60); // Start delivery to shoot ball in
   setLift(-40); // Start lift to lift ball into goal
   pros::delay(400); // Wait for ball to deliver
@@ -91,7 +91,7 @@ void a_MMF_HLC(){
   FilterBall("no",2); // Score ball into goal
   pros::delay(300);
   setIntake(-127); // Stop intake
-  pros::delay(500);
+  pros::delay(800);
   setLift(0); // Continue Lift to filter
   setDelivery(0); // Continue Delivery to filter
 

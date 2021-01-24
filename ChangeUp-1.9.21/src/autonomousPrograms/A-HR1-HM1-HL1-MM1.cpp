@@ -93,15 +93,15 @@ void a_HR1_HM1_HL1_MM1(){
   setIntake(-127);  // Unfold Intake
   pros::delay(800); // Wait for Intake to unfold
   setIntake(127); // Spin Intake forward to pick up Ball
-  DriveCoordShort(21.6,29.5,232,1.5); // Drive to pick up Ball
+  DriveCoordShort(19.6,27.5,232,1.5); // Drive to pick up Ball
 
   // ----- Goal ----- //
   setIntake(0); // Stop Intake to Prevent picking up more Balls
   maxSpeed=100; //  Slow down the Robot
-  DriveCoordShort(14,24.6,232,1.5); // Drive into Home left Goal
+  DriveCoordShort(12,20.6,232,1.5); // Drive into Home left Goal
   setDelivery(127); // Spin the Delivery forward to score
   pros::delay(300); // Wait
-  cycleGoal("blue",1);  // Score until picked up ball has reached the top of Robot
+  cycleGoal("",1);  // Score until picked up ball has reached the top of Robot
   pros::delay(1100);  // Wait for Ball to be scored
 
 

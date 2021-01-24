@@ -25,7 +25,7 @@ void initialize() {
   pros::Task controllerDisplay(contDisplay);  // Start Controller display to see info
 
   // AutoSelect();  //Start Brain autonomous selector to select before autonomous period
-  pros::Task screenUpdate(legacyDisplayGrid); // Display information to the Brain
+  pros::Task screenUpdate(legacyDisplayTemp); // Display information to the Brain
 
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
   pros::Task filterUpdate(filterCountTask); // Update filter count since the start of the program
@@ -124,7 +124,6 @@ void autonomous() {
 // Display Odometry details.                        //
 
 void opcontrol() {
-  drive->setState({86.5_in,14.5_in,180_deg});   //Set the state for odometry
 
 // Continually update the screen to show OdomDebug information.
   while(true){

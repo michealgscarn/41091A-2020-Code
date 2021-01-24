@@ -17,6 +17,6 @@ Reset the robot's position after crossing a line.
 
 double resetY=0; // Set the Y position that will reset once the robot crosses the line.
 void lineReset(){
-  while((leftResetFollower.get_value()+leftResetFollower.get_value())/2>2300){pros::delay(10);}
+  while(!((leftResetFollower.get_value()+leftResetFollower.get_value())/2<1300)){pros::delay(10);}
   drive->setState({drive->getState().x,resetY*1_in,drive->getState().theta});
 }

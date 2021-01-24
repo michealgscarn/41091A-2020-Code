@@ -6,4 +6,5 @@ void legacyDisplay_task_fn();
 void legacyDisplayAlign();
 void legacyDisplayGrid();
 void legacyDisplayBall();
+void legacyDisplayTemp();
 void legacyDisplayPos();

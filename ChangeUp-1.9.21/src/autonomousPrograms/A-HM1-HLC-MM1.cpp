@@ -43,6 +43,7 @@ void a_HM1_HLC_MM1(){
   //Capture the start time so we can score at the last moment
   startTime=pros::millis();
   drive->setState({55.5_in,14_in,180_deg});   //Set the state for odometry
+  maxSpeed=200;
 
 
 // ---------- Goal 1 (Home Row Wall) ---------- //
@@ -57,14 +58,14 @@ void a_HM1_HLC_MM1(){
 
 // ---------- Goal 2 (Home Row Left Corner) ---------- //
   // ----- Goal ----- //
-  DriveCoordShort(34.5,40,221,2); // Line up with the Home left Goal
+  DriveCoordShort(32.5,40,221,2); // Line up with the Home left Goal
   setIntake(-127);    //Run intakes backwards to deploy
   setLift(0); // Stop the Lift
   setDelivery(0); // Stop the Delivery
   pros::delay(1000);  // Wait for Intake to unfold
   setIntake(127); // Spin the Intake forward to pick up Ball
   maxSpeed=100; // Drive slowly
-  DriveCoordShort(14,16,223,2); // Drive into Goal
+  DriveCoordShort(12,16,223,2); // Drive into Goal
   FilterBall("",3); // Cycle Goal until the Robot has the opposing alliance's Ball
 
 
@@ -77,7 +78,7 @@ void a_HM1_HLC_MM1(){
   maxSpeed=600; // Drive Faster
   DriveCoordShort(27,28,223,1.5); //Back from goal
   setIntake(0); // Stop Intake
-  DriveCoordShort(64.5,58,370,2.5); // Push Ball into Goal
+  DriveCoordShort(64.5,54,370,2.5); // Push Ball into Goal
   setIntake(-5);  // Spin intake in reverse
   DriveCoordShort(38.9,44,364,1); // Back Away from Goal
 }

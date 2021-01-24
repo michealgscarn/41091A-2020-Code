@@ -76,7 +76,7 @@ pros::Optical topColor(7);
 // 7  - Top Color                            //
 
 pros::Distance leftTrackFront(15);
-pros::Distance leftTrackBack(20);
+pros::Distance leftTrackBack(2);
 // pros::Distance ballDetectBottom(17);
 pros::Distance frontTrack(17);
 

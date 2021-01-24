@@ -103,6 +103,6 @@ void legacyDisplayAlign(){
     pros::lcd::print(4,"X:             %f",drive->getState().x.convert(inch)); // Print the X value on line 5.
     pros::lcd::print(5,"Y:             %f",drive->getState().y.convert(inch)); // Print the Y value on line 6.
     pros::lcd::print(6,"Bottom Value:  %d",(leftResetFollower.get_value()+leftResetFollower.get_value())/2); // Print the Bottom line follower brightness value on line 7.
-    pros::delay(200); // Wait for the screen to update
+    pros::delay(20); // Wait for the screen to update
   }
 }
