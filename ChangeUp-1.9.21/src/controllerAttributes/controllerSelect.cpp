@@ -7,7 +7,7 @@
 using namespace std;
 using namespace okapi;
 //
-/*------------------------------------------------------------------------------------
+/*-----------------------------------------------------------------------------
    ____               _                _  _                   __  __         _
   / ___| ___   _ __  | |_  _ __  ___  | || |  ___  _ __      |  \/  |  __ _ (_) _ __
  | |    / _ \ | '_ \ | __|| '__|/ _ \ | || | / _ \| '__|     | |\/| | / _` || || '_ \
@@ -15,9 +15,9 @@ using namespace okapi;
   \____|\___/ |_| |_| \__||_|   \___/ |_||_| \___||_|        |_|  |_| \__,_||_||_| |_|
 
   Created on 1/10/2021 by Logan
-  Last updated on 1/16/2021 by Logan
-
-------------------------------------------------------------------------------------*/
+  Last updated on 1/28/2021 by Logan
+  
+-----------------------------------------------------------------------------*/
 
 // ---------------- posC ---------------- //
 // Current position in the selection.     //
@@ -182,12 +182,12 @@ void contDisplay(){
     trackMiddle.append(to_string(m.get()));
 
     // Print pages
-    setUpPage("Home",       "Select", "Autonomous",         "Odometry",   "Debug",      "Set Up");             //->
-    setUpPage("Autonomous", "Select", "Red",                "Blue",       "Skills");                           //-->
-    setUpPage("Red",        "Select", "a_HR1_HMC_HL1_MM1",    "a_HMC_HLC","a_HMC_HRC","a_MMF_HLC_HMC","Skills");  //--->
-    setUpPage("Blue",       "Select", "a_HR1_HMC_HL1_MM1",    "a_HMC_HLC","a_HMC_HRC","a_MMF_HLC_HMC","Skills");  //--->
-    setUpPage("Skills",     "Select",   "Skills");                                                             //-->
-    setUpPage("Odometry",   "Info",   odomDetails, trackLeft, trackRight, trackMiddle);                        //-->
+    setUpPage("Home",       "Select", "Autonomous",         "Odometry",       "Debug",      "Set Up");             //->
+    setUpPage("Autonomous", "Select", "Red",                "Blue",           "Skills");                           //-->
+    setUpPage("Red",        "Select", "a_HRC_HMC_HLC",  "a_HMC_HLC_MM1",  "a_HMC_HRC",  "a_MMF_HLC",  "Skills");  //--->
+    setUpPage("Blue",       "Select", "a_HRC_HMC_HLC",  "a_HMC_HLC_MM1",  "a_HMC_HRC",  "a_MMF_HLC",  "Skills");  //--->
+    setUpPage("Skills",     "Select", "Skills");                                                             //-->
+    setUpPage("Odometry",   "Info",   odomDetails,          trackLeft,        trackRight,   trackMiddle);                        //-->
     setUpPage("Debug",      "Info",   "Temp: Safe",         "l");                                              //-->
     pros::delay(1);
   }

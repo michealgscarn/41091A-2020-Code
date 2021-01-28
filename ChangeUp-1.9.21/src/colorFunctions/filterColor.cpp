@@ -1,6 +1,6 @@
 #include "main.h"
 using namespace okapi;
-/*--------------------------------------------------------------------------------------------------
+/*-----------------------------------------------------------------------------
   _____  _  _  _
  |  ___|(_)| || |_  ___  _ __
  | |_   | || || __|/ _ \| '__|
@@ -10,14 +10,7 @@ using namespace okapi;
 Created on 11/11/2020 by Taylor and Logan
 Last updated on 1/7/2021 by Logan
 
-FILTER BALL
------------
-Cycles a goal and filter balls.
-Filter a ball if it is the specified color.
-Exit the loop nothing is happening for 1 second.
-Exit the loop if all balls have been cycled/filterd.
-
---------------------------------------------------------------------------------------------------*/
+-----------------------------------------------------------------------------*/
 
 // ------------------- FILTER BALL ------------------- //
 // Cycles a goal and filter balls.                     //

@@ -1,6 +1,6 @@
 #include "main.h"
  using namespace okapi;
- /*------------------------------------
+ /*-----------------------------------------------------------------------------
     ___         _          _
   |_ _| _ __  | |_  __ _ | | __ ___
    | | | '_ \ | __|/ _` || |/ // _ \
@@ -10,7 +10,11 @@
  Created on 10/14/2020 by Logan and Taylor
  Last Updated on 1/15/2021 by Logan
 
- ------------------------------------*/
+ Intake Commands in Driver and Autonomous Periods
+ Sets the Speeds of the Intake Motors
+ Uses the Controller to set the Speed of the Intake
+
+-----------------------------------------------------------------------------*/
 
  // ---------------- INTAKE VELOCITY ---------------- //
  // Set the speed of the Intake motors.               //

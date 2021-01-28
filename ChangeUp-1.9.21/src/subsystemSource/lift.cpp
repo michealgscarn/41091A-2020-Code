@@ -1,7 +1,7 @@
 #include "main.h"
  using namespace okapi;
- /*------------------------------------
-   _      _   __  _   
+ /*-----------------------------------------------------------------------------
+   _      _   __  _
   | |    (_) / _|| |_
   | |    | || |_ | __|
   | |___ | ||  _|| |_
@@ -10,7 +10,11 @@
 Created on 10/14/2020 by Logan and Taylor
 Last Updated on 1/15/2021 by Logan
 
- ------------------------------------*/
+Lift Commands in Driver and Autonomous Periods
+Sets the Speed of the Lift Motor
+Uses the Controller to set the Speed of the Lift
+
+-----------------------------------------------------------------------------*/
 
 // ---------------- LIFT SPEED ---------------- //
 // Set the velocity of the Lift motor.          //

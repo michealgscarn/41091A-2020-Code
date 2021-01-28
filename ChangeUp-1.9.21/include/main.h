@@ -82,13 +82,12 @@ void opcontrol(void);
 #include "legacyDisplay/legacyDisplay.hpp" //older vex display
 #include "legacyDisplay/legacyButtons.hpp" //older vex display
 //#include "legacyDisplay/dwightImage.h" //image file for dwight schrute
-#include "autonomousPrograms/A-HM1-HRC.hpp"
+#include "autonomousPrograms/A-HMC-HRC.hpp"
 #include "autonomousPrograms/A-MMF-HLC.hpp"
-#include "autonomousPrograms/A-HM1-HLC-MM1.hpp"
-#include "autonomousPrograms/A-HM1-HLC-MM1.hpp"
-#include "autonomousPrograms/A-HR1-HM1-HL1-MM1.hpp"
+#include "autonomousPrograms/A-HMC-HLC-MM1.hpp"
+#include "autonomousPrograms/A-HRC-HMC-HLC.hpp"
 #include "autonomousPrograms/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER.hpp"
-#include "autonomousPrograms/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER-115.hpp"
+#include "autonomousPrograms/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER-IGNITE.hpp"
 #include "autonomousPrograms/A-SKILLS-JANUARY.hpp"
 #include "odomDebug/odomDebug.hpp"
 #include "odomPosition/odomPosition.hpp"

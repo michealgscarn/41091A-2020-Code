@@ -1,6 +1,6 @@
 #include "main.h"
 using namespace okapi;
-/*--------------------------------------------------------------------------------------
+/*-----------------------------------------------------------------------------
   ____         _              _                _
  |  _ \  _ __ (_)__   __ ___ | |_  _ __  __ _ (_) _ __
  | | | || '__|| |\ \ / // _ \| __|| '__|/ _` || || '_ \
@@ -10,7 +10,13 @@ using namespace okapi;
 Created on 10/14/2020 by Logan and Taylor
 Last Updated on 1/15/2021 by Logan
 
---------------------------------------------------------------------------------------*/
+Drivetrain Commands in Driver and Autonomous Periods
+Sets the Speeds of the Drive Motors
+Uses the Controller to set the Speed of the Drivetrain in
+• Robot-centeric Movements
+• Field-centric Movements
+
+-----------------------------------------------------------------------------*/
 
 // ---------------- DRIVETRAIN VELOCITY ---------------- //
 // Set the velocity of the Drivetrain motors.               //

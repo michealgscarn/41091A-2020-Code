@@ -1,6 +1,6 @@
 #include "main.h"
  using namespace okapi;
- /*-------------------------------------------------------------------
+ /*-----------------------------------------------------------------------------
  ____         _  _
 |  _ \   ___ | |(_)__   __ ___  _ __  _   _
 | | | | / _ \| || |\ \ / // _ \| '__|| | | |
@@ -11,7 +11,11 @@
  Created on 10/14/2020 by Logan and Taylor
  Last Updated on 1/15/2021 by Logan
 
- -------------------------------------------------------------------*/
+Delivery Commands in Driver and Autonomous Periods
+Sets the Speed of the Delivery Motor
+Uses the Controller to set the Speed of the Delivery
+
+-----------------------------------------------------------------------------*/
 
  // ---------------- DELIVERY VELOCITY ---------------- //
  // Set the speed of the Delivery motors.               //

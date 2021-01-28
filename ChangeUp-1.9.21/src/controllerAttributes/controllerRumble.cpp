@@ -3,7 +3,7 @@
 #include<string>
 using namespace std;
 using namespace okapi;
-/*---------------------------------------------------------
+/*-----------------------------------------------------------------------------
   ____                     _      _
  |  _ \  _   _  _ __ ___  | |__  | |  ___
  | |_) || | | || '_ ` _ \ | '_ \ | | / _ \
@@ -16,7 +16,7 @@ Last updated on 1/8/2021 by Logan
 Alert the driver of events that need attention.  These events include
 • Motors Overheating
 
----------------------------------------------------------*/
+-----------------------------------------------------------------------------*/
 void tempRumble(){
   // If any of the motors are overheated
   if(left_fr_mtr.get_temperature()>=55||right_fr_mtr.get_temperature()>=55||

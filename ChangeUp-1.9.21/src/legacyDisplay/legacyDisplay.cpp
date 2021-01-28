@@ -1,6 +1,6 @@
 #include "main.h"
 using namespace okapi;
-/*--------------------------------------------------------
+/*-----------------------------------------------------------------------------
   ____   _              _
  |  _ \ (_) ___  _ __  | |  __ _  _   _
  | | | || |/ __|| '_ \ | | / _` || | | |
@@ -9,9 +9,9 @@ using namespace okapi;
                 |_|               |___/
 
   Created on 10/20/2020 by Logan and Taylor
-  Last Updated on 1/16/2021 by Logan
+  Last Updated on 1/28/2021 by Logan
 
---------------------------------------------------------*/
+-----------------------------------------------------------------------------*/
 bool pressed=false;
 
 // -------------------------- LEGACY DISPLAY POSITION -------------------------- //
@@ -80,7 +80,8 @@ void legacyDisplayTemp(){
     pros::lcd::print(2,"rf:       %f",right_fr_mtr.get_temperature()); // Print the right front drive temperature on line 3
     pros::lcd::print(3,"rb:       %f",right_bc_mtr.get_temperature()); // Print the right back drive temperature on line 4
     pros::lcd::print(4,"lb:       %f",left_bc_mtr.get_temperature()); // Print the left back drive temperature on line 5
-    pros::delay(200); // Wait for the screen to update
+    pros::lcd::print(5,"del:      %f",del_mtr.get_temperature()); // Print the left back drive temperature on line 5
+    pros::delay(20); // Wait for the screen to update
   }
 }
 

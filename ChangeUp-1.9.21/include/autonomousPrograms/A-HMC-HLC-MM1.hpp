@@ -1,4 +1,4 @@
 #include "main.h"
 using namespace okapi;
 
-void a_HM1_HLC_MM1();
+void a_HMC_HLC_MM1();

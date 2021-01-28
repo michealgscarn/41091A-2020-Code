@@ -1,7 +1,7 @@
 #include "main.h"
 using namespace okapi;
 
-/*--------------------------------------------------------------------------------------------------
+/*-----------------------------------------------------------------------------
    ____  _         _             _        ____                      _
   / ___|| |  ___  | |__    __ _ | |      / ___| ___   _   _  _ __  | |_
  | |  _ | | / _ \ | '_ \  / _` || |     | |    / _ \ | | | || '_ \ | __|
@@ -11,35 +11,7 @@ using namespace okapi;
 Created on 11/11/2020 by Taylor and Logan
 Last updated on 1/7/2021 by Logan
 
-BALL COUNT
-----------
-Total number of balls that have gone through the robot.
-
-FILTER COUNT
-------------
-Total number of balls that have been filtered
-
-BALL IN
--------
-Checks if a ball is in the robot
-Returns if the line follower is dark enough that a ball is in
-
-BALL FILTERING
---------------
-Check if a ball is being filtered.
-If the filter band is pulled down, a ball is being filtered.
-
-COUNT BALL
-----------
-Count the number of balls in the number of balls in the robot.
-Adds one to the ball count if a ball is in.
-
-COUNT FILTER
-------------
-Count the number of balls filtered in the robot.
-Adds one to the filter count if a ball is filtered.
-
---------------------------------------------------------------------------------------------------*/
+-----------------------------------------------------------------------------*/
 
 // ---------------------- BALL COUNT ---------------------- //
 // Total number of balls that have gone through the robot.  //
