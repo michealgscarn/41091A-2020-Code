@@ -23,6 +23,8 @@ It is the most important program because it references all others.
 // Turns optical sensor lights to max.          //
 void initialize() {
   pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
+  pros::Task controllerVibrate(controllerVibrateTemp);  // Start Controller vibration to see info
+
   pros::Task brainDisplay(brainDisplayBall); // Display information to the Brain
 
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program

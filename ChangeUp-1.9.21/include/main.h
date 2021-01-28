@@ -89,7 +89,6 @@ void opcontrol(void);
 #include "autonomousPrograms/A-SKILLS-BROKEN-ARM-DISTANCE-FILTER-IGNITE.hpp"
 #include "autonomousPrograms/A-SKILLS-JANUARY.hpp"
 #include "odomDebug/odomDebug.hpp"
-#include "odomPosition/odomPosition.hpp"
 #include "odomPosition/quickAlign.hpp"
 #include "odomPosition/resetOdom.hpp"
 #include "odomPosition/wallAlign.hpp"
@@ -97,6 +96,7 @@ void opcontrol(void);
 #include "colorFunctions/filterColor.hpp"
 #include "colorFunctions/globalCountColor.hpp"
 #include "controllerAttributes/controllerSelect.hpp"
+#include "controllerAttributes/controllerVibrate.hpp"
 #include "controllerAttributes/controllerButtons.hpp"
 
 #include "pros/apix.h"  //LVGLs

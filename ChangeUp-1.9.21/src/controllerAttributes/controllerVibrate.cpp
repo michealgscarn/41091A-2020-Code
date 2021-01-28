@@ -17,13 +17,16 @@ Alert the driver of events that need attention.  These events include
 • Motors Overheating
 
 -----------------------------------------------------------------------------*/
-void tempRumble(){
-  // If any of the motors are overheated
-  if(left_fr_mtr.get_temperature()>=55||right_fr_mtr.get_temperature()>=55||
-  left_bc_mtr.get_temperature()>=55||right_bc_mtr.get_temperature()>=55||
-  lift_mtr.get_temperature()>=55||del_mtr.get_temperature()>=55||
-  left_int_mtr.get_temperature()>=55||right_int_mtr.get_temperature()>=55)
+void controllerVibrateTemp(){
+  while(true){
+    // If any of the motors are overheated
+    if(left_fr_mtr.get_temperature()>=55||right_fr_mtr.get_temperature()>=55||
+    left_bc_mtr.get_temperature()>=55||right_bc_mtr.get_temperature()>=55||
+    lift_mtr.get_temperature()>=55||del_mtr.get_temperature()>=55||
+    left_int_mtr.get_temperature()>=55||right_int_mtr.get_temperature()>=55)
     {
       controller.rumble("-");
     }
+    pros::delay(10);
+  }
 }
