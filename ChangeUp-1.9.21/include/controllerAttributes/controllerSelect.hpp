@@ -14,7 +14,7 @@ void updatePage(std::string selC[]);
 
 void blinkTimer();
 
-void contDisplay();
+void controllerDisplaySel();
 extern std::string autoSel;
 
 extern std::string lineM[]; //Total line memory

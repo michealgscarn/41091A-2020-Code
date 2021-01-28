@@ -7,7 +7,7 @@ using namespace okapi;
  | |_| || || (_) || |_) || (_| || |
   \____||_| \___/ |_.__/  \__,_||_|
 
-Created on 10/14/2020 by Logan and Taylor
+Created on 8/14/2020 by Logan and Taylor
 Last Updated on 1/15/2021 by Logan
 
 Initializes all devices used in the program

@@ -8,18 +8,20 @@ using namespace okapi;
  |____/ |_||___/| .__/ |_| \__,_| \__, |
                 |_|               |___/
 
-  Created on 10/20/2020 by Logan and Taylor
-  Last Updated on 1/28/2021 by Logan
+Created on 10/20/2020 by Logan and Taylor
+Last Updated on 1/28/2021 by Logan
+
+Print information on the Brain Screen
 
 -----------------------------------------------------------------------------*/
 bool pressed=false;
 
-// -------------------------- LEGACY DISPLAY POSITION -------------------------- //
+// -------------------------- BRAIN DISPLAY POSITION -------------------------- //
 // Display on the Brain screen the current encoder values and Odometry position. //
 // Print the encoder values on lines 2-4.                                        //
 // Print the Odometry position on lines 5-7.                                     //
 
-void legacyDisplayPos(){
+void brainDisplayPos(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
   	pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
@@ -33,12 +35,12 @@ void legacyDisplayPos(){
   }
 }
 
-// -------------------------- LEGACY DISPLAY POSITION -------------------------- //
+// -------------------------- BRAIN DISPLAY POSITION -------------------------- //
 // Display on the Brain screen the current encoder values and Odometry position. //
 // Print the encoder values on lines 2-4.                                        //
 // Print the Odometry position on lines 5-7.                                     //
 
-void legacyDisplayGrid(){
+void brainDisplayGrid(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
     OdomDebug display(lv_scr_act(), LV_COLOR_NAVY);
@@ -47,13 +49,13 @@ void legacyDisplayGrid(){
   }
 }
 
-// ---------------------- LEGACY DISPLAY BALL ---------------------- //
+// ---------------------- BRAIN DISPLAY BALL ---------------------- //
 // Display on the Brain screen the current ball attributes.          //
 // Print the ball count on line 2.                                   //
 // Print the filter count on line 3.                                 //
 // Print the color of ball from the bottom optical sensor on line 4. //
 
-void legacyDisplayBall(){
+void brainDisplayBall(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
   	pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
@@ -65,14 +67,14 @@ void legacyDisplayBall(){
 }
 
 
-// ---------------------- LEGACY DISPLAY BALL ---------------------- //
+// ---------------------- BRAIN DISPLAY BALL ---------------------- //
 // Display on the Brain screen the current ball attributes.          //
 // Print the left front drive temperature on line 2.                 //
 // Print the right front drive temperature on line 3.                //
 // Print the right back drive temperature on line 4.                 //
 // Print the left back drive temperature on line 5.                  //
 
-void legacyDisplayTemp(){
+void brainDisplayTemp(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
     pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
@@ -85,7 +87,7 @@ void legacyDisplayTemp(){
   }
 }
 
-// ------------------------- LEGACY DISPLAY ALIGN ------------------------- //
+// ------------------------- BRAIN DISPLAY ALIGN ------------------------- //
 // Display the information needed to debug alignment functions.             //
 // Print the distance between the front distance sensor and wall on line 2. //
 // Print the distance between the back distance sensor and wall on line 3.  //
@@ -94,7 +96,7 @@ void legacyDisplayTemp(){
 // Print the Y value on line 6.                                             //
 // Print the Bottom line follower brightness value on line 7.               //
 
-void legacyDisplayAlign(){
+void brainDisplayAlign(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
     pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1

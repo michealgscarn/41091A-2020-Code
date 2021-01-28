@@ -7,7 +7,7 @@ using namespace okapi;
  | |_| || |   | | \ V /|  __/| |_ | |  | (_| || || | | |
  |____/ |_|   |_|  \_/  \___| \__||_|   \__,_||_||_| |_|
 
-Created on 10/14/2020 by Logan and Taylor
+Created on 8/14/2020 by Logan and Taylor
 Last Updated on 1/15/2021 by Logan
 
 Drivetrain Commands in Driver and Autonomous Periods
@@ -20,7 +20,6 @@ Uses the Controller to set the Speed of the Drivetrain in
 
 // ---------------- DRIVETRAIN VELOCITY ---------------- //
 // Set the velocity of the Drivetrain motors.               //
-
 void setDrive(double leftFront, double leftBack, double rightFront, double rightBack){
 
   left_fr_mtr = leftFront;
@@ -33,7 +32,6 @@ void setDrive(double leftFront, double leftBack, double rightFront, double right
 // ---------------- CONTROLLER DRIVETRAIN ---------------- //
 // Set the velocity of the Drivetrain using the Controller.//
 // Stop motors if the velocity is very small.              //
-
 void setDriveMotors( double driveSpeed ){
   // Set drive velocity based on button presses
   int left_fr_pow = (controller.get_analog(ANALOG_LEFT_Y)+controller.get_analog(ANALOG_RIGHT_X)+controller.get_analog(ANALOG_LEFT_X))*driveSpeed;

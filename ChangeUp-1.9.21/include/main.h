@@ -1,16 +1,15 @@
-/**
- * \file main.h
- *
- * Contains common definitions and header files used throughout your PROS
- * project.
- *
- * Copyright (c) 2017-2020, Purdue University ACM SIGBots.
- * All rights reserved.
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
+/*-----------------------------------------------------------------------------
+  __  __         _
+ |  \/  |  __ _ (_) _ __
+ | |\/| | / _` || || '_ \
+ | |  | || (_| || || | | |
+ |_|  |_| \__,_||_||_| |_|
+
+Created on 7/14/2020 by Logan and Taylor
+Last Updated on 1/28/2021 by Logan
+
+-----------------------------------------------------------------------------*/
+
 #ifndef _PROS_MAIN_H_
 #define _PROS_MAIN_H_
 
@@ -71,16 +70,16 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
-#include "subsystemHeaders/lift.hpp"
-#include "subsystemHeaders/intake.hpp"
-#include "subsystemHeaders/globals.hpp"
-#include "subsystemHeaders/delivery.hpp"
-#include "subsystemHeaders/drivetrain.hpp"
+#include "subsystems/lift.hpp"
+#include "subsystems/intake.hpp"
+#include "subsystems/globals.hpp"
+#include "subsystems/delivery.hpp"
+#include "subsystems/drivetrain.hpp"
 #include "autonomousFunctions/scoring.hpp"
 #include "autonomousFunctions/autoSelector.hpp"
 #include "autonomousFunctions/OdomDrive.hpp"
-#include "legacyDisplay/legacyDisplay.hpp" //older vex display
-#include "legacyDisplay/legacyButtons.hpp" //older vex display
+#include "brainAttributes/brainButtons.hpp" //older vex display
+#include "brainAttributes/brainDisplay.hpp" //older vex display
 //#include "legacyDisplay/dwightImage.h" //image file for dwight schrute
 #include "autonomousPrograms/A-HMC-HRC.hpp"
 #include "autonomousPrograms/A-MMF-HLC.hpp"

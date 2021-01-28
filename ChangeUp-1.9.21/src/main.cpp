@@ -22,9 +22,8 @@ It is the most important program because it references all others.
 // Initializes autonomous selector.             //
 // Turns optical sensor lights to max.          //
 void initialize() {
-  pros::Task controllerDisplay(contDisplay);  // Start Controller display to see info
-
-  pros::Task screenUpdate(legacyDisplayGrid); // Display information to the Brain
+  pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
+  pros::Task brainDisplay(brainDisplayBall); // Display information to the Brain
 
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
   pros::Task filterUpdate(filterCountTask); // Update filter count since the start of the program
@@ -124,7 +123,6 @@ void autonomous() {
 // Robot is driven by a human.                      //
 // Run the robot based on joystick and button inputs//
 // Display Odometry details.                        //
-
 void opcontrol() {
 
 // Continually update the screen to show OdomDebug information.

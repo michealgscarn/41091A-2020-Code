@@ -16,7 +16,7 @@ using namespace okapi;
 
   Created on 1/10/2021 by Logan
   Last updated on 1/28/2021 by Logan
-  
+
 -----------------------------------------------------------------------------*/
 
 // ---------------- posC ---------------- //
@@ -164,7 +164,7 @@ void initilizeController(){
 // ------------------------ MAIN ------------------------ //
 // All other functions branch off from the main function. //
 
-void contDisplay(){
+void controllerDisplaySel(){
   initilizeController(); // Initialize the controller screen
   pros::Task blinkingText(blinkTimer); // Start blinking the screen
   while(!controller.get_digital(DIGITAL_Y)){ // While the button Y is not pressed
