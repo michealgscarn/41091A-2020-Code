@@ -66,20 +66,6 @@ double degToRad(double degrees){
 
 // --------------- THETA CALCULATION --------------- //
 // Calculates Theta from given base and height.      //
-//             Diagram                               //
-//                                                   //
-//              base(known)                          //
-//           ____________ Theta(unknown)             //
-//          |           /                            //
-//          |          /                             //
-//          |        /                               //
-//   height |      /                                 //
-//  (known) |    /                                   //
-//          |  /                                     //
-//          |/                                       //
-//                                                   //
-// tan(Theta) = height/base                          //
-// Theta = inverse tan(height/base)  Isolate Theta   //
 double getThetaVal(double bVal, double hVal){
   return (atan(hVal/bVal));
 }
@@ -87,18 +73,6 @@ double getThetaVal(double bVal, double hVal){
 
 // --------------- X/Y CALCULATION --------------- //
 // Calculates X/Y from given hypotenuse and angle. //
-//             Diagram                             //
-//           _____________                         //
-//          |            /                         //
-//          |          /                           //
-//          |        /                             //
-//   height |      / Hypotenuse (known)            //
-// (unknown)|    /                                 //
-//          |  /                                   //
-//          |/                                     //
-//      Theta(known)                               //
-// cos(Theta) = height/hypotenuse                  //
-// cos(Theta)*hypotenuse = height Isolate height   //
 double getXYVal(double cVal, double BVal){
   return cVal*cos(BVal);
 }
