@@ -1,21 +1,5 @@
 #include "main.h"
 using namespace okapi;
-/*-----------------------------------------------------------------------------
-  ____               _  _
- |  _ \  ___   __ _ | |(_)  __ _  _ __
- | |_) |/ _ \ / _` || || | / _` || '_ \
- |  _ <|  __/| (_| || || || (_| || | | |
- |_| \_\\___| \__,_||_||_| \__, ||_| |_|
-                           |___/
-Created on 1/1/2021 by Logan and Taylor
-Last Updated 1/28/2021 by Logan
-
-Quickly reset the Robot's position using the left wall from the Robot
-Uses the Front and Back Reset Distance Sensors to calculate the Robots real
-• Theta
-• X position
-
------------------------------------------------------------------------------*/
 
 // --------------- thetaVal --------------- //
 // Recorded new Theta(angle) value.         //
