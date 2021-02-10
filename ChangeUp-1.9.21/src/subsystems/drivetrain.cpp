@@ -57,7 +57,6 @@ void setDriveMotors( double driveSpeed ){
 // ---------------- FIELD CENTRIC CONTROLLER ---------------- //
 // Drive using Controller input.                              //
 // Run the motors using the field centric algorithm.          //
-
 void setDriveMotorsFieldCentric(){
   // Input the X, Y, and theta speed
   DriveFieldCentric(controller.get_analog(ANALOG_LEFT_X),controller.get_analog(ANALOG_LEFT_Y),controller.get_analog(ANALOG_RIGHT_X));

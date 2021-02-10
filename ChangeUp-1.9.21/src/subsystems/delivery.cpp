@@ -20,7 +20,6 @@ Uses the Controller to set the Speed of the Delivery
  // ---------------- DELIVERY VELOCITY ---------------- //
  // Set the speed of the Delivery motors.               //
 void setDelivery(int power){
-  del_mtr.set_voltage_limit(12000);
   del_mtr = power;
 }
 

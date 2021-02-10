@@ -32,14 +32,14 @@ These devices include
 // 16 - Right Intake Motor                  //
 // 14 - Lift Motor                          //
 // 6  - Delivery Motor                      //
-pros::Motor left_fr_mtr(12, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor left_bc_mtr(13, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor right_fr_mtr(1, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor left_fr_mtr(14, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor left_bc_mtr(11, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor right_fr_mtr(6, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor right_bc_mtr(10, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor left_int_mtr(11, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor right_int_mtr(16, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor lift_mtr(14, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor del_mtr(6, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor left_int_mtr(13, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor right_int_mtr(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor lift_mtr(4, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor del_mtr(2, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 int autonomousPreSet = 0;
 
 
@@ -52,8 +52,8 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // 8  - Bottom Color                         //
 // 18 - Middle Color                         //
 // 7  - Top Color                            //
-pros::Optical bottomColor(8);
-pros::Optical middleColor(18);
+pros::Optical bottomColor(9);
+pros::Optical middleColor(16);
 pros::Optical topColor(7);
 
 
@@ -61,33 +61,33 @@ pros::Optical topColor(7);
 // 15 - Front Reset Distance                  //
 // 2  - Back Reset Distance                   //
 // 17 - Heading Distance                      //
-pros::Distance leftTrackFront(15);
-pros::Distance leftTrackBack(2);
-pros::Distance frontTrack(17);
+pros::Distance leftTrackFront(12);
+pros::Distance leftTrackBack(1);
+pros::Distance frontTrack(5);
 
 
 // ---------------- LIMIT SWITCH ---------------- //
 // Filter checker                                 //
-pros::ADIDigitalIn bottomLimit ({19,'A'});
-pros::ADIDigitalIn primaryLimit ({19,'D'});
+pros::ADIDigitalIn bottomLimit ({15,'A'});
+pros::ADIDigitalIn primaryLimit ({15,'D'});
 
 
 // ---------------- LINE FOLLOWER ---------------- //
-// 19 - Bottom Ball detecting                      //
+// 21 - Bottom Ball detecting                      //
 // 'A' - Top Ball detecting                     //
 pros::ADIAnalogIn topFollower ('A');
-pros::ADIAnalogIn leftResetFollower ({19,'C'});
-pros::ADIAnalogIn rightResetFollower ({19,'B'});
-pros::ADIAnalogIn bottomFollower ({19,'H'});
+pros::ADIAnalogIn leftResetFollower ({15,'C'});
+pros::ADIAnalogIn rightResetFollower ({15,'B'});
+pros::ADIAnalogIn bottomFollower ({15,'H'});
 
 
 // ---------------- ENCODERS ---------------- //
 // 9 & 'A''B' - Left Encoder                  //
 // 9 & 'C''D' - Right Encoder                 //
 // 9 & 'E''F' - Middle Encoder                //
-ADIEncoder l({9,'A', 'B'}, false); // Left Encoder
-ADIEncoder r({9,'C', 'D'}, false); // Right Encoder
-ADIEncoder m({9,'E', 'F'}, true); // Middle Encoder
+ADIEncoder l({8,'A', 'B'}, false); // Left Encoder
+ADIEncoder r({8,'C', 'D'}, false); // Right Encoder
+ADIEncoder m({8,'E', 'F'}, true); // Middle Encoder
 
 
 // ---------------- CHASSIS BUILDER ---------------- //
@@ -106,7 +106,7 @@ std::shared_ptr<OdomChassisController> drive = ChassisControllerBuilder()
     {0.00095, 0.00001, 0.00000}, // Forward PID Gais
     {0.0032, 0.000025, 0.00000}, // Angle PID Gains
     {0.0003, 0.0000, 0.00000}) // Turn PID Gains
-  .withDimensions(AbstractMotor::gearset::green, {{2.75_in, 8.490274191388693_in, 5.345580847873998_in, 2.75_in}, quadEncoderTPR})
+  .withDimensions(AbstractMotor::gearset::green, {{2.75_in,8.717107370554096_in, 5.338156430029729_in, 2.75_in}, quadEncoderTPR})
   .withOdometry(StateMode::CARTESIAN) // Coordinate System
   .buildOdometry(); // Build the chassis with Odometry
 

@@ -17,7 +17,6 @@ bool filtered;
 // ------------------- FILTER WHILE ALIGNING ------------------- //
 // Filters balls in the robot while the robot is aligning.       //
 // Won't allow the wall align to exit if the ball is not cycled. //
-
 void filterWhileAlign(){
   // Filter Ball
   setIntake(127);
@@ -33,11 +32,11 @@ double millToIn(double mill){
   return mill*0.0393701;
 }
 
+
 // ----------------- WALL ALIGN ----------------- //
 // Aligns with wall and resets odometry position. //
 // Turns until side distance sensors are the same.//
 // Reset robot position.                          //
-
 void wallAlign(double facingAngle){ // Get the robot's angle, X and Y offsets
   double xVal = 0;
   double yVal = 0;

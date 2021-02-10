@@ -59,6 +59,7 @@ void FilterBall(std::string alliance, int deltaBallCount){
   }
 }
 
+
 void FilterBallNoIn(std::string alliance, int deltaBallCount){
   setDelivery(127); //Deliver ball
   //

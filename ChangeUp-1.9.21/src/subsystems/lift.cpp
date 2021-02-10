@@ -26,6 +26,6 @@ void setLift(int power){
 // ---------------- CONTROLLER LIFT ---------------- //
 // Set the velocity of the Lift using the Controller.//
  void setLiftMotor(){
-   int power = 100 * controller.get_digital(DIGITAL_R1) + 127 * (controller.get_digital(DIGITAL_R2) + controller.get_digital(DIGITAL_L1) - (controller.get_digital(DIGITAL_L2) ) ); // Set lift velocity based on button presses
+   int power = 70 * controller.get_digital(DIGITAL_R1) + 127 * (controller.get_digital(DIGITAL_R2) + controller.get_digital(DIGITAL_L1) - (controller.get_digital(DIGITAL_L2) ) ); // Set lift velocity based on button presses
    setLift(power); // Apply the velocity of the the Lift
  }

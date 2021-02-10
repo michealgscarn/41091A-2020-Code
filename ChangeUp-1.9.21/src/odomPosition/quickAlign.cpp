@@ -1,5 +1,21 @@
 #include "main.h"
 using namespace okapi;
+/*-----------------------------------------------------------------------------
+  ____               _  _
+ |  _ \  ___   __ _ | |(_)  __ _  _ __
+ | |_) |/ _ \ / _` || || | / _` || '_ \
+ |  _ <|  __/| (_| || || || (_| || | | |
+ |_| \_\\___| \__,_||_||_| \__, ||_| |_|
+                           |___/
+Created on 1/1/2021 by Logan and Taylor
+Last Updated 1/28/2021 by Logan
+
+Quickly reset the Robot's position using the left wall from the Robot
+Uses the Front and Back Reset Distance Sensors to calculate the Robots real
+• Theta
+• X position
+
+-----------------------------------------------------------------------------*/
 
 // --------------- thetaVal --------------- //
 // Recorded new Theta(angle) value.         //
@@ -50,6 +66,20 @@ double degToRad(double degrees){
 
 // --------------- THETA CALCULATION --------------- //
 // Calculates Theta from given base and height.      //
+//             Diagram                               //
+//                                                   //
+//              base(known)                          //
+//           ____________ Theta(unknown)             //
+//          |           /                            //
+//          |          /                             //
+//          |        /                               //
+//   height |      /                                 //
+//  (known) |    /                                   //
+//          |  /                                     //
+//          |/                                       //
+//                                                   //
+// tan(Theta) = height/base                          //
+// Theta = inverse tan(height/base)  Isolate Theta   //
 double getThetaVal(double bVal, double hVal){
   return (atan(hVal/bVal));
 }
@@ -57,6 +87,18 @@ double getThetaVal(double bVal, double hVal){
 
 // --------------- X/Y CALCULATION --------------- //
 // Calculates X/Y from given hypotenuse and angle. //
+//             Diagram                             //
+//           _____________                         //
+//          |            /                         //
+//          |          /                           //
+//          |        /                             //
+//   height |      / Hypotenuse (known)            //
+// (unknown)|    /                                 //
+//          |  /                                   //
+//          |/                                     //
+//      Theta(known)                               //
+// cos(Theta) = height/hypotenuse                  //
+// cos(Theta)*hypotenuse = height Isolate height   //
 double getXYVal(double cVal, double BVal){
   return cVal*cos(BVal);
 }

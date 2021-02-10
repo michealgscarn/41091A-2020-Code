@@ -16,7 +16,6 @@ Last updated on 1/7/2021 by Logan
 // Checks the color of a place in the robot.     //
 // Uses the specified location to check a color. //
 // Returns the value of color param.             //
-
 std::string CheckColor(std::string location){
 
 // ----- Bottom sensor ----- //
@@ -41,7 +40,6 @@ std::string CheckColor(std::string location){
 // Check the color of a given senor.               //
 // Checks the optical in relation to color ranges. //
 // Returns the color.                              //
-
 std::string colorParam(double colorValue){
   // ----- Blue ----- //
   if(colorValue >= 210 & colorValue <= 280){    //If the input value is within the blue values...
@@ -52,7 +50,6 @@ std::string colorParam(double colorValue){
   if((colorValue >= 0 & colorValue <= 20)||(colorValue >=300 & colorValue <= 360)){   //If the input value is within the red values...
     return "red";   //Return red
   }
-
   // ----- Empty ----- //
-  return "empty";   //Return empty if the values above are not met
+  return "empty";
 }

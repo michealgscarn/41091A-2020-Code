@@ -26,19 +26,19 @@ int filterCount;
 // -------------------------- BALL IN -------------------------- //
 // Checks if a ball is in the robot                              //
 // Returns if the line follower is dark enough that a ball is in.//
-
 bool ballIn(){
   // return (ballDetectBottom.get()<30 & ballDetectBottom.get()>0);
   return !primaryLimit.get_value();
 }
 
+
 // -------------------------- BALL OUT -------------------------- //
 // Checks if a ball is in the robot                              //
 // Returns if the line follower is dark enough that a ball is in.//
-
 bool ballOut(){
   return (topFollower.get_value()<2850 & topFollower.get_value()>0);
 }
+
 
 // -------------------------- BALL IN -------------------------- //
 // Check if a ball is being filtered.
@@ -51,15 +51,15 @@ bool ballFiltering(){
 // ------------------------- COUNT BALL ------------------------- //
 // Count the number of balls in the number of balls in the robot. //
 // Adds one to the ball count if a ball is in.                    //
-
 void ballCountTask(){
   ballCount=0;
   while(true){
     if(ballIn()){
       while(ballIn()){pros::delay(10);}
       ballCount++;
+      pros::delay(100);
     }
-    pros::delay(10); // Wait for motors to update
+    pros::delay(1); // Wait for motors to update
   }
 }
 
@@ -67,7 +67,6 @@ void ballCountTask(){
 // ------------------ COUNT FILTER ------------------ //
 // Count the number of balls filtered in the robot.   //
 // Adds one to the filter count if a ball is filtered.//
-
 void filterCountTask(){
   filterCount=-1;
     while(true){

@@ -12,8 +12,8 @@ using namespace okapi;
  |____/  \__,_| \__| \__|\___/ |_| |_||___/
 
  Created on 1/10/2021 by Logan
- Last update on 1/16/2021 by Logan
- 
+ Last update on 2/9/2021 by Logan
+
 -----------------------------------------------------------------------------*/
 
 // ----------------------- RIGHT ARROW ----------------------- //
@@ -21,54 +21,50 @@ using namespace okapi;
 // Limited to only moving right on any place but the last.     //
 void rightButton(){
     posC+=1; //Move one option to the right
-    while(controller.get_digital(DIGITAL_RIGHT)){}; //Wait until button not pressed
+    while(controller.get_digital(DIGITAL_RIGHT)){pros::delay(10);}; //Wait until button not pressed
 }
 
 
 // ---------------------- LEFT ARROW ---------------------- //
 // Moves one option to the left for each page.              //
 // Limited to only moving left on any place but the first.  //
-
 void leftButton(){
     posC-=1; //Move one option to the left
-    while(controller.get_digital(DIGITAL_LEFT)){}; //Wait until button not pressed
+    while(controller.get_digital(DIGITAL_LEFT)){pros::delay(10);}; //Wait until button not pressed
 }
 
 
 // ---------------- A BUTTON ---------------- //
 // Selected Option will be the next page.     //
 // Enter down a line after pressed.           //
-
 void aButton(std::string selC[]){
     for(int i=0;i<sizeof(selC->c_str());i++){ //Write the next page
       if(posC==i+1){
         page = selC[i]; //Update the current page ID
         lineM[i+1]=selC[i];
         if(lineC==2){
-          controller.set_text(1,0,"                   ");
           lineC=-1;
           page="Home";
           autoSel=selC[i];
+          controller.set_text(1,0,"                         ");
         }
       }
     }
     lineC++; //Update line count
     posC=1; //Reset option position
     posP=0; //Update Page after
-    while(controller.get_digital(DIGITAL_A)){}; //Wait until button not pressed
+    while(controller.get_digital(DIGITAL_A)){pros::delay(10);}; //Wait until button not pressed
 }
 
 
 // ---------------- B BUTTON ---------------- //
 // Go up a line when pressed.                 //
-
 void bButton(){
-  controller.set_text(lineC,0,"                   ");
-
+  controller.set_text(1,0,"                   ");
     posP=0;
+    page=lineM[lineC-1];
     lineC--; //Go back one line
-    page=lineM[lineC];
-    while(controller.get_digital(DIGITAL_B)){}; //Wait until button not pressed
+    while(controller.get_digital(DIGITAL_B)){pros::delay(10);}; //Wait until button not pressed
 }
 
 
@@ -77,7 +73,7 @@ void bButton(){
 // Commands run in driver Control.                          //
 void yButton(){
   if(controller.get_digital(DIGITAL_Y)){
-    quickAlign("X");
+    cycleScore(1,3,2);
   }
 }
 
@@ -102,18 +98,14 @@ void extraDriver(){
 // Uses the right arrow, left arrow, a button, and b button. //
 
 void selectButtons(std::string selC[]){ //Enter the current options and the new options
-  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != 5)){ //If the Right Button was pressed and not on the last option
+  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != 3)) //If the Right Button was pressed and not on the last option
     rightButton();
-  }
-  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ // If the Left Button was pressed and not on the first option
+  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)) // If the Left Button was pressed and not on the first option
     leftButton();
-  }
-  else if(controller.get_digital(DIGITAL_A)){ //If the A Button was pressed
+  else if(controller.get_digital(DIGITAL_A)) //If the A Button was pressed
     aButton(selC);
-  }
-  else if(controller.get_digital(DIGITAL_B) & (lineC!=0)){
+  else if(controller.get_digital(DIGITAL_B) & (lineC!=0))
     bButton();
-  }
 }
 
 void selectPage(std::string pageQ,std::string selC[]){ //Enter the Page in Question, current selection, and future selection
@@ -129,15 +121,12 @@ void selectPage(std::string pageQ,std::string selC[]){ //Enter the Page in Quest
 // Uses the right arrow, left arrow, and a button.          //
 
 void infoButtons(std::string selC[]){ //Enter the current options and the new options
-  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != sizeof(selC->c_str())-1)){ //If the Right Button was pressed and not on the last option
+  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != sizeof(selC->c_str())-1)) //If the Right Button was pressed and not on the last option
     rightButton();
-  }
-  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)){ //If the Left Button was pressed and not on the first option
+  else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)) //If the Left Button was pressed and not on the first option
     leftButton();
-  }
-  else if(controller.get_digital(DIGITAL_B) & (lineC!=0)){
+  else if(controller.get_digital(DIGITAL_B) & (lineC!=0))
     bButton();
-  }
 }
 
 void infoPage(std::string pageQ,std::string selC[]){ //Enter the Page in Question, current selection, and future selection

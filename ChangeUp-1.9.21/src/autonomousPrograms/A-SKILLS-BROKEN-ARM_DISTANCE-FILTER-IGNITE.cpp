@@ -88,6 +88,7 @@ void a_SKILLS_BROKEN_ARM_DISTANCE_FILTER_IGNITE(){
 startTime=pros::millis();   //Set up the timer
 drive->setState({19_in,15_in,-90_deg});   //Set the state for odometry
 maxSpeed=250;
+filter=true;
 
 // ---------- Goal 1 (Home Row Left Corner) ---------- //
   // ----- Preparation ----- //
@@ -109,17 +110,17 @@ maxSpeed=250;
   setIntake(127);   //Run intake forward to pick up a ball
   setLift(127);   //Start running lift
   DriveCoordShort(46.5,70,7,1);   //Drive forward to pick up ball
-  DriveCoordShort(52,70,-86,.75);   //Turn to face next ball
-  DriveCoordShort(24,72,-88,0.5);   //Drive forward to pick up ball
-  pros::delay(200);   //Wait for ball to pick up
+  DriveCoordShort(55,69,-86,.75);   //Turn to face next ball
+  DriveCoordShort(24,71,-88,1);   //Drive forward to pick up ball
+  pros::delay(300);   //Wait for ball to pick up
   setIntake(0);    //Stop intake
   DriveCoordShort(21,71.8,-90,0.5);   //Drive into goal
   pros::delay(400);
   // ----- Score in Goal ----- //
-  setDelivery(-40);   //Start running delivery slowly in reverse
-  setLift(-40);   //Start running lift slowly in reverse
-  pros::delay(400);   //Wait for ball to slowly move down
-  cycleScore(1,2);
+  setDelivery(-80);   //Start running delivery slowly in reverse
+  setLift(-80);   //Start running lift slowly in reverse
+  pros::delay(100);   //Wait for ball to slowly move down
+  cycleScore(1,2,1);
 
 // ---------- Goal 3 (Back Left Corner) ---------- //
   // ----- Transition to Goal----- //
@@ -135,7 +136,7 @@ maxSpeed=250;
   quickAlign("X");  // Reset the X position
   // pros::delay(1000000);
   maxSpeed=80;
-  DriveCoordShort(36.5,123,3,2);   //Pick up ball
+  DriveCoordShort(37.5,123,3,2);   //Pick up ball
   maxSpeed=250;
   DriveCoordShort(30,113,-45,1.2);  //Line up with goal
   setIntake(0);   //Stop running intake
@@ -146,7 +147,7 @@ maxSpeed=250;
   // setIntake(0);   //Stop intake
   // pros::delay(550);   //Wait for ball to score
   filter=false;
-  cycleScore(1,3);
+  cycleScore(1,3,1);
   filter=true;
 // ---------- Reset alignment ---------- //
   //-----Prepare-----//
@@ -169,7 +170,7 @@ maxSpeed=250;
   // setDelivery(127);   //Start running delivery
   // setIntake(0);   //Stop running intake
   // pros::delay(550);   //Wait for ball to score
-  cycleScore(1,3);
+  cycleScore(1,3,1);
 
 // ---------- Goal 5 (Back Right Corner) ---------- //
   // ----- Transition to Goal ----- //
@@ -195,7 +196,7 @@ maxSpeed=250;
   // pros::delay(300);
   // setDelivery(-127);   //Stop running delivery
   // setLift(127);   //Stop running lift
-  cycleScore(1,3);
+  cycleScore(1,3,1);
 
   DriveCoordShort(125,123.5,53,1);    //Drive into goal
 
@@ -213,15 +214,19 @@ maxSpeed=250;
   pros::delay(200);   //Wait for ball to pick up
   setIntake(0);   //Stop running the intake
   DriveCoordShort(123,70,96,1);   //Drive into goal
+  pros::delay(250);
+  setDelivery(-50);
+  setLift(-50);
+  pros::delay(100);
 
   // ----- Score in Goal ----- //
   filter=false;
-  cycleScore(1,3);
+  cycleScore(1,3,1);
   filter=true;
 // ---------- Goal 7 (Bottom Right Corner) ---------- //
   // ----- Transition to Goal ----- //
   DriveCoordShort(104,70,94,1);   //Back up from goal
-  cycleScoreFilter();
+  pros::Task dfdsfds(cycleScoreFilter);
   DriveCoordShort(101,45,184,8);   //Line up with ball
   // ----- Reset Odometry ----- //
   resetY=22;  // Set Y postion
@@ -242,7 +247,7 @@ maxSpeed=250;
 
   //-----Score in Goal-----//
   filter=false;
-  cycleScore(1,3);
+  cycleScore(1,3,1);
   filter=true;
 
   DriveCoordShort(125,21,138,1); //Back away from goal
@@ -250,9 +255,7 @@ maxSpeed=250;
 // ---------- Goal 8 (Center) ---------- //
   // ----- Transition to Goal-----//
   DriveCoordShort(116.5,35,90,1.5);   //Line up with ball 199 33
-  DriveCoordShort(116.5,35,0,1.5);   //Line up with ball 199 33
   cycleScoreFilter();
-  DriveCoordShort(116.5,35,90,1.5);   //Line up with ball 199 33
 
 
   setIntake(127);   //Start running intake
@@ -275,9 +278,9 @@ maxSpeed=250;
   // DriveCoordShort(80,69,274,1);    //Drive in front of goal
   // DriveCoordShort(100,69,274,0.75);   //Back away
 
-  DriveCoordShort(80,69,274,1);    //Drive in front of goal
+  DriveCoordShort(80,70,274,1);    //Drive in front of goal
   pros::delay(500);
-  DriveCoordShort(85,53,318,0.75);   //Back away
+  DriveCoordShort(85,55,318,0.75);   //Back away
 
   // DriveCoordShort(84.5,73,274,0.75);    //Drive in front of goal
   // DriveCoordShort(95.8,73,277,0.75);   //Back away
@@ -287,7 +290,7 @@ maxSpeed=250;
   // ----- Transition to Score ----- //
   // DriveCoordShort(85.7,61.6,313,2);   //Line up with goal
   setIntake(0);
-  DriveCoordShort(83.6,70,314,1);   //Drive into goal
+  DriveCoordShort(83.6,71,314,1);   //Drive into goal
 
   //-----Score in Goal-----//
   setDelivery(127);   //Start running delivery
@@ -309,6 +312,6 @@ maxSpeed=250;
   // ----- Score in Goal ----- //
   // setDelivery(127);   //Start running delivery
   // pros::delay(550);   //Wait for ball to score
-  cycleScore(1,3);
+  cycleScore(1,3,1);
   DriveCoordShort(70,40,180,0.5);   //Back away from goal
 }

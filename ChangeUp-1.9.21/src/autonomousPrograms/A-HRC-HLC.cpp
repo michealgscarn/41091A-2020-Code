@@ -45,7 +45,7 @@ Drive towards the center Goal and push the ball left towards the Goal into.
 -----------------------------------------------------------------------------*/
 
 
-void a_HRC_HMC_HLC(){
+void a_HRC_HLC(){
 // ---------- Set Up ---------- //
   startTime=pros::millis(); // Set up a timer for autonomous
   drive->setState({116.125_in,14_in,90_deg});   //Set the state for odometry
@@ -53,50 +53,35 @@ void a_HRC_HMC_HLC(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
-  DriveCoordShort(116,30,141,1);  // Line up with the Home right Goal
+  DriveCoordShort(115.4,32,141,1);  // Line up with the Home right Goal
   setIntake(-127);
   setDelivery(20);
   pros::delay(800);
   setIntake(80);
   maxSpeed=80;
-  DriveCoordShort(122,15,143,1);  // Drive into the Home right Goal
+  DriveCoordShort(128.87,15.9,141,1);  // Drive into the Home right Goal
   cycleScore(3,5,1);
-
-// ---------- GOAL 2 ---------- //
-  maxSpeed=500; // Speed up the Robot
-  DriveCoordShort(72,33,180,2); // Line up with the Home middle Goal
-  while(ballFiltering()){pros::delay(10);}
-  maxSpeed=200; // Slow down the Robot
-  setLift(0);
-  setDelivery(0);
-  setIntake(0);
-  DriveCoordShort(70,23,180,1); // Drive into the Home middle Goal
-  cycleScore(2,5,1);
 
   // ---------- GOAL 3 ---------- //
     // ----- Ball 1 ----- //
-    setDelivery(0); // Stop scoring
-    setLift(0); // Stop scoring
     maxSpeed=500; // Speed up the Robot
-    DriveCoordShort(44,48,225,1.5); // Line up with the Home left Goal
-    setIntake(-127);  // Unfold Intake
-    DriveCoordShort(25.5,33.5,236.5,1.5); // Line up with the Home left Goal
+    DriveCoordShort(32.5,44.5,141,3); // Line up with the Home left Goal
+    DriveCoordShort(29.7,33,215.5,1.5); // Line up with the Home left Goal
     setIntake(50); // Spin Intake forward to pick up Ball
     // DriveCoordShort(28,32,226,1.5); // Drive to pick up Ball
 
     // ----- Goal ----- //
     // setIntake(0); // Stop Intake to Prevent picking up more Balls
     maxSpeed=100; //  Slow down the Robot
-    DriveCoordShort(12.7,16.5,223,1); // Drive into Home left Goal
+    DriveCoordShort(14.6,19.5,222,1); // Drive into Home left Goal
     filter=true;
     cycleScore(3,3,1);  // Score until picked up ball has reached the top of Robot
 
 // ---------- DRIVER SET UP ---------- //
   // ----- Ball & Goal ----- //
   maxSpeed=1000;  // GOT TO GO FAST
-  DriveCoordShort(27,35.6,232,0.5); // Back away from Goal
-  setIntake(-5);  // Spin Intake slowly to push the Ball in
-  // DriveCoordShort(50,59,380,3); // Strafe Ball into Center Goal
-  // DriveCoordShort(68,59,380,1); // Strafe Ball into Center Goal
-  DriveCoordShort(38,50.7,366,1.75);  // Line up with next Ball for Driver Control
+  DriveCoordShort(40,40,232,0.5); // Back away from Goal
+  setIntake(-20);  // Spin Intake slowly to push the Ball in
+  DriveCoordShort(56.6,60.3,374,1.75);  // Line up with next Ball for Driver Control
+  DriveCoordShort(40,40,232,0.5); // Back away from Goal
 }

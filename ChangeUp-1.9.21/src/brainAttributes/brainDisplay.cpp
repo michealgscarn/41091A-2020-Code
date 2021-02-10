@@ -9,7 +9,7 @@ using namespace okapi;
                 |_|               |___/
 
 Created on 10/20/2020 by Logan and Taylor
-Last Updated on 1/28/2021 by Logan
+Last Updated on 2/11/2021 by Logan
 
 Print information on the Brain Screen
 
@@ -20,7 +20,6 @@ bool pressed=false;
 // Display on the Brain screen the current encoder values and Odometry position. //
 // Print the encoder values on lines 2-4.                                        //
 // Print the Odometry position on lines 5-7.                                     //
-
 void brainDisplayPos(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
@@ -35,11 +34,11 @@ void brainDisplayPos(){
   }
 }
 
+
 // -------------------------- BRAIN DISPLAY POSITION -------------------------- //
 // Display on the Brain screen the current encoder values and Odometry position. //
 // Print the encoder values on lines 2-4.                                        //
 // Print the Odometry position on lines 5-7.                                     //
-
 void brainDisplayGrid(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
@@ -49,20 +48,21 @@ void brainDisplayGrid(){
   }
 }
 
+
 // ---------------------- BRAIN DISPLAY BALL ---------------------- //
 // Display on the Brain screen the current ball attributes.          //
 // Print the ball count on line 2.                                   //
 // Print the filter count on line 3.                                 //
 // Print the color of ball from the bottom optical sensor on line 4. //
-
 void brainDisplayBall(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
   	pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
-    pros::lcd::print(1,"Ball Count:   %i",ballCount); // Print the ball count on line 2
-    pros::lcd::print(2,"Filter Count: %i",filterCount); // Print the filter count on line 3
-    pros::lcd::print(3,"Color:        %s",CheckColor("bottom")); // Print the color ball on the bottom optical
-    pros::delay(200); // Wait for the screen to update
+    pros::lcd::print(1,"Ball In?:     %i",ballIn());
+    pros::lcd::print(2,"Ball Count:   %i",ballCount); // Print the ball count on line 2
+    pros::lcd::print(3,"Filter Count: %i",filterCount); // Print the filter count on line 3
+    pros::lcd::print(4,"Color:        %s",CheckColor("bottom")); // Print the color ball on the bottom optical
+    pros::delay(200); // Wait for the screen to updateballIn
   }
 }
 
@@ -73,7 +73,6 @@ void brainDisplayBall(){
 // Print the right front drive temperature on line 3.                //
 // Print the right back drive temperature on line 4.                 //
 // Print the left back drive temperature on line 5.                  //
-
 void brainDisplayTemp(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
@@ -87,6 +86,7 @@ void brainDisplayTemp(){
   }
 }
 
+
 // ------------------------- BRAIN DISPLAY ALIGN ------------------------- //
 // Display the information needed to debug alignment functions.             //
 // Print the distance between the front distance sensor and wall on line 2. //
@@ -95,7 +95,6 @@ void brainDisplayTemp(){
 // Print the X value on line 5.                                             //
 // Print the Y value on line 6.                                             //
 // Print the Bottom line follower brightness value on line 7.               //
-
 void brainDisplayAlign(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly

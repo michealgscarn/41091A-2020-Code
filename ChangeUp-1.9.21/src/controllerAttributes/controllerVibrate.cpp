@@ -25,6 +25,7 @@ void controllerVibrateTemp(){
     left_int_mtr.get_temperature()>=55||right_int_mtr.get_temperature()>=55)
     {
       controller.rumble("-");
+      pros::delay(300);
     }
     pros::delay(10);
   }

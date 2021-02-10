@@ -279,12 +279,11 @@ void OdomDebug::setData(state_t state, sensors_t sensors) {
   std::string text =
   "X_in: " + std::to_string(state.x.convert(inch)) + "\n" +
   "Y_in: " + std::to_string(state.y.convert(inch)) + "\n" +
-  "\n" +
   "Theta_deg: " + std::to_string(state.theta.convert(degree)) + "\n" +
   "\n" +
-  "Distance Front: " + std::to_string(sf) + "\n" +
-  "Distance Back: " + std::to_string(sb);
-
+  "Left Encoder:" + std::to_string(l.get()) + "\n" +
+  "Right Encoder:" + std::to_string(r.get()) + "\n" +
+  "Middle Encoder:" + std::to_string(m.get());
 
   //"Left: " + std::to_string(sensors.left) + "\n" +
   //"Right: " + std::to_string(sensors.right);
