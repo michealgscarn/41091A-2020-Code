@@ -1,21 +1,28 @@
 #include "main.h"
 using namespace okapi;
 /*-----------------------------------------------------------------------------
-     _                _   _  ____    ____             _   _  __  __   ____             _   _  _      ____
-    / \              | | | ||  _ \  / ___|           | | | ||  \/  | / ___|           | | | || |    / ___|
-   / _ \     _____   | |_| || |_) || |       _____   | |_| || |\/| || |       _____   | |_| || |   | |
-  / ___ \   |_____|  |  _  ||  _ < | |___   |_____|  |  _  || |  | || |___   |_____|  |  _  || |___| |___
- /_/   \_\           |_| |_||_| \_\ \____|           |_| |_||_|  |_| \____|           |_| |_||_____|\____|
-Autonomous           Home | Right | Cycle           Home | Middle | Cycle             Home | Left | Cycle
+     _                _   _  ____   _             _   _  __  __  _
+    / \              | | | ||  _ \ / |           | | | ||  \/  |/ |
+   / _ \     _____   | |_| || |_) || |   _____   | |_| || |\/| || |   _____
+  / ___ \   |_____|  |  _  ||  _ < | |  |_____|  |  _  || |  | || |  |_____|
+ /_/   \_\           |_| |_||_| \_\|_|           |_| |_||_|  |_||_|
+Autonomous           Home | Right | 1             Home | Middle | 1
+
+ _   _  _       ____             __  __  __  __  _
+| | | || |    / ___|           |  \/  ||  \/  |/ |
+| |_| || |    | |      _____   | |\/| || |\/| || |
+|  _  || |___ | |___  |_____|  | |  | || |  | || |
+|_| |_||_____|\____|           |_|  |_||_|  |_||_|
+Home | Left | cycle                    Center | 1
 
 Created on 1/26/2021 by Logan and Taylor
 Updated on 2/11/2021 by Logan and Taylor
 
 15 second Autonomous
 
-4 Red balls
-3 Blue balls
-3 Goals
+4 Red Balls
+1 Blue Ball
+4 Goals
 
 Best used with a partner who has no consistant Autonomous
 
@@ -25,18 +32,17 @@ Set up the robot's Odometry positon.
 
 GOAL 1
 ------
-Drive into the Right corner Goal and score preload.
-Cycle Goal until the Robot has the opposing alliance's Ball.
-Filter Ball
+Drive into the Home right Goal and score preload in
 
 GOAL 2
 ------
-Drive towards the Home middle Goal
+Pick up ball in front of the Home right Goal
+Drive towards the Home middle Goal and score Ball
 
 GOAL 3
 ------
-Drive towards the Home left Goal and pick up the Ball in front of the goal.
-Score the Ball into the Home Left Goal.
+Drive towards the Home left Goal and unfold the Intake
+Drive into the Home Left and cycle the Goal
 
 GOAL 4
 ------
@@ -50,15 +56,15 @@ void a_HR1_HM1_HL1_MM1(){
     startTime=pros::millis(); // Set up a timer for autonomous
     drive->setState({116.125_in,14_in,90_deg});   //Set the state for odometry
     maxSpeed=500; // Set the robot's speed as fast
-    filter=false;
+    filter=false; // Don't filter the ball after cycling
 
   // ---------- GOAL 1 ---------- //
     // ----- Goal ----- //
-    setLift(127);
+    setLift(127); // Start Lift to pick
     DriveCoordShort(121.8,24.2,137.5,1);  // Line up with the Home right Goal
-    maxSpeed=80;
+    maxSpeed=80;  // Drive Slowl
     DriveCoordShort(129.3,15.5,140.3,0.6);  // Drive into the Home right Goal
-    cycleScoreNoIntake(1,0.75,1);
+    cycleScoreNoIntake(1,0.75,1); // Cycle the Goal without using the Intake
 
 
   // ---------- GOAL 2 ---------- //
@@ -81,13 +87,11 @@ void a_HR1_HM1_HL1_MM1(){
     setIntake(-127);  // Unfold Intake
     DriveCoordShort(25.5,33.5,236.5,1.5); // Line up with the Home left Goal
     setIntake(50); // Spin Intake forward to pick up Ball
-    // DriveCoordShort(28,32,226,1.5); // Drive to pick up Ball
 
     // ----- Goal ----- //
-    // setIntake(0); // Stop Intake to Prevent picking up more Balls
     maxSpeed=100; //  Slow down the Robot
     DriveCoordShort(12.7,16.5,223,1); // Drive into Home left Goal
-    filter=true;
+    filter=true;  // Allow the cycle function to filter
     cycleScore(3,3,1);  // Score until picked up ball has reached the top of Robot
 
   // ---------- GOAL 4 ---------- //
