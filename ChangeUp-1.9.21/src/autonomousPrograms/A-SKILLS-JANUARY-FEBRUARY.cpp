@@ -106,8 +106,8 @@ void A_SKILLS_JANUARY_FEBRUARY(){
   setDelivery(0); // Stop the Delivery
   DriveCoordShort(21.9,21.8,-130.5,0.9);  // Line up with goal
   DriveCoordShort(10,10,-133.4,0.7);  // Drive into Goal
-  cycleScoreSetup();
-  filter=false;
+  cycleScoreSetup();  // Set up Balls to score
+  filter=false; // Turn off Filtering after cycling
   setLift(127);
   setDelivery(127);
   while(!ballIn()){pros::delay(1);}
@@ -127,21 +127,12 @@ void A_SKILLS_JANUARY_FEBRUARY(){
 
   // ----- Ball 2 ----- //
   DriveCoordShort(52,70,-86,.75); // Turn to face next ball
-  // DriveCoordShort(28,72,-88,1); // Drive forward to pick up ball
-  // pros::delay(200); // Wait for ball to pick up
-  // setIntake(0); // Stop intake
 
   // ----- Goal ---- //
   setLift(0);  // Start running lift
-  // DriveCoordShort(19,75,-86.5,0.5); // Drive into goal
   setLift(90);  // Start running lift
   setIntake(80); // Run intake forward to pick up a ball
   DriveCoordShort(19,75,-86.5,1); // Drive into goal
-  // cycleScoreSetup();
-  // setDelivery(127);
-  // setLift(127);
-  // while(!ballIn()){pros::delay(1);}
-  // cycleScore(1,3,2);
   cycleScore(2,3,2);
 
 // ---------- GOAL 3 ---------- //
@@ -252,22 +243,13 @@ void A_SKILLS_JANUARY_FEBRUARY(){
 
   // ----- Ball 2 ----- //
   DriveCoordShort(92.5,73,93.5,1); // Line up with Ball
-  // DriveCoordShort(114,73,92,1); // Pick up Ball
-  // pros::delay(400); // Wait for Ball to be picked up
 
   // ----- Goal ----- //
   // pros::Task setUpGoal6(cycleScoreSetup);
   setLift(0);
   setIntake(80);
   DriveCoordShort(125,73,92,1.2); // Drive into Goal
-  // DriveCoordShort(125,73,92,0.9); // Drive into Goal
-  // while(!isCycleScoreSetup){pros::delay(10);};
-  // filter=false;
-  // setLift(127);
-  // setDelivery(127);
-  // while(!ballIn()){pros::delay(1);}
   filter=false;
-  // cycleScore(1,3,2); // Cycle 1 Ball while Filtering Blue
   cycleScore(2,2.25,2); // Cycle 1 Ball while Filtering Blue
   filter=true;
 
@@ -275,7 +257,6 @@ void A_SKILLS_JANUARY_FEBRUARY(){
   setIntake(-127);  // Run intake in reverse
   setDelivery(-127);  // Stop running delivery
   setLift(80);  // Stop running lift
-  // DriveCoordShort(113,68.5,92,0.9); // Back away from Goal
   DriveCoordShort(113,68.5,92,0.9); // Back away from Goal
   pros::Task dfdfs(cycleScoreFilter);
   DriveCoordShort(110,50,182,2);  // Line up with Ball
@@ -325,7 +306,6 @@ void A_SKILLS_JANUARY_FEBRUARY(){
   setLift(0);   //Stop running lift
   setDelivery(0);
   DriveCoordShort(80,62,270,0.75);    //Drive in front of goal
-  // pros::delay(500);
   DriveCoordShort(82,56,318,0.75);   // Line up to shoot
   setIntake(0);
 
