@@ -1,5 +1,6 @@
 #include "main.h"
 using namespace okapi;
+
 void a_HRC_HLC(){
 // ---------- Set Up ---------- //
   startTime=pros::millis(); // Set up a timer for autonomous
@@ -17,7 +18,7 @@ void a_HRC_HLC(){
   DriveCoordShort(128.87,15.9,141,1);  // Drive into the Home right Goal
   cycleScore(3,5,1);
 
-  // ---------- GOAL 3 ---------- //
+  // ---------- GOAL 2 ---------- //
     // ----- Ball 1 ----- //
     maxSpeed=500; // Speed up the Robot
     DriveCoordShort(32.5,44.5,141,3); // Line up with the Home left Goal
@@ -32,7 +33,7 @@ void a_HRC_HLC(){
     filter=true;
     cycleScore(3,3,1);  // Score until picked up ball has reached the top of Robot
 
-// ---------- DRIVER SET UP ---------- //
+// ---------- GOAL 3 ---------- //
   // ----- Ball & Goal ----- //
   maxSpeed=1000;  // GOT TO GO FAST
   DriveCoordShort(40,40,232,0.5); // Back away from Goal
