@@ -1,50 +1,5 @@
 #include "main.h"
 using namespace okapi;
-/*-----------------------------------------------------------------------------
-     _                _   _  ____    ____             _   _  __  __   ____             _   _  _      ____
-    / \              | | | ||  _ \  / ___|           | | | ||  \/  | / ___|           | | | || |    / ___|
-   / _ \     _____   | |_| || |_) || |       _____   | |_| || |\/| || |       _____   | |_| || |   | |
-  / ___ \   |_____|  |  _  ||  _ < | |___   |_____|  |  _  || |  | || |___   |_____|  |  _  || |___| |___
- /_/   \_\           |_| |_||_| \_\ \____|           |_| |_||_|  |_| \____|           |_| |_||_____|\____|
-Autonomous           Home | Right | Cycle           Home | Middle | Cycle             Home | Left | Cycle
-
-Created on 1/26/2021 by Logan and Taylor
-Updated on 2/11/2021 by Logan and Taylor
-
-15 second Autonomous
-
-4 Red balls
-3 Blue balls
-3 Goals
-
-Best used with a partner who has no consistant Autonomous
-
-PREPARE THE PROGRAM
--------------------
-Set up the robot's Odometry positon.
-
-GOAL 1
-------
-Drive into the Right corner Goal and score preload.
-Cycle Goal until the Robot has the opposing alliance's Ball.
-Filter Ball
-
-GOAL 2
-------
-Drive towards the Home middle Goal
-
-GOAL 3
-------
-Drive towards the Home left Goal and pick up the Ball in front of the goal.
-Score the Ball into the Home Left Goal.
-
-GOAL 4
-------
-Drive towards the center Goal and push the ball left towards the Goal into.
-
------------------------------------------------------------------------------*/
-
-
 void a_HRC_HLC(){
 // ---------- Set Up ---------- //
   startTime=pros::millis(); // Set up a timer for autonomous
