@@ -85,7 +85,7 @@ void a_HR1_HM1_HL1_MM1(){
     maxSpeed=500; // Speed up the Robot
     DriveCoordShort(44,48,225,1.5); // Line up with the Home left Goal
     setIntake(-127);  // Unfold Intake
-    DriveCoordShort(25.5,33.5,236.5,1.5); // Line up with the Home left Goal
+    DriveCoordShort(30.5,33.5,236.5,1.5); // Line up with the Home left Goal
     setIntake(50); // Spin Intake forward to pick up Ball
 
     // ----- Goal ----- //
