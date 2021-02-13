@@ -1,5 +1,83 @@
 #include "main.h"
 using namespace okapi;
+/*------------------------------------------
+  ____   _     _  _  _
+ / ___| | | __(_)| || | ___
+ \___ \ | |/ /| || || |/ __|
+  ___) ||   < | || || |\__ \
+ |____/ |_|\_\|_||_||_||___/
+
+Created on 7/15/2021 by Taylor and Logan
+Last Updated on 2/11/2021 by Taylor and Logan
+
+1 minute Autonomous
+
+13 Red balls  (Max - 14)
+11 Blue balls (Max - 15)
+9 Goals       (Max - 9)
+121 points    (Max - 126)
+
+PREPARE THE PROGRAM
+-------------------
+Set up the robot's Odometry positon
+
+GOAL 1
+------
+Pick up the ball closest to the robot.
+Drive towards and pick up the ball on the wall.
+Score in the bottom left goal.
+
+GOAL 2
+------
+Drive towards the ball left of center and pick up.
+Pick up second ball in line of the middle left goal.
+Score in the middle left goal while picking the blue ball.
+
+GOAL 3
+------
+Drive up to the ball diagonal of the top left goal while filtering the blue ball.
+Drive towards the ball diagonal of the top left goal and pick up the ball.
+Reset odometery position from crossing the line and
+Score in the goal while filtering one blue ball and holding the other.
+
+GOAL 4
+------
+Drive up towards the red ball vertically in line with the top middle goal.
+Pick up the ball and drive towards the top middle goal.
+Score the ball while picking up the blue ball.
+
+GOAL 5
+------
+Drive towards the ball diagonal of the top right goal while filtering the blue ball.
+Pick up the red ball and score in the top right goal.
+
+GOAL 6
+------
+Drive towards the ball right of center and pick up.
+Pick up second ball in line of the middle right goal.
+Score in the middle right goal.
+
+GOAL 7
+------
+Drive towards the ball diagonal of the bottom right goal and pick up.
+Drive up to the bottom right goal and score.
+
+RESET ODOMETRY
+--------------
+Drive backwards and reset the robot's Odometry position.
+
+GOAL 8
+------
+Pick up bottom ball against the right wall and drive towards the center goal.
+Punch out two balls and score in the center goal.
+
+GOAL 9
+------
+Drive towards the ball vertically in line with the bottom middle goal and pick up.
+Score in the bottom middle goal while taking out the blue ball.
+
+------------------------------------------*/
+
 
 void A_SKILLS_JANUARY_FEBRUARY(){
 // ---------- SET UP ---------- //
