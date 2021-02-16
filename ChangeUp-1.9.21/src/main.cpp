@@ -26,7 +26,7 @@ void initialize() {
   pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
   pros::Task controllerVibrate(controllerVibrateTemp);  // Start Controller vibration to see info
   // ----- Brain ----- //
-  pros::Task brainDisplay(brainDisplayGrid); // Display information to the Brain
+  pros::Task brainDisplay(brainDisplayPos); // Display information to the Brain
   // ----- Ball Updates ----- //
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
   pros::Task filterUpdate(filterCountTask); // Update filter count since the start of the program
@@ -103,7 +103,7 @@ void autonomous() {
   // If there is no auto selected    //
   // Run the default autonomous      //
   else
-  A_SKILLS_JANUARY_FEBRUARY();
+  A_SKILLS_JANUARY_FEBRUARY_2021();
   // ------------------------------- //
 }
 
@@ -113,6 +113,7 @@ void autonomous() {
 // Run the robot based on joystick and button inputs//
 // Display Odometry details.                        //
 void opcontrol() {
+
 // Continually update the screen to show OdomDebug information.
   while(true){
 

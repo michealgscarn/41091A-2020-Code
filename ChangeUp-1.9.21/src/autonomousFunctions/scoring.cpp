@@ -8,7 +8,7 @@ using namespace okapi;
  |____/  \___|\___/ |_|   |_||_| |_| \__, |
                                      |___/
 Created on 8/14/2020 by Taylor and Logn
-Last updated on 1/17/2021 by Logan
+Last updated on 2/15/2021 by Logan
 
 -----------------------------------------------------------------------------*/
 
@@ -54,6 +54,7 @@ void cycleScoreNoIntake(int cycleBall,double cycleTime, int startBallCount){
     setLift(75);  // Lift Balls to Deliver
   setDelivery(127); // Shoot Balls into Goal
   int targetBallCount=ballCount+cycleBall;  // Set the amount of balls to cycle
+  targetBallCount-=!ballIn();
   int targetTime=pros::millis()+cycleTime*1000; // Set the amount of time given to cycle the goal
   while((ballCount<targetBallCount) & (pros::millis()<targetTime-500)){
     setDelivery(127); // Shoot Balls into Goal
@@ -78,5 +79,40 @@ void cycleScoreNoIntake(int cycleBall,double cycleTime, int startBallCount){
 void cycleScore(int cycleBall,double cycleTime, int startBallCount){
   setIntake(127);  // Pick up Balls from Goal
   cycleScoreNoIntake(cycleBall,cycleTime,startBallCount);
+  setIntake(-127);
+}
+
+// ---------------- CYCLE SCORE CORNER---------------- //
+// Cycle a goal in autononous.                   //
+// Best used in Tournament autonomous.           //
+// Cycles a goal based on ball count.            //
+// Does only filters final ball.                 //
+void cycleScoreCorner(int cycleBall,double cycleTime, int startBallCount){
+  if(startBallCount==2)
+    cycleScoreSetup();
+  setLift(127);  // Lift Balls to Deliver
+  setDelivery(127);
+  while(!ballIn()){pros::delay(1);}
+  setIntake(127);
+  if(startBallCount==1)
+    setLift(127);
+  if(startBallCount==2)
+    setLift(70);  // Lift Balls to Deliver
+  setDelivery(127); // Shoot Balls into Goal
+  int targetBallCount=ballCount+cycleBall;  // Set the amount of balls to cycle
+  int targetTime=pros::millis()+cycleTime*1000; // Set the amount of time given to cycle the goal
+  while((ballCount<targetBallCount-1) & (pros::millis()<targetTime-500)){
+    setDelivery(127); // Shoot Balls into Goal
+    pros::delay(10);
+  }
+  while((ballCount<targetBallCount) & (pros::millis()<targetTime-500)){
+    pros::delay(10);
+  }
+  setDelivery(0); // Shoot Balls into Goal
+  setIntake(0);
+  while(!ballIn() & (pros::millis()<targetTime-500)){pros::delay(10);}
+  setIntake(-127);
+  setLift(-127);
+  setDelivery(-127);
   setIntake(-127);
 }

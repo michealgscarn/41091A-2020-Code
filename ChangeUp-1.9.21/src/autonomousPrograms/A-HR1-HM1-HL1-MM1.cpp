@@ -97,7 +97,7 @@ void a_HR1_HM1_HL1_MM1(){
   // ---------- GOAL 4 ---------- //
     // ----- Ball & Goal ----- //
     maxSpeed=500;  // GOT TO GO FAST
-    DriveCoordShort(35.5,39,226,2.5); // Drive towards Center Goal
+    DriveCoordShort(35.5,39,226,2); // Drive towards Center Goal
     setIntake(-20);  // Spin Intake slowly to push the Ball in
     DriveCoordShort(62,64,360,2.5); // Strafe Ball into Center Goal
     DriveCoordShort(33,45,360,1.75);  // Line up with next Ball for Driver Control

@@ -9,3 +9,4 @@ extern int startTime;
 void cycleScoreFilter();
 void cycleScoreNoIntake(int cycleBall,double cycleTime, int startBallCount);
 void cycleScore(int cycleBall,double cycleTime, int startBallCount);
+void cycleScoreCorner(int cycleBall,double cycleTime, int startBallCount);

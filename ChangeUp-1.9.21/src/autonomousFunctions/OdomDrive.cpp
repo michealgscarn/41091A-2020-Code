@@ -214,7 +214,7 @@ void DriveCoordShortNoPID(double xCoord, double yCoord, double angle, double tim
   double lastTime=pros::millis();
 
   //Define PID attributes across the X axis
-  double xP = 50;
+  double xP = 15;
   double xI = 0.001;
   double xD = 0;
   double xError = xCoord;
@@ -223,7 +223,7 @@ void DriveCoordShortNoPID(double xCoord, double yCoord, double angle, double tim
   double xSpeed;
 
   //Define PID attributes across the Y axis
-  double yP = 50;
+  double yP = 15;
   double yI = 0.001;
   double yD = 0;
   double yError = yCoord;
@@ -232,7 +232,7 @@ void DriveCoordShortNoPID(double xCoord, double yCoord, double angle, double tim
   double ySpeed;
 
   //Define PID attributes for Turning
-  double aP = 50;
+  double aP = 10;
   double aI = 0;
   double aD = 0;
   double aError = angle;
