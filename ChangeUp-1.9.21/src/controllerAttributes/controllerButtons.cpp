@@ -73,7 +73,6 @@ void bButton(){
 // Commands run in driver Control.                          //
 void yButton(){
   if(controller.get_digital(DIGITAL_Y)){
-    cycleScore(1,3,2);
   }
 }
 
@@ -83,6 +82,7 @@ void yButton(){
 // Commands run in driver Control.                          //
 void xButton(){
   if(controller.get_digital(DIGITAL_X)){
+    quickAlign(24,1);
   }
 }
 

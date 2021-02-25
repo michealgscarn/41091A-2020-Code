@@ -7,19 +7,15 @@ using namespace okapi;
   ___) ||   < | || || |\__ \
  |____/ |_|\_\|_||_||_||___/
 
-Created on 7/6/2020 by Taylor and Logan
-Last Updated on 2/26/2021 by Taylor and Logan
+Created on 7/15/2020 by Taylor and Logan
+Last Updated on 2/25/2021 by Taylor and Logan
 
 1 minute Autonomous
 
-13 Red balls  (Max - 14)
-11 Blue balls (Max - 15)
+14 Red balls  (Max - 14)
+15 Blue balls (Max - 15)
 9 Goals       (Max - 9)
-121 points    (Max - 126)
-
-PREPARE THE PROGRAM
--------------------
-Set up the robot's Odometry positon
+126 points    (Max - 126)
 
 GOAL 1
 ------
@@ -79,7 +75,7 @@ Score in the bottom middle goal while taking out the blue ball.
 ------------------------------------------*/
 
 
-void A_SKILLS_JANUARY_FEBRUARY_2021(){
+void A_SKILLS_JANUARY_FEBRUARY_2021_RESET(){
 // ---------- SET UP ---------- //
   drive->setState({58.75_in,16_in,-90_deg});
   maxSpeed=500;
@@ -101,7 +97,6 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   DriveCoordShort(17,35.4,-88.9,0.6); // Pick up Ball
 
   // ----- Goal ----- //
-  // setLift(60); // Stop the Lift
   setDelivery(0); // Stop the Delivery
   DriveCoordShort(21.9,21.8,-130.5,0.9);  // Line up with goal
   setIntake(0); // Stop the Intake
@@ -142,11 +137,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
     setLift(90);   //Start running lift
   resetY=117.5; // Set the Y reset Position
   pros::Task yo(lineReset); // Start the Line Reset
-  QLength preState=drive->getState().x;
-  quickAlign("X");  // Reset the X position
-  while((drive->getState().x>preState+5_in)|| (drive->getState().x<preState-5_in)){
-    quickAlign("X");  // Reset the X position
-  }
+  quickAlign(36,1);
   maxSpeed=100; // Drive Slowly across the Line
   DriveCoordShort(35,122,3.1,1);  // Pick up Ball
   maxSpeed=500; // Resume normal Speed
@@ -182,12 +173,9 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   DriveCoordShort(72.8,110,-3,0.9); // Drive away from Goal
   DriveCoordShort(87,116,91,1.7); // Line up with Ball
   setLift(127);  // Stop running lift
-  QLength preState2=drive->getState().y;
-  quickAlignNorthEast("Y"); // Reset X and Theta position
-  while((drive->getState().y>preState2+10_in)|| (drive->getState().y<preState2-10_in)){
-    quickAlignNorthEast("Y"); // Reset X and Theta position
-  }
-  while(ballFiltering()){pros::delay(10);}
+
+  quickAlign(116,2);
+
   setIntake(127); // Run intake in reverse
   setLift(127);  // Stop running lift
   setDelivery(0); // Stop running delivery
@@ -200,10 +188,8 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
 
   // ----- Goal ----- //
   DriveCoordShort(121,121,45,0.8); // Line up with Goal
-  // pros::delay(250);
   setIntake(0);
   setLift(0);
-  // pros::Task setUpGoal5(cycleScoreSetup);
   DriveCoordShort(129.5,130.5,50,0.75); // Drive into Goal
   cycleScoreCorner(2,3,2);
 
@@ -227,7 +213,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   DriveCoordShort(124,73,92,1); // Drive into Goal
   cycleScore(2,2.25,2); // Cycle 1 Ball while Filtering Blue
 
-  // ---------- GOAL 7 ---------- //
+// ---------- GOAL 7 ---------- //
   DriveCoordShort(113,73,92,0.5); // Back away from Goal
   DriveCoordShort(105,50,182,1.8);  // Line up with Ball
   while(ballFiltering()){pros::delay(10);}
@@ -235,11 +221,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   // ----- Reset Odometry ----- //
   resetY=22.5;  // Set Y postion
   pros::Task lo(lineReset); // Begin line reset
-  QLength preState3=drive->getState().x;
-  quickAlignNorthEast("X"); // Reset X and Theta position
-  while((drive->getState().x>preState3+5_in)|| (drive->getState().x<preState3-5_in)){
-    quickAlignNorthEast("X"); // Reset X and Theta position
-  }
+  quickAlign(106,3);
   setDelivery(0);   //Stop running delivery
   setIntake(127);   //Start running intake forward to pick up ball
   setLift(127);   //Start running lift
@@ -252,7 +234,6 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   DriveCoordShort(119,21,137,0.55);    //Line up with goal
   pros::delay(200);   //Wait a bit
   setIntake(0);   //Stop running intake
-  // pros::Task dfdsfss(cycleScoreSetup);
   DriveCoordShort(137,10,135,0.5);    //Drive into goal
 
   //-----Score in Goal-----//

@@ -1,22 +1,15 @@
 #include "main.h"
 using namespace okapi;
 /*-----------------------------------------------------------------------------
-     _                _   _  ____   _             _   _  __  __  _
-    / \              | | | ||  _ \ / |           | | | ||  \/  |/ |
-   / _ \     _____   | |_| || |_) || |   _____   | |_| || |\/| || |   _____
-  / ___ \   |_____|  |  _  ||  _ < | |  |_____|  |  _  || |  | || |  |_____|
- /_/   \_\           |_| |_||_| \_\|_|           |_| |_||_|  |_||_|
-Autonomous           Home | Right | 1             Home | Middle | 1
-
- _   _  _       ____             __  __  __  __  _
-| | | || |    / ___|           |  \/  ||  \/  |/ |
-| |_| || |    | |      _____   | |\/| || |\/| || |
-|  _  || |___ | |___  |_____|  | |  | || |  | || |
-|_| |_||_____|\____|           |_|  |_||_|  |_||_|
-Home | Left | cycle                    Center | 1
+     _              _   _  ____   _           _   _  __  __  _           _   _  _      ____           __  __  __  __  _
+    / \            | | | ||  _ \ / |         | | | ||  \/  |/ |         | | | || |    / ___|         |  \/  ||  \/  |/ |
+   / _ \    _____  | |_| || |_) || |  _____  | |_| || |\/| || |  _____  | |_| || |   | |      _____  | |\/| || |\/| || |
+  / ___ \  |_____| |  _  ||  _ < | | |_____| |  _  || |  | || | |_____| |  _  || |___| |___  |_____| | |  | || |  | || |
+ /_/   \_\         |_| |_||_| \_\|_|         |_| |_||_|  |_||_|         |_| |_||_____|\____|         |_|  |_||_|  |_||_|
+Autonomous          Home \ Right \ 1           Home \ Middle \ 1          Home \ Left \ cycle                 Center \ 1
 
 Created on 1/26/2021 by Logan and Taylor
-Updated on 2/11/2021 by Logan and Taylor
+Updated on 2/26/2021 by Logan and Taylor
 
 15 second Autonomous
 
@@ -25,10 +18,6 @@ Updated on 2/11/2021 by Logan and Taylor
 4 Goals
 
 Best used with a partner who has no consistant Autonomous
-
-PREPARE THE PROGRAM
--------------------
-Set up the robot's Odometry positon.
 
 GOAL 1
 ------
@@ -49,9 +38,7 @@ GOAL 4
 Drive towards the center Goal and push the ball left towards the Goal into.
 
 -----------------------------------------------------------------------------*/
-
-
-void a_HR1_HM1_HL1_MM1(){
+void a_HR1_HM1_HLC_MM1(){
   // ---------- Set Up ---------- //
     startTime=pros::millis(); // Set up a timer for autonomous
     drive->setState({116.125_in,14_in,90_deg});   //Set the state for odometry
@@ -76,7 +63,6 @@ void a_HR1_HM1_HL1_MM1(){
     setLift(127); // Spin the Lift forward to Deliver
     setDelivery(127); // Spin the Delivery forward to Score Ball
     pros::delay(600); // Wait for Ball to Score
-
 
   // ---------- GOAL 3 ---------- //
     // ----- Ball 1 ----- //

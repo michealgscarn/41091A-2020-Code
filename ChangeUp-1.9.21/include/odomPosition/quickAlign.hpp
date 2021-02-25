@@ -10,3 +10,5 @@ extern double sb;
 void quickAlign(std::string XorY);
 void quickAlignNorthEast(std::string XorY);
 void quickAlign();
+
+void quickAlign(double newXY, int wall);

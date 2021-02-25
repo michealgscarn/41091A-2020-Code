@@ -36,7 +36,7 @@ bool ballIn(){
 // Checks if a ball is in the robot                              //
 // Returns if the line follower is dark enough that a ball is in.//
 bool ballOut(){
-  return (topFollower.get_value()<2850 & topFollower.get_value()>0);
+  return (topLimit.get_value());
 }
 
 
@@ -57,6 +57,21 @@ void ballCountTask(){
     if(ballIn()){
       while(ballIn()){pros::delay(10);}
       ballCount++;
+      pros::delay(100);
+    }
+    pros::delay(1); // Wait for motors to update
+  }
+}
+
+// ------------------------- ENTER SUBMISSION JEFF ------------------------- //
+// Count the number of balls in the number of balls in the robot. //
+// Adds one to the ball count if a ball is in.                    //
+void ballExitCountTask(){
+  ballCount=0;
+  while(true){
+    if(ballOut()){
+      while(ballOut()){pros::delay(10);}
+      ballCount--;
       pros::delay(100);
     }
     pros::delay(1); // Wait for motors to update

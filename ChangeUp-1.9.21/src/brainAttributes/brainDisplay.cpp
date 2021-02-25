@@ -59,10 +59,11 @@ void brainDisplayBall(){
   while(true){ // Loop infinitly
   	pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
     pros::lcd::print(1,"Ball In?:     %i",ballIn());
-    pros::lcd::print(2,"Ball Count:   %i",ballCount); // Print the ball count on line 2
-    pros::lcd::print(3,"Filter Count: %i",filterCount); // Print the filter count on line 3
-    pros::lcd::print(4,"Color:        %s",CheckColor("bottom")); // Print the color ball on the bottom optical
-    pros::delay(200); // Wait for the screen to updateballIn
+    pros::lcd::print(2,"Ball Out?:    %i",ballOut());
+    pros::lcd::print(3,"Ball Count:   %i",ballCount); // Print the ball count on line 2
+    pros::lcd::print(4,"Filter Count: %i",filterCount); // Print the filter count on line 3
+    pros::lcd::print(5,"Color:        %s",CheckColor("bottom")); // Print the color ball on the bottom optical
+    pros::delay(10); // Wait for the screen to updateballIn
   }
 }
 

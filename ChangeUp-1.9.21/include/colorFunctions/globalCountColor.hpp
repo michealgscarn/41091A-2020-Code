@@ -8,4 +8,5 @@ extern bool ballOut();
 extern bool ballFiltering();
 
 void ballCountTask();
+void ballExitCountTask();
 void filterCountTask();

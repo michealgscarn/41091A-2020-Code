@@ -33,6 +33,8 @@ extern pros::Distance ballDetectBottom;
 
 extern pros::ADIDigitalIn bottomLimit;
 extern pros::ADIDigitalIn primaryLimit;
+extern pros::ADIDigitalIn topLimit;
+
 extern pros::ADIAnalogIn bottomFollower;
 extern pros::ADIAnalogIn topFollower;
 extern pros::ADIAnalogIn leftResetFollower;

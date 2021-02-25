@@ -7,7 +7,7 @@ using namespace okapi;
   ___) ||   < | || || |\__ \
  |____/ |_|\_\|_||_||_||___/
 
-Created on 7/6/2020 by Taylor and Logan
+Created on 7/15/2020 by Taylor and Logan
 Last Updated on 2/26/2021 by Taylor and Logan
 
 1 minute Autonomous
@@ -79,7 +79,7 @@ Score in the bottom middle goal while taking out the blue ball.
 ------------------------------------------*/
 
 
-void A_SKILLS_JANUARY_FEBRUARY_2021(){
+void A_SKILLS_JANUARY_FEBRUARY_2021_STOPTIME(){
 // ---------- SET UP ---------- //
   drive->setState({58.75_in,16_in,-90_deg});
   maxSpeed=500;
@@ -105,7 +105,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   setDelivery(0); // Stop the Delivery
   DriveCoordShort(21.9,21.8,-130.5,0.9);  // Line up with goal
   setIntake(0); // Stop the Intake
-  DriveCoordShort(10,10,-131.4,0.5);  // Drive into Goal
+  DriveCoordShort(10,10,-133.4,0.5);  // Drive into Goal
   cycleScoreCorner(2,3,2);
 
 // ---------- GOAL 2 ---------- //
@@ -151,10 +151,6 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   DriveCoordShort(35,122,3.1,1);  // Pick up Ball
   maxSpeed=500; // Resume normal Speed
 
-  // ----- Ball 2 ----- //
-  DriveCoordShort(30,106,-90,1.1);  // Line up with ball
-  DriveCoordShort(19,106,-90,0.6);  // Pick up Ball
-
   // ----- Goal ----- //
   DriveCoordShort(23.6,120,-50,0.9);  // Line up with Goal
   setIntake(0);
@@ -166,10 +162,13 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
 // ---------- GOAL 4 ---------- //
   // ----- Ball 1 ----- //
   DriveCoordShort(30,110,-50,1);  // Back away from goal
-  DriveCoordShort(51,93,90,1.5);  // Line up with Ball
   setIntake(127); // Run intake in reverse
   setDelivery(0); // Stop running delivery
   setLift(80);  // Stop running lift
+  DriveCoordShort(30,106,-90,1.1);  // Line up with ball
+  DriveCoordShort(19,106,-90,0.6);  // Pick up Ball
+
+  DriveCoordShort(51,93,90,1.5);  // Line up with Ball
   DriveCoordShort(72.5,93,90,1);  // Pick up Ball
 
   // ----- Goal ---- //
@@ -203,7 +202,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   // pros::delay(250);
   setIntake(0);
   setLift(0);
-  // pros::Task setUpGoal5(cycleScoreSetup);
+  pros::Task setUpGoal5(cycleScoreSetup);
   DriveCoordShort(129.5,130.5,50,0.75); // Drive into Goal
   cycleScoreCorner(2,3,2);
 
@@ -233,7 +232,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   while(ballFiltering()){pros::delay(10);}
 
   // ----- Reset Odometry ----- //
-  resetY=22.5;  // Set Y postion
+  resetY=22;  // Set Y postion
   pros::Task lo(lineReset); // Begin line reset
   QLength preState3=drive->getState().x;
   quickAlignNorthEast("X"); // Reset X and Theta position
@@ -252,11 +251,11 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   DriveCoordShort(119,21,137,0.55);    //Line up with goal
   pros::delay(200);   //Wait a bit
   setIntake(0);   //Stop running intake
-  // pros::Task dfdsfss(cycleScoreSetup);
+  pros::Task dfdsfss(cycleScoreSetup);
   DriveCoordShort(137,10,135,0.5);    //Drive into goal
 
   //-----Score in Goal-----//
-  cycleScoreCorner(2,3,1);
+  cycleScoreCorner(2,3,2);
   DriveCoordShort(116,30,145,1); //Back away from goal
 
 // ---------- Goal 8 (Center) ---------- //
@@ -275,13 +274,13 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
 
   // ----- Descore from Goal ----- //
   setIntake(-127);   //Run intake in reverse
-  setLift(-30);   //Stop running lift
-  setDelivery(-30);
-  DriveCoordShortNoPID(75,64.5,270,0.35);    //Drive in front of goal
-  DriveCoordShortNoPID(92,65,270,0.35);    //Drive in front of goal
-  DriveCoordShortNoPID(75,65,270,0.35);    //Drive in front of goal
-  DriveCoordShortNoPID(92,65,270,0.35);    //Drive in front of goal
-  DriveCoordShortNoPID(75,65,270,0.35);    //Drive in front of goal
+  setLift(-20);   //Stop running lift
+  setDelivery(-20);
+  DriveCoordShortNoPID(80,64.5,270,0.35);    //Drive in front of goal
+  DriveCoordShortNoPID(92,64.5,270,0.35);    //Drive in front of goal
+  DriveCoordShortNoPID(80,64.5,270,0.35);    //Drive in front of goal
+  DriveCoordShortNoPID(92,64.5,270,0.35);    //Drive in front of goal
+  DriveCoordShortNoPID(80,64.5,270,0.35);    //Drive in front of goal
 
   DriveCoordShort(81.5,56.5,318,0.7);   // Line up to shoot
   setIntake(0);

@@ -1,15 +1,15 @@
 #include "main.h"
 using namespace okapi;
 /*-------------------------------------------------------------------------------------------------------
-     _                __  __  __  __  _____             _   _  _      ____
-    / \              |  \/  ||  \/  ||  ___|           | | | || |    / ___|
-   / _ \     _____   | |\/| || |\/| || |_      _____   | |_| || |   | |
-  / ___ \   |_____|  | |  | || |  | ||  _|    |_____|  |  _  || |___| |___
- /_/   \_\           |_|  |_||_|  |_||_|               |_| |_||_____|\____|
+     _              __  __  __  __  _____           _   _  _      ____
+    / \            |  \/  ||  \/  ||  ___|         | | | || |    / ___|
+   / _ \    _____  | |\/| || |\/| || |_     _____  | |_| || |   | |
+  / ___ \  |_____| | |  | || |  | ||  _|   |_____| |  _  || |___| |___
+ /_/   \_\         |_|  |_||_|  |_||_|             |_| |_||_____|\____|
 Autonomous                  Center | Fill              Home | Left | Cycle
 
-Created on 1/26/21 by Logan
-Last updated on 2/11/21 by Logan
+Created on 1/25/21 by Logan and Taylor
+Last updated on 2/26/21 by Logan and Taylor
 
 15 second Autonomous
 
@@ -18,10 +18,6 @@ Last updated on 2/11/21 by Logan
 2 Goals
 
 Best used with Partner who consistantly scores Home right and Home middle
-
-PREPARE THE PROGRAM
--------------------
-Set up the robot's Odometry positon.
 
 GOAL 1
 ------
@@ -35,16 +31,15 @@ Line up with bottom left corner ball.
 Pick up bottom left corner ball and score in goal.
 
 -------------------------------------------------------------------------------------------------------*/
-
 void a_MMF_HLC(){
   drive->setState({32_in,15.5_in,0_deg}); // Set up State
   startTime=pros::millis();   //Set up the timer
   maxSpeed=300; // Set Maximum Speed
+
 //---------- GOAL 1 (CENTER) ----------//
   // ----- Ball 1 ----- //
   setIntake(-127); // Unfold Intake
   setDelivery(30); // Unfold Hood
-
   DriveCoordShort(38, 40, 0, 1.5); // Line up with ball
   setIntake(127); // Start Intake
   setLift(80); // Start Lift
@@ -71,7 +66,7 @@ void a_MMF_HLC(){
   pros::delay(1000); // Wait for ball to deliver
 
 
-  // ----------- GOAL 2 (HOME LEFT) ---------- //
+// ----------- GOAL 2 (HOME LEFT) ---------- //
   // ----- Ball 1 ----- //
   maxSpeed=800; // Set Maximum Speed
   DriveCoordShort(41.2, 40.8, 49, 1); // Back away from goal
@@ -94,9 +89,6 @@ void a_MMF_HLC(){
   pros::delay(800);
   setLift(0); // Continue Lift to filter
   setDelivery(0); // Continue Delivery to filter
-
-
-  // ---------- GOAL 3 (HOME MIDDLE) ---------- //
   maxSpeed=800; // Set Maximum Speed
   DriveCoordShort(22.4, 26.8, -137, 2); // Back up from goal
 }

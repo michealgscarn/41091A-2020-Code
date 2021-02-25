@@ -12,7 +12,7 @@ Last updated on 2/15/2021 by Logan
 
 -----------------------------------------------------------------------------*/
 
-bool isCycleScoreSetup=false; // Communication between Setup command and Autonomous
+bool isCycleScoreSetup=false; //  Communication between Setup command and Autonomous
 
 void cycleScoreSetup(){
   isCycleScoreSetup=false;  // Tell the Autonomous that the ball is not set up
@@ -30,10 +30,16 @@ void cycleScoreSetup(){
 
 
 bool filter=true;
+bool stopFilter=false;
 
 void cycleScoreFilter(){
+  stopFilter=false;
   setLift(-127);
-  while(ballIn()){pros::delay(10);}
+  while(ballIn()){
+    if(stopFilter)
+      pros::delay(10000000);
+    pros::delay(10);
+  }
   setLift(127);
   setDelivery(-127);
   while(!ballFiltering()){pros::delay(10);}
@@ -90,24 +96,33 @@ void cycleScore(int cycleBall,double cycleTime, int startBallCount){
 void cycleScoreCorner(int cycleBall,double cycleTime, int startBallCount){
   if(startBallCount==2)
     cycleScoreSetup();
+
   setLift(127);  // Lift Balls to Deliver
   setDelivery(127);
+
   while(!ballIn()){pros::delay(1);}
+
   setIntake(127);
   if(startBallCount==1)
     setLift(127);
   if(startBallCount==2)
     setLift(70);  // Lift Balls to Deliver
   setDelivery(127); // Shoot Balls into Goal
+
   int targetBallCount=ballCount+cycleBall;  // Set the amount of balls to cycle
   int targetTime=pros::millis()+cycleTime*1000; // Set the amount of time given to cycle the goal
+
   while((ballCount<targetBallCount-1) & (pros::millis()<targetTime-500)){
     setDelivery(127); // Shoot Balls into Goal
     pros::delay(10);
   }
+  int instance=pros::millis()+400;
   while((ballCount<targetBallCount) & (pros::millis()<targetTime-500)){
+    if(pros::millis()>instance)
+      setDelivery(0);
     pros::delay(10);
   }
+
   setDelivery(0); // Shoot Balls into Goal
   setIntake(0);
   while(!ballIn() & (pros::millis()<targetTime-500)){pros::delay(10);}
@@ -115,4 +130,36 @@ void cycleScoreCorner(int cycleBall,double cycleTime, int startBallCount){
   setLift(-127);
   setDelivery(-127);
   setIntake(-127);
+}
+
+
+// ---------------- CYCLE SCORE CORNER---------------- //
+// Cycle a goal in autononous.                   //
+// Best used in Tournament autonomous.           //
+// Cycles a goal based on ball count.            //
+// Does only filters final ball.                 //
+void cycleScoreSide(int cycleBall,double cycleTime, int startBallCount){
+  if(startBallCount==2)
+    cycleScoreSetup();
+
+  setLift(127);  // Lift Balls to Deliver
+  setDelivery(127);
+
+  while(!ballIn()){pros::delay(1);}
+
+  setIntake(127);
+  if(startBallCount==1)
+    setLift(127);
+  if(startBallCount==2)
+    setLift(70);  // Lift Balls to Deliver
+
+  int targetBallCount=ballCount+cycleBall;  // Set the amount of balls to cycle
+  int targetTime=pros::millis()+cycleTime*1000; // Set the amount of time given to cycle the goal
+
+  while((ballCount<targetBallCount) & (pros::millis()<targetTime-500)){
+      setDelivery(0);
+    pros::delay(10);
+  }
+  setIntake(0);
+  while(!ballIn() & (pros::millis()<targetTime-500)){pros::delay(10);}
 }

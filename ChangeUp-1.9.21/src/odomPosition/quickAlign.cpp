@@ -160,3 +160,61 @@ void quickAlignNorthEast(std::string XorY){
   else if(XorY=="Y")
     drive->setState({drive->getState().x,143_in-fabs(XYVal)*1_in+0.95_in,90_deg+radToDeg(thetaVal)*1_deg});
 }
+
+// -------------------------------------- NEW CODE ------------------------------------------ //
+
+
+
+std::array<double,2> resetVals(int wall) {
+
+  // ----- GET VALUES ----- //
+  sf = leftTrackFront.get()*0.0393701+5.125; // Get distance front value
+  sb = leftTrackBack.get()*0.0393701+5.375; // Get distance back value
+
+  // ---------- THETA VALUE ---------- //
+  // ----- TRIANGLE FROM TRAPEZOID ----- //
+  baseA = 12.25; // Distance between sensors
+  heightA = sf-sb; // Height of the triangle / Difference between larger and smaller distance values
+
+  // ----- SOLVE TRIANGLE ANGLE / GET THETA ----- //
+  thetaVal = getThetaVal(baseA,heightA);
+
+  // ---------- X/Y VALUE ---------- //
+  // ----- TRIANGE FOR X/Y VALUE ----- //
+  double hypoXY = (sf+sb)/2;
+  double angXY = fabs(thetaVal); // Angle of Triangle / 90 minus
+
+  // ----- SOLVE BASE LENGTH / GET X/Y ----- //
+  // XYVal = getXYVal(hypoXY, angXY)-1;
+  XYVal=getXYVal(hypoXY,angXY);
+
+  // ----- COMPRESS INFORMATION ----- //
+  std::array<double,2> resetXYTheta = {XYVal,thetaVal};  // Import new XY and Theta values into an array
+
+  // ----- CONVERT TO WALL ----- //
+  resetXYTheta[1]+=(wall-1)*90; // Add 90 to each following wall the robot is next to
+  if(wall==2 || wall==3)  // If the wall is either North or East
+    resetXYTheta[0] = 123-resetXYTheta[0]+0.95; // Take Subtract the length of the the field by X
+  else  // If the walls are 1 or 4
+    resetXYTheta[0] = resetXYTheta[0]+0.95; // Reset XY accordinly
+
+  return resetXYTheta; // Return new XY and Theta Values
+}
+
+
+
+void quickAlign(double currXY, int wall) {
+  std::array<double,2> tempNew = resetVals(wall); // Check to see if the new suffices
+  int resetTimeout = pros::millis() + 1000;
+
+  while(!(!(tempNew[0] < currXY-5) & !(tempNew[0] > currXY+5)) & (pros::millis() < resetTimeout)){  // Loop until there is a real reset value
+    tempNew = resetVals(wall);  // Get new values for reset
+    pros::delay(10);
+  }
+  if(!(tempNew[0] < currXY-5) & !(tempNew[0] > currXY+5)){
+    if(wall==1 || wall==3)
+      drive->setState({ tempNew[0]*1_in , drive->getState().y , radToDeg(tempNew[1])*1_deg});
+    else
+      drive->setState({drive->getState().x , tempNew[0]*1_in , radToDeg(tempNew[1])*1_deg});
+    }
+}

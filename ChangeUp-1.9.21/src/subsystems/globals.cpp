@@ -69,6 +69,7 @@ pros::Distance frontTrack(5);
 // ---------------- LIMIT SWITCH ---------------- //
 // Filter checker                                 //
 pros::ADIDigitalIn bottomLimit ({15,'A'});
+pros::ADIDigitalIn topLimit ('B');
 pros::ADIDigitalIn primaryLimit ({15,'D'});
 
 

@@ -26,9 +26,10 @@ void initialize() {
   pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
   pros::Task controllerVibrate(controllerVibrateTemp);  // Start Controller vibration to see info
   // ----- Brain ----- //
-  pros::Task brainDisplay(brainDisplayPos); // Display information to the Brain
+  pros::Task brainDisplay(brainDisplayGrid); // Display information to the Brain
   // ----- Ball Updates ----- //
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
+  // pros::Task ballExitUpdate(ballExitCountTask); // Update ball count since the start of the program
   pros::Task filterUpdate(filterCountTask); // Update filter count since the start of the program
   // ----- Optical Flashlights ----- //
   bottomColor.set_led_pwm(100);
@@ -60,14 +61,14 @@ void autonomous() {
   // 15 second autonomous             //
   // Used When Partner Has No Auto    //
   if(autoSel=="a_HRC_HMC_HLC")
-    a_HR1_HM1_HL1_MM1();
+    a_HRC_HMC_HLC();
   // -------------------------------- //
 
   // ----------- HOME MIDDLE CYCLE + LEFT CYCLE + CENTER ----------- //
   // 15 second autonomous                                            //
   // Used When Partner Gets Right Corner Goal                        //
   else if(autoSel=="a_HMC_HLC_MM1")
-    a_HMC_HLC_MM1();
+    pros::delay(1);
   // --------------------------------------------------------------- //
 
   // ----------- HOME MIDDLE + LEFT CYCLE + CENTER ----------- //
@@ -103,7 +104,15 @@ void autonomous() {
   // If there is no auto selected    //
   // Run the default autonomous      //
   else
+  // a_HLC_MM1_MRC(); // GOOD
+  // a_HLC_MM1_HRC(); // EXEMPT
+  // a_HMC_HRC(); // GOOD
+  // a_HRC_HMC_HLC();  // GOOD
+  // a_HLC_HMC_MM2(); // GOOD
+  // a_HRC(); // GOOD
+  // a_HLC_MM2(); // GOOD
   A_SKILLS_JANUARY_FEBRUARY_2021();
+  
   // ------------------------------- //
 }
 
@@ -113,8 +122,10 @@ void autonomous() {
 // Run the robot based on joystick and button inputs//
 // Display Odometry details.                        //
 void opcontrol() {
-
+  drive->setState({27_in,13_in,-90_deg});   //Set the state for odometry
 // Continually update the screen to show OdomDebug information.
+while(!ballIn()){pros::delay(10);}
+
   while(true){
 
     // get the subsystems on the robot
@@ -125,6 +136,7 @@ void opcontrol() {
 
     // Utilize the remaining Controller Buttonns
     extraDriver();
+
     pros::delay(10); //wait for motors to update
   }
 }
