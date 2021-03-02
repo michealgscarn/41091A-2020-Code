@@ -59,12 +59,16 @@ void a_HRC_MM2(){
   while(ballFiltering()){pros::delay(10);}    //Filter the ball
   setIntake(127); // Spin Intake forward to pick up Ball
   setLift(90); // Stop scoring
-  DriveCoordShort(37,62,3,0.8); // Pick up ball
+  left_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  left_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  DriveCoordShort(37,59,3,0.8); // Pick up ball
   while(!ballIn()){pros::delay(10);}
 
   // ----- Ball 2 ---- //
   setIntake(-10);  // Unfold Intake
-  DriveCoordShort(57,64,22,1.5); // Push in ball 2
+  DriveCoordShort(57,59,22,1.5); // Push in ball 2
   DriveCoordShort(54,54,43,0.9); // Back away from goal
   setDelivery(-10);
   setLift(-10);

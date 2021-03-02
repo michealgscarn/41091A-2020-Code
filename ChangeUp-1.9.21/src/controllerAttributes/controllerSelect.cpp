@@ -202,8 +202,8 @@ void controllerDisplaySel(){
     // Print pages
     setUpPage("Home",       "Select", "Autonomous",     "Odometry",       "Debug",      "Set Up");  //->
     setUpPage("Autonomous", "Select", "Left",           "Right",           "Skills");               //-->
-    setUpPage("Left",      "Select", "a_HMC_HLC_MM1",  "a_MMF_HLC");                               //--->
-    setUpPage("Right",       "Select", "a_HRC_HMC_HLC",  "a_HMC_HRC",  "a_HRC_HLC");                 //--->
+    setUpPage("Left",      "Select", "a_HLC_MM1_MRC",  "a_HLC_MM1_HRC",    "a_HLC_HMC_MM2", "a_HLC_MM2");                               //--->
+    setUpPage("Right",       "Select", "a_HRC_HMC_MM2",  "a_HRC_HMC_HLC",  "a_HRC_MM2");                 //--->
     setUpPage("Skills",     "Select", "Skills");                                                    //-->
     setUpPage("Odometry",   "Info",   odomDetails,       trackLeft,   trackRight,   trackMiddle);   //-->
     setUpPage("Debug",      "Info",   "Temp: "+motorTemp,      "l");                                //-->

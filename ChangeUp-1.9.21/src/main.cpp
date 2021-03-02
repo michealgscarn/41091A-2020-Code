@@ -26,7 +26,7 @@ void initialize() {
   pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
   pros::Task controllerVibrate(controllerVibrateTemp);  // Start Controller vibration to see info
   // ----- Brain ----- //
-  pros::Task brainDisplay(brainDisplayGrid); // Display information to the Brain
+  pros::Task brainDisplay(brainDisplayTemp); // Display information to the Brain
   // ----- Ball Updates ----- //
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
   // pros::Task ballExitUpdate(ballExitCountTask); // Update ball count since the start of the program
@@ -60,59 +60,68 @@ void autonomous() {
   // ----------- HOME ROW ----------- //
   // 15 second autonomous             //
   // Used When Partner Has No Auto    //
-  if(autoSel=="a_HRC_HMC_HLC")
-    a_HRC_HMC_HLC();
+  if(autoSel=="a_HLC_MM1_MRC")
+  a_HLC_MM1_MRC(); // GOOD
   // -------------------------------- //
 
   // ----------- HOME MIDDLE CYCLE + LEFT CYCLE + CENTER ----------- //
   // 15 second autonomous                                            //
   // Used When Partner Gets Right Corner Goal                        //
-  else if(autoSel=="a_HMC_HLC_MM1")
-    pros::delay(1);
+  else if(autoSel=="a_HLC_MM1_HRC")
+  a_HLC_MM1_HRC(); // EXEMPT
   // --------------------------------------------------------------- //
 
   // ----------- HOME MIDDLE + LEFT CYCLE + CENTER ----------- //
   // 15 second autonomous                                      //
   // Used When Partner Gets Left Corner Goal                   //
-  else if(autoSel=="a_HMC_HRC")
-    a_HMC_HRC();
+  else if(autoSel=="a_HRC_HMC_MM2")
+  a_HRC_HMC_MM2(); // GOOD
   // --------------------------------------------------------- //
 
   // ----------- RIGHT CORNER + LEFT CORNER ----------- //
   // 15 second autonomous                               //
   // Used When Partner Gets Left Corner Goal            //
-  else if(autoSel=="a_HRC_HLC")
-    a_HRC_HLC();
+  else if(autoSel=="a_HRC_HMC_HLC")
+  a_HRC_HMC_HLC();  // GOOD
   // -------------------------------------------------- //
 
   // ----------- FILL CENTER + CYCLE LEFT CORNER ----------- //
   // 15 second autonomous                                    //
   // Used when Partner Gets Right + Middle                   //
 
-  else if(autoSel=="a_MMF_HLC")
-    a_MMF_HLC();
+  else if(autoSel=="a_HLC_HMC_MM2")
+  a_HLC_HMC_MM2(); // GOOD
+  // ------------------------------------------------------- //
+
+  // ----------- FILL CENTER + CYCLE LEFT CORNER ----------- //
+  // 15 second autonomous                                    //
+  // Used when Partner Gets Right + Middle                   //
+
+  else if(autoSel=="a_HRC_MM2")
+  a_HRC_MM2(); // GOOD
+  // ------------------------------------------------------- //
+
+  // ----------- FILL CENTER + CYCLE LEFT CORNER ----------- //
+  // 15 second autonomous                                    //
+  // Used when Partner Gets Right + Middle                   //
+
+  else if(autoSel=="a_HLC_MM2")
+  a_HLC_MM2(); // GOOD
   // ------------------------------------------------------- //
 
   // ----------- SKILLS ----------- //
   // 1 minute autonomous            //
   // Skills Autonomous              //
   else if(autoSel=="Skills")
-    A_SKILLS_JANUARY_FEBRUARY();
+    A_SKILLS_JANUARY_FEBRUARY_2021();
   // ------------------------------ //
 
   // ----------- DEFAULT ----------- //
   // If there is no auto selected    //
   // Run the default autonomous      //
   else
-  // a_HLC_MM1_MRC(); // GOOD
-  // a_HLC_MM1_HRC(); // EXEMPT
-  // a_HMC_HRC(); // GOOD
-  // a_HRC_HMC_HLC();  // GOOD
-  // a_HLC_HMC_MM2(); // GOOD
-  // a_HRC(); // GOOD
-  // a_HLC_MM2(); // GOOD
   A_SKILLS_JANUARY_FEBRUARY_2021();
-  
+
   // ------------------------------- //
 }
 

@@ -71,15 +71,15 @@ void a_HRC_HMC_HLC(){
   setDelivery(0); // Stop scoring
   setLift(0); // Stop scoring
   maxSpeed=500; // Speed up the Robot
-  DriveCoordShort(72,35,180,2); // Line up with the Home middle Goal
-  DriveCoordShort(27,33,228,2); // Line up with the Home left Goal
+  DriveCoordShort(72,40,180,2); // Back away from the Home middle Goal
+  DriveCoordShort(27,40,228,2); // Line up with the Home left Goal
   setIntake(-127);  // Unfold Intake
-  DriveCoordShort(25.5,35,233,0.75); // Line up with the Home left Goal
+  DriveCoordShort(27,35,228,0.75); // Line up with the Home left Goal
   setIntake(50); // Spin Intake forward to pick up Ball
 
   // ----- Goal ----- //
   maxSpeed=100; //  Slow down the Robot
-  DriveCoordShort(14,21,228,1); // Drive into Home left Goal
+  DriveCoordShort(11,19,228,1); // Drive into Home left Goal
   filter=false;
   cycleScore(3,3,1);  // Score until picked up ball has reached the top of Robot
 

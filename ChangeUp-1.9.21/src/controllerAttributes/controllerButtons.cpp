@@ -98,7 +98,7 @@ void extraDriver(){
 // Uses the right arrow, left arrow, a button, and b button. //
 
 void selectButtons(std::string selC[]){ //Enter the current options and the new options
-  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != 3)) //If the Right Button was pressed and not on the last option
+  if((controller.get_digital(DIGITAL_RIGHT)) & (posC != 4)) //If the Right Button was pressed and not on the last option
     rightButton();
   else if((controller.get_digital(DIGITAL_LEFT)) & (posC != 1)) // If the Left Button was pressed and not on the first option
     leftButton();

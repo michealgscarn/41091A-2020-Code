@@ -54,7 +54,7 @@ void a_HLC_HMC_MM2(){
   pros::delay(800); // Wait for Intake and Delivery
   setIntake(80);  // Spin Intake to pick up Balls
   maxSpeed=100;  // Drive Slowly into Goals
-  DriveCoordShort(15,18,-133,0.75);  // Drive into the Home right Goal
+  DriveCoordShort(14,17,-133,0.75);  // Drive into the Home right Goal
   cycleScore(3,5,1);  // Cycle Goal until opposing ball is picked up
 
 // ---------- GOAL 2 ---------- //
@@ -72,16 +72,16 @@ void a_HLC_HMC_MM2(){
   // ----- Ball 1 ----- //
   maxSpeed=500; // Speed up the Robot
   DriveCoordShort(57,29,-210,1); // Line up with the Home middle Goal
-  DriveCoordShort(35,48,3,2); // Line up with the ball 1
+  DriveCoordShort(35,44,0,2); // Line up with the ball 1
   while(ballFiltering()){pros::delay(10);}    //Filter the ball
   setIntake(127); // Spin Intake forward to pick up Ball
   setLift(90); // Stop scoring
-  DriveCoordShort(37,60,3,0.8); // Pick up ball
+  DriveCoordShort(37,57.5,0,0.8); // Pick up ball
   while(!ballIn()){pros::delay(10);}
 
   // ----- Ball 2 ---- //
   setIntake(-10);  //
-  DriveCoordShort(57,64,22,1.5); // Push in ball 2
+  DriveCoordShort(57,61.5,22,1.2); // Push in ball 2
   DriveCoordShort(50,50,43,0.9); // Back away from goal
   setDelivery(-10);
   setLift(-10);
@@ -90,5 +90,7 @@ void a_HLC_HMC_MM2(){
   setDelivery(127); // Spin Delivery to score Ball
   setLift(127); // Spin Lift to score Ball
   pros::delay(500); // Wait for Ball to score
-  DriveCoordShort(0,0,43,0.5); // Back away from goal
+  setDrive(-127,-127,-127,-127);
+  while(pros::millis()<startTime+15000){pros::delay(10);} // Wait until the last second to shoot
+  setDrive(0,0,0,0);
 }

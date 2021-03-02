@@ -38,7 +38,7 @@ Pick up ball and strafe to push the other alliance ball in the Center Goal
 Line up with Center Goal and shoot Ball in
 
 -----------------------------------------------------------------------------*/
-void a_HMC_HRC(){
+void a_HRC_HMC_MM2(){
   // ---------- Set Up ---------- //
     startTime=pros::millis(); // Set up a timer for autonomous
     drive->setState({116.125_in,14_in,90_deg});   //Set the state for odometry
@@ -58,7 +58,7 @@ void a_HMC_HRC(){
 
 // ---------- GOAL 2 ---------- //
   maxSpeed=500; // Speed up the Robot
-  DriveCoordShort(82,29,206,1.75); // Line up with the Home middle Goal
+  DriveCoordShort(82,32,206,1.9); // Line up with the Home middle Goal
   while(ballFiltering()){pros::delay(10);}
   maxSpeed=300; // Slow down the Robot
   setLift(0);
@@ -75,13 +75,17 @@ void a_HMC_HRC(){
   while(ballFiltering()){pros::delay(10);}    //Filter the ball
   setIntake(127); // Spin Intake forward to pick up Ball
   setLift(90); // Stop scoring
-  DriveCoordShort(37,62,363,0.8); // Pick up ball
+  left_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  left_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  DriveCoordShort(37,59,363,0.8); // Pick up ball
   while(!ballIn()){pros::delay(10);}
 
   // ----- Ball 2 ---- //
   setIntake(-10);  // Unfold Intake
-  DriveCoordShort(57,64,382,1.5); // Push in ball 2
-  DriveCoordShort(54,54,403,0.9); // Back away from goal
+  DriveCoordShort(57,59,382,1.5); // Push in ball 2
+  DriveCoordShort(50,54,403,0.9); // Back away from goal
   setDelivery(-10);
   setLift(-10);
   DriveCoordShort(63,61,403,0.9); // Drive into Goal

@@ -119,13 +119,13 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   DriveCoordShort(47,70,5,0.9); // Drive forward to pick up ball
 
   // ----- Ball 2 ----- //
-  DriveCoordShort(52,70,-86,.75); // Turn to face next ball
+  DriveCoordShort(52,70,-88,.75); // Turn to face next ball
 
   // ----- Goal ---- //
   setLift(0);  // Start running lift
   setLift(90);  // Start running lift
   setIntake(80); // Run intake forward to pick up a ball
-  DriveCoordShort(19,75,-86.5,1); // Drive into goal
+  DriveCoordShort(19,75,-88,1); // Drive into goal
   cycleScore(2,3,2);
 
 // ---------- GOAL 3 ---------- //
