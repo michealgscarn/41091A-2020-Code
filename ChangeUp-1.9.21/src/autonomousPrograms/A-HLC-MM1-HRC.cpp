@@ -9,7 +9,7 @@ using namespace okapi;
 Autonomous       Home Row \ Left \ Cycle           Center Goal  \ 1       Home Row \ Middle \ Cycle
 
 Created on 2/22/2021 by Logan and Taylor
-Updated on 2/26/2021 by Logan and Taylor
+Updated on 3/5/2021 by Logan and Taylor
 
 15 second Autonomous
 
@@ -44,7 +44,9 @@ void a_HLC_MM1_HRC(){
 
   // ---------- GOAL 1 ---------- //
     // ----- Goal ----- //
+    setLift(127);
     DriveCoordShort(26,30,-135,1);  // Line up with the Home right Goal
+    setLift(0);
     setIntake(-127);  // Unfold Intake
     setDelivery(20);  // Unfold Delivery
     pros::delay(800); // Wait for Intake and Delivery

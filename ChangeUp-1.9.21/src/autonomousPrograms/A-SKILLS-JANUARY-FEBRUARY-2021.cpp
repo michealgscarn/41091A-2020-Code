@@ -88,7 +88,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
 // ---------- GOAL 1 ---------- //
   // ----- Unfold ----- //
   setIntake(-127);  // Run intake in reverse to deploy
-  setDelivery(127); // Spin the delivery forward
+  setLift(127); // Spin the delivery forward
   DriveCoordShort(58,24,-90,0.8); // Line up with ball
 
   // ----- Ball 1 ----- //

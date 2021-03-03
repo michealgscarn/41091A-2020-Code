@@ -9,7 +9,7 @@ using namespace okapi;
 Autonomous                  Center | Fill              Home | Left | Cycle
 
 Created on 1/25/21 by Logan and Taylor
-Last updated on 2/26/21 by Logan and Taylor
+Last updated on 3/5/21 by Logan and Taylor
 
 15 second Autonomous
 
@@ -38,6 +38,7 @@ void a_MMF_HLC(){
 
 //---------- GOAL 1 (CENTER) ----------//
   // ----- Ball 1 ----- //
+  setLift(127);
   setIntake(-127); // Unfold Intake
   setDelivery(30); // Unfold Hood
   DriveCoordShort(38, 40, 0, 1.5); // Line up with ball

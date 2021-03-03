@@ -9,7 +9,7 @@ using namespace okapi;
 Autonomous      Home Row \ Middle \ Cycle       Home Row \ Right \ Cycle               Center  \ 2 Balls
 
 Created on 2/21/2021 by Logan and Taylor
-Updated on 2/25/2021 by Logan and Taylor
+Updated on 3/5/2021 by Logan and Taylor
 
 15 second Autonomous
 
@@ -47,8 +47,10 @@ void a_HRC_HMC_MM2(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
+  setLift(127);
   DriveCoordShort(115,30,133,1);  // Line up with the Home right Goal
   setIntake(-127);
+  setLift(0);
   setDelivery(20);
   pros::delay(800);
   setIntake(80);

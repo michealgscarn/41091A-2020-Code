@@ -9,7 +9,7 @@ using namespace okapi;
 Autonomous           Home \ Right \ Cycle          Home \ Middle \ Cycle          Home \ Left \ Cycle
 
 Created on 1/25/2021 by Logan and Taylor
-Updated on 2/26/2021 by Logan and Taylor
+Updated on 3/5/2021 by Logan and Taylor
 
 15 second Autonomous
 
@@ -46,8 +46,10 @@ void a_HRC_HMC_HLC(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
+  setLift(127);
   DriveCoordShort(115,30,136,1);  // Line up with the Home right Goal
   setIntake(-127);
+  setLift(0);
   setDelivery(20);
   pros::delay(800);
   setIntake(80);

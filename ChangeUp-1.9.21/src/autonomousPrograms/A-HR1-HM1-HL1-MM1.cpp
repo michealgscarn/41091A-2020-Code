@@ -9,7 +9,7 @@ using namespace okapi;
 Autonomous          Home \ Right \ 1           Home \ Middle \ 1          Home \ Left \ cycle                 Center \ 1
 
 Created on 1/26/2021 by Logan and Taylor
-Updated on 2/26/2021 by Logan and Taylor
+Updated on 3/5/2021 by Logan and Taylor
 
 15 second Autonomous
 
@@ -47,6 +47,7 @@ void a_HR1_HM1_HLC_MM1(){
 
   // ---------- GOAL 1 ---------- //
     // ----- Goal ----- //
+    setLift(127);
     setLift(127); // Start Lift to pick
     DriveCoordShort(121.8,24.2,137.5,1);  // Line up with the Home right Goal
     maxSpeed=80;  // Drive Slowl
