@@ -47,12 +47,12 @@ void a_HRC_HMC_MM2(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
+  DriveCoordShort(113.4,34,141,1);  // Line up with the Home right Goal
   setLift(127);
-  DriveCoordShort(115,30,133,1);  // Line up with the Home right Goal
   setIntake(-127);
-  setLift(0);
   setDelivery(20);
   pros::delay(800);
+  setLift(0);
   setIntake(80);
   maxSpeed=80;
   DriveCoordShort(125,17,133,1);  // Drive into the Home right Goal
@@ -73,7 +73,7 @@ void a_HRC_HMC_MM2(){
   // ----- Ball 1 ----- //
   maxSpeed=500; // Speed up the Robot
   DriveCoordShort(71,45,182,1.5); // Back away from goal
-  DriveCoordShort(35,48,363,1.5); // Line up with the ball 1
+  DriveCoordShort(38,48,363,1.5); // Line up with the ball 1
   while(ballFiltering()){pros::delay(10);}    //Filter the ball
   setIntake(127); // Spin Intake forward to pick up Ball
   setLift(90); // Stop scoring
@@ -81,15 +81,17 @@ void a_HRC_HMC_MM2(){
   left_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   right_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   right_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  DriveCoordShort(37,59,363,0.8); // Pick up ball
+  DriveCoordShort(38,59,363,0.8); // Pick up ball
   while(!ballIn()){pros::delay(10);}
 
   // ----- Ball 2 ---- //
   setIntake(-10);  // Unfold Intake
-  DriveCoordShort(57,59,382,1.5); // Push in ball 2
+  DriveCoordShort(57,62,382,1.5); // Push in ball 2
+  setIntake(127); // Spin Intake forward to pick up Ball
   DriveCoordShort(50,54,403,0.9); // Back away from goal
   setDelivery(-10);
   setLift(-10);
+  setIntake(-10);
   DriveCoordShort(63,61,403,0.9); // Drive into Goal
   while(pros::millis()<startTime+14250){pros::delay(10);} // Wait until the last second to shoot
   setDelivery(127); // Spin Delivery to score Ball

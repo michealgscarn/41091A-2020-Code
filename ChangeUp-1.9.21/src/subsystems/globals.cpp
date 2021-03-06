@@ -32,11 +32,11 @@ These devices include
 // 16 - Right Intake Motor                  //
 // 14 - Lift Motor                          //
 // 6  - Delivery Motor                      //
-pros::Motor left_fr_mtr(14, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor left_bc_mtr(11, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor left_fr_mtr(17, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor left_bc_mtr(14, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor right_fr_mtr(6, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor right_bc_mtr(10, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor left_int_mtr(13, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor left_int_mtr(16, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor right_int_mtr(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor lift_mtr(4, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor del_mtr(2, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
@@ -53,7 +53,7 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // 18 - Middle Color                         //
 // 7  - Top Color                            //
 pros::Optical bottomColor(9);
-pros::Optical middleColor(16);
+pros::Optical middleColor(19);
 pros::Optical topColor(7);
 
 
@@ -61,25 +61,25 @@ pros::Optical topColor(7);
 // 15 - Front Reset Distance                  //
 // 2  - Back Reset Distance                   //
 // 17 - Heading Distance                      //
-pros::Distance leftTrackFront(12);
+pros::Distance leftTrackFront(15);
 pros::Distance leftTrackBack(1);
 pros::Distance frontTrack(5);
 
 
 // ---------------- LIMIT SWITCH ---------------- //
 // Filter checker                                 //
-pros::ADIDigitalIn bottomLimit ({15,'A'});
+pros::ADIDigitalIn bottomLimit ({18,'A'});
 pros::ADIDigitalIn topLimit ('B');
-pros::ADIDigitalIn primaryLimit ({15,'D'});
+pros::ADIDigitalIn primaryLimit ({18,'D'});
 
 
 // ---------------- LINE FOLLOWER ---------------- //
 // 21 - Bottom Ball detecting                      //
 // 'A' - Top Ball detecting                     //
 pros::ADIAnalogIn topFollower ('A');
-pros::ADIAnalogIn leftResetFollower ({15,'C'});
-pros::ADIAnalogIn rightResetFollower ({15,'B'});
-pros::ADIAnalogIn bottomFollower ({15,'H'});
+pros::ADIAnalogIn leftResetFollower ({18,'C'});
+pros::ADIAnalogIn rightResetFollower ({18,'B'});
+pros::ADIAnalogIn bottomFollower ({18,'H'});
 
 
 // ---------------- ENCODERS ---------------- //
@@ -101,7 +101,7 @@ ADIEncoder m({8,'E', 'F'}, true); // Middle Encoder
 // Side Wheel Distance Apart : 8.4903 in             //
 // Back Wheel Distance from Center  : 5.3456         //
 std::shared_ptr<OdomChassisController> drive = ChassisControllerBuilder()
-  .withMotors(11, 12, 8, 3) // Motors - 11 is front left / 12 is front right / 8 is back right / 3 is back left
+  .withMotors(14, 15, 8, 3) // Motors - 11 is front left / 12 is front right / 8 is back right / 3 is back left
   .withSensors(l, r, m)  // Tracking wheels
   .withGains(  // PID Gains
     {0.00095, 0.00001, 0.00000}, // Forward PID Gais

@@ -1,3 +1,4 @@
+
 #include "main.h"
 using namespace okapi;
 /*-----------------------------------------------------------------------------
@@ -8,7 +9,7 @@ using namespace okapi;
  |_|  |_| \__,_||_||_| |_|
 
 Created on 7/14/2020 by Logan and Taylor
-Last Updated on 2/11/2021 by Logan
+Last Updated on 3/5/2021 by Logan
 
 The Main function Initializes the program as it starts.
 It starts autonomous, driver control and everything competition.
@@ -57,72 +58,68 @@ void disabled() {
 // The robot drives on its own.                 //
 // Starts autnomous from a chosen autonomous.   //
 void autonomous() {
-  // ----------- HOME ROW ----------- //
-  // 15 second autonomous             //
-  // Used When Partner Has No Auto    //
+  // ----- HOME LEFT CYCLE + CENTER + MIDDLE RIGHT CYCLE -------------------- //
+  // 15 second autonomous                                                     //
+  // Used when partner consistantly scores in Home Left and Home Right        //
   if(autoSel=="a_HLC_MM1_MRC")
-  a_HLC_MM1_MRC(); // GOOD
-  // -------------------------------- //
+  a_HLC_MM1_MRC();
+  // ------------------------------------------------------------------------ //
 
-  // ----------- HOME MIDDLE CYCLE + LEFT CYCLE + CENTER ----------- //
-  // 15 second autonomous                                            //
-  // Used When Partner Gets Right Corner Goal                        //
+  // ----- HOME LEFT CYCLE + CENTER + HOME RIGHT CYCLE ---------------------- //
+  // 15 second autonomous                                                     //
+  // Used When Partner Gets Right Corner Goal                                 //
   else if(autoSel=="a_HLC_MM1_HRC")
-  a_HLC_MM1_HRC(); // EXEMPT
-  // --------------------------------------------------------------- //
+  a_HLC_MM1_HRC();
+  // ------------------------------------------------------------------------ //
 
-  // ----------- HOME MIDDLE + LEFT CYCLE + CENTER ----------- //
-  // 15 second autonomous                                      //
-  // Used When Partner Gets Left Corner Goal                   //
+  // ----- HOME RIGHT CYCLE + HOME MIDDLE CYCLE + CENTER -------------------- //
+  // 15 second autonomous                                                     //
+  // Used when partner consistantly scores in Home Left                       //
   else if(autoSel=="a_HRC_HMC_MM2")
-  a_HRC_HMC_MM2(); // GOOD
-  // --------------------------------------------------------- //
+  a_HRC_HMC_MM2();
+  // ------------------------------------------------------------------------ //
 
-  // ----------- RIGHT CORNER + LEFT CORNER ----------- //
-  // 15 second autonomous                               //
-  // Used When Partner Gets Left Corner Goal            //
+  // ----- HOME ROW CYCLE --------------------------------------------------- //
+  // 15 second autonomous                                                     //
+  // Used when partner has no consistant auto                                 //
   else if(autoSel=="a_HRC_HMC_HLC")
-  a_HRC_HMC_HLC();  // GOOD
-  // -------------------------------------------------- //
+  a_HRC_HMC_HLC();
+  // ------------------------------------------------------------------------ //
 
-  // ----------- FILL CENTER + CYCLE LEFT CORNER ----------- //
-  // 15 second autonomous                                    //
-  // Used when Partner Gets Right + Middle                   //
-
+  // ------ HOME LEFT CYCLE + HOME MIDDLE CYCLE + CENTER -------------------- //
+  // 15 second autonomous                                                     //
+  // Used when partner consistantly scores in Home Right                      //
   else if(autoSel=="a_HLC_HMC_MM2")
-  a_HLC_HMC_MM2(); // GOOD
-  // ------------------------------------------------------- //
+  a_HLC_HMC_MM2();
+  // ------------------------------------------------------------------------ //
 
-  // ----------- FILL CENTER + CYCLE LEFT CORNER ----------- //
-  // 15 second autonomous                                    //
-  // Used when Partner Gets Right + Middle                   //
-
+  // ----- HOME RIGHT + CENTER ---------------------------------------------- //
+  // 15 second autonomous                                                     //
+  // Used when partner consistantly score Home Middle and Home Left           //
   else if(autoSel=="a_HRC_MM2")
-  a_HRC_MM2(); // GOOD
-  // ------------------------------------------------------- //
+  a_HRC_MM2();
+  // ------------------------------------------------------------------------ //
 
-  // ----------- FILL CENTER + CYCLE LEFT CORNER ----------- //
-  // 15 second autonomous                                    //
-  // Used when Partner Gets Right + Middle                   //
-
+  // ----- HOME LEFT CYCLE + CENTER ----------------------------------------- //
+  // 15 second autonomous                                                     //
+  // Used when partner consistantly score Home Middle and Home Right          //
   else if(autoSel=="a_HLC_MM2")
-  a_HLC_MM2(); // GOOD
-  // ------------------------------------------------------- //
+  a_HLC_MM2();
+  // ------------------------------------------------------------------------ //
 
-  // ----------- SKILLS ----------- //
-  // 1 minute autonomous            //
-  // Skills Autonomous              //
+  // ----- SKILLS ----------------------------------------------------------- //
+  // 1 minute autonomous                                                      //
+  // Skills Autonomous                                                        //
   else if(autoSel=="Skills")
     A_SKILLS_JANUARY_FEBRUARY_2021();
-  // ------------------------------ //
+  // ------------------------------------------------------------------------ //
 
-  // ----------- DEFAULT ----------- //
-  // If there is no auto selected    //
-  // Run the default autonomous      //
+  // ----- DEFAULT ---------------------------------------------------------- //
+  // If there is no auto selected                                             //
+  // Run the default autonomous                                               //
   else
   A_SKILLS_JANUARY_FEBRUARY_2021();
-
-  // ------------------------------- //
+  // ------------------------------------------------------------------------ //
 }
 
 
@@ -131,19 +128,14 @@ void autonomous() {
 // Run the robot based on joystick and button inputs//
 // Display Odometry details.                        //
 void opcontrol() {
-  drive->setState({27_in,13_in,-90_deg});   //Set the state for odometry
 // Continually update the screen to show OdomDebug information.
 while(!ballIn()){pros::delay(10);}
-
   while(true){
-
     // get the subsystems on the robot
     setDeliveryMotor();
     setIntakeMotors();
     setLiftMotor();
     setDriveMotors(1.5);
-
-    // Utilize the remaining Controller Buttonns
     extraDriver();
 
     pros::delay(10); //wait for motors to update

@@ -46,12 +46,12 @@ void a_HRC_HMC_HLC(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
-  setLift(127);
-  DriveCoordShort(115,30,136,1);  // Line up with the Home right Goal
+  DriveCoordShort(113.4,34,141,1);  // Line up with the Home right Goal
   setIntake(-127);
-  setLift(0);
+  setLift(127);
   setDelivery(20);
   pros::delay(800);
+  setLift(0);
   setIntake(80);
   maxSpeed=80;
   DriveCoordShort(125,17,135,1);  // Drive into the Home right Goal

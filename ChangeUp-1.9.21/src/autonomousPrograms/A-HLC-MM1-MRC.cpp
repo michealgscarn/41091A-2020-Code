@@ -44,12 +44,11 @@ void a_HLC_MM1_MRC(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
+  DriveCoordShort(29,33,-133,1);  // Line up with the Home right Goal
   setLift(127);
-  DriveCoordShort(27,30.3,-135.4,1);  // Line up with the Home right Goal
-  setLift(0);
   setIntake(-127);  // Unfold Intake
-  setDelivery(20);  // Unfold Delivery
   pros::delay(800); // Wait for Intake and Delivery
+  setLift(0);
   setIntake(80);  // Spin Intake to pick up Balls
   maxSpeed=100;  // Drive Slowly into Goals
   DriveCoordShort(12,16,-135.6,0.75);  // Drive into the Home right Goal

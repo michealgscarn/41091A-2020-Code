@@ -41,12 +41,12 @@ void a_HRC_MM2(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
+  DriveCoordShort(113.4,34,141,1);  // Line up with the Home right Goal
   setLift(127);
-  DriveCoordShort(115,30,133,1);  // Line up with the Home right Goal
   setIntake(-127);
-  setLift(0);
   setDelivery(20);
   pros::delay(800);
+  setLift(0);
   setIntake(80);
   maxSpeed=80;
   DriveCoordShort(125,17,133,1);  // Drive into the Home right Goal
