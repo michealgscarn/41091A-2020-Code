@@ -253,6 +253,8 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   DriveCoordShort(119,21,137,0.55);    //Line up with goal
   pros::delay(200);   //Wait a bit
   setIntake(0);   //Stop running intake
+  setDelivery(-40);
+  setLift(-40);
   // pros::Task dfdsfss(cycleScoreSetup);
   DriveCoordShort(137,10,135,0.5);    //Drive into goal
 
@@ -278,11 +280,11 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   setIntake(-127);   //Run intake in reverse
   setLift(-30);   //Stop running lift
   setDelivery(-30);
-  DriveCoordShortNoPID(75,64.5,270,0.35);    //Drive in front of goal
-  DriveCoordShortNoPID(92,65,270,0.35);    //Drive in front of goal
-  DriveCoordShortNoPID(75,65,270,0.35);    //Drive in front of goal
-  DriveCoordShortNoPID(92,65,270,0.35);    //Drive in front of goal
-  DriveCoordShortNoPID(75,65,270,0.35);    //Drive in front of goal
+  DriveCoordShortNoPID(75,64.5,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(94,65,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(75,65,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(94,65,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(75,65,270,0.5);    //Drive in front of goal
 
   DriveCoordShort(81.5,56.5,318,0.7);   // Line up to shoot
   setIntake(0);

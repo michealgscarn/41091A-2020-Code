@@ -185,7 +185,6 @@ std::array<double,2> resetVals(int wall) {
   double angXY = fabs(thetaVal); // Angle of Triangle / 90 minus
 
   // ----- SOLVE BASE LENGTH / GET X/Y ----- //
-  // XYVal = getXYVal(hypoXY, angXY)-1;
   XYVal=getXYVal(hypoXY,angXY);
 
   // ----- COMPRESS INFORMATION ----- //
@@ -202,19 +201,26 @@ std::array<double,2> resetVals(int wall) {
 }
 
 
+void turnToAllign(){
+  while(true){
+    setDrive(-40,-40,40,40);
+    pros::delay(100);
+    setDrive(40,40,-40,-40);
+    pros::delay(100);
+  }
+}
 
 void quickAlign(double currXY, int wall) {
   std::array<double,2> tempNew = resetVals(wall); // Check to see if the new suffices
   int resetTimeout = pros::millis() + 1000;
-
-  while(!(!(tempNew[0] < currXY-5) & !(tempNew[0] > currXY+5)) & (pros::millis() < resetTimeout)){  // Loop until there is a real reset value
+  pros::Task TurnToAllign(turnToAllign);
+  while(!(tempNew[0] > currXY-500) & (tempNew[0] < currXY+500)){  // Loop until there is a real reset value
     tempNew = resetVals(wall);  // Get new values for reset
     pros::delay(10);
   }
-  if(!(tempNew[0] < currXY-5) & !(tempNew[0] > currXY+5)){
-    if(wall==1 || wall==3)
-      drive->setState({ tempNew[0]*1_in , drive->getState().y , radToDeg(tempNew[1])*1_deg});
-    else
-      drive->setState({drive->getState().x , tempNew[0]*1_in , radToDeg(tempNew[1])*1_deg});
-    }
+  TurnToAllign.suspend();
+  if(wall==1 || wall==3)
+    drive->setState({ tempNew[0]*1_in , drive->getState().y , radToDeg(tempNew[1])*1_deg});
+  else
+    drive->setState({drive->getState().x , tempNew[0]*1_in , radToDeg(tempNew[1])*1_deg});
 }

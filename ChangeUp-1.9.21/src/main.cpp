@@ -27,7 +27,7 @@ void initialize() {
   pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
   pros::Task controllerVibrate(controllerVibrateTemp);  // Start Controller vibration to see info
   // ----- Brain ----- //
-  pros::Task brainDisplay(brainDisplayTemp); // Display information to the Brain
+  pros::Task brainDisplay(brainDisplayGrid); // Display information to the Brain
   // ----- Ball Updates ----- //
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
   // pros::Task ballExitUpdate(ballExitCountTask); // Update ball count since the start of the program
@@ -58,6 +58,7 @@ void disabled() {
 // The robot drives on its own.                 //
 // Starts autnomous from a chosen autonomous.   //
 void autonomous() {
+
   // ----- HOME LEFT CYCLE + CENTER + MIDDLE RIGHT CYCLE -------------------- //
   // 15 second autonomous                                                     //
   // Used when partner consistantly scores in Home Left and Home Right        //

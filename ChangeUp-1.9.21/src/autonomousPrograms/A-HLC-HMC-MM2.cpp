@@ -73,16 +73,16 @@ void a_HLC_HMC_MM2(){
   // ----- Ball 1 ----- //
   maxSpeed=500; // Speed up the Robot
   DriveCoordShort(57,29,-210,1); // Line up with the Home middle Goal
-  DriveCoordShort(34,44,-5,2); // Line up with the ball 1
+  DriveCoordShort(34,44,-7,2); // Line up with the ball 1
   while(ballFiltering()){pros::delay(10);}    //Filter the ball
   setIntake(127); // Spin Intake forward to pick up Ball
   setLift(90); // Stop scoring
-  DriveCoordShort(37,57.5,0,0.8); // Pick up ball
+  DriveCoordShort(37,60,-7,0.8); // Pick up ball
   while(!ballIn()){pros::delay(10);}
 
   // ----- Ball 2 ---- //
   setIntake(-10);  //
-  DriveCoordShort(57,61.5,22,1.2); // Push in ball 2
+  DriveCoordShort(57,63,22,1.2); // Push in ball 2
   DriveCoordShort(50,50,43,0.9); // Back away from goal
   setDelivery(-10);
   setLift(-10);
