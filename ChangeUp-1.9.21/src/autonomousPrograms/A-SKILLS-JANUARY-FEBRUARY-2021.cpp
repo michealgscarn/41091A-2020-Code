@@ -105,8 +105,10 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   // setLift(60); // Stop the Lift
   setDelivery(0); // Stop the Delivery
   DriveCoordShort(21.9,21.8,-130.5,0.9);  // Line up with goal
+  setLift(-40);
+  setDelivery(-40);
   setIntake(0); // Stop the Intake
-  DriveCoordShort(10,10,-131.4,0.5);  // Drive into Goal
+  DriveCoordShort(9,9,-131.4,0.8);  // Drive into Goal
   cycleScoreCorner(2,3,2);
 
 // ---------- GOAL 2 ---------- //
@@ -125,13 +127,13 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   setLift(0);  // Start running lift
   setLift(90);  // Start running lift
   setIntake(80); // Run intake forward to pick up a ball
-  DriveCoordShort(19,75,-88,1); // Drive into goal
+  DriveCoordShort(19,70,-88,1); // Drive into goal
   cycleScore(2,3,2);
 
 // ---------- GOAL 3 ---------- //
   // ----- Ball 1 ----- //
   DriveCoordShort(27,75.8,-90,0.5); // Back away from goal
-  DriveCoordShort(37,95,4.3,1.35); // Line up with ball
+  DriveCoordShort(34,95,4.3,1.35); // Line up with ball
   stopFilter=true;
   setDelivery(0); //Stop running delivery
   setIntake(127); //Start running intake forward to pick up ball
@@ -175,13 +177,13 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
 
   // ----- Goal ---- //
   setIntake(10);  // Run intake in reverse
-  DriveCoordShort(74,119,-3,1.25); // Drive into Goal
+  DriveCoordShort(72,119,-3,1.25); // Drive into Goal
   cycleScore(1,3,1);
 
 // ---------- GOAL 5 ---------- //
   // ----- Ball 1 ----- //
   DriveCoordShort(72.8,110,-3,0.9); // Drive away from Goal
-  DriveCoordShort(87,116,91,1.7); // Line up with Ball
+  DriveCoordShort(86,120,91,1.7); // Line up with Ball
   setLift(127);  // Stop running lift
   QLength preState2=drive->getState().y;
   quickAlignNorthEast("Y"); // Reset X and Theta position
@@ -193,17 +195,18 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   setLift(127);  // Stop running lift
   setDelivery(0); // Stop running delivery
   stopFilter=true;
-  DriveCoordShort(106,116,93,0.9);  // Pick up Ball
+  DriveCoordShort(104,116,93,0.9);  // Pick up Ball
 
   // ----- Ball 2 ----- //
   DriveCoordShort(117,108.5,93,0.8); // Line up with Ball
-  DriveCoordShort(127,108.5,93,0.9); // Pick up Ball
+  DriveCoordShort(127,108.5,93,0.8); // Pick up Ball
+  setLift(60);
 
   // ----- Goal ----- //
   DriveCoordShort(121,121,45,0.8); // Line up with Goal
-  // pros::delay(250);
   setIntake(0);
   setLift(0);
+  // pros::delay(250);
   // pros::Task setUpGoal5(cycleScoreSetup);
   DriveCoordShort(129.5,130.5,50,0.75); // Drive into Goal
   cycleScoreCorner(2,3,2);
@@ -212,20 +215,20 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
 // ---------- GOAL 6 ---------- //
   // ----- Ball 1 ----- //
   DriveCoordShort(116,116,45,1); // Drive from Goal
-  DriveCoordShort(96,95,182,1.55); // Line up with Ball
+  DriveCoordShort(94,97,182,1.55); // Line up with Ball
   setIntake(127);    //Run intake in reverse
   setDelivery(0);   //Stop running delivery
   setLift(127);   //Stop running lift
   DriveCoordShort(93,72.5,180,0.75); // Pick up Ball
 
   // ----- Ball 2 ----- //
-  DriveCoordShort(92.5,73,93.5,0.9); // Line up with Ball
+  DriveCoordShort(92.5,76,90,0.9); // Line up with Ball
 
   // ----- Goal ----- //
   // pros::Task setUpGoal6(cycleScoreSetup);
   setLift(0);
   setIntake(80);
-  DriveCoordShort(124,73,92,1); // Drive into Goal
+  DriveCoordShort(124,76,90,1); // Drive into Goal
   cycleScore(2,2.25,2); // Cycle 1 Ball while Filtering Blue
 
   // ---------- GOAL 7 ---------- //
@@ -256,10 +259,10 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   setDelivery(-40);
   setLift(-40);
   // pros::Task dfdsfss(cycleScoreSetup);
-  DriveCoordShort(137,10,135,0.5);    //Drive into goal
+  DriveCoordShort(136,11,135,0.5);    //Drive into goal
 
   //-----Score in Goal-----//
-  cycleScoreCorner(2,3,1);
+  cycleScoreCorner(2,3,2);
   DriveCoordShort(116,30,145,1); //Back away from goal
 
 // ---------- Goal 8 (Center) ---------- //
@@ -280,11 +283,11 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   setIntake(-127);   //Run intake in reverse
   setLift(-30);   //Stop running lift
   setDelivery(-30);
-  DriveCoordShortNoPID(75,64.5,270,0.5);    //Drive in front of goal
-  DriveCoordShortNoPID(94,65,270,0.5);    //Drive in front of goal
-  DriveCoordShortNoPID(75,65,270,0.5);    //Drive in front of goal
-  DriveCoordShortNoPID(94,65,270,0.5);    //Drive in front of goal
-  DriveCoordShortNoPID(75,65,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(75,63,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(94,63,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(75,63,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(94,63,270,0.5);    //Drive in front of goal
+  DriveCoordShortNoPID(75,63,270,0.5);    //Drive in front of goal
 
   DriveCoordShort(81.5,56.5,318,0.7);   // Line up to shoot
   setIntake(0);
@@ -306,7 +309,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   setLift(0);   //Start running lift
   DriveCoordShort(72,28,180,1.2);    //Line up with goal
   setIntake(0);   //Stop running intake
-  DriveCoordShort(72,18,180,0.5);    //Drive into goal
+  DriveCoordShort(76,17,178,0.5);    //Drive into goal
 
   // ----- Score in Goal ----- //
   cycleScore(2,3,1);
