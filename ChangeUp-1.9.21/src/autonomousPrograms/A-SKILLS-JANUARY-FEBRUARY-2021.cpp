@@ -199,7 +199,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
 
   // ----- Ball 2 ----- //
   DriveCoordShort(117,108.5,93,0.8); // Line up with Ball
-  DriveCoordShort(127,108.5,93,0.8); // Pick up Ball
+  DriveCoordShort(125,108.5,93,0.8); // Pick up Ball
   setLift(60);
 
   // ----- Goal ----- //
@@ -208,7 +208,7 @@ void A_SKILLS_JANUARY_FEBRUARY_2021(){
   setLift(0);
   // pros::delay(250);
   // pros::Task setUpGoal5(cycleScoreSetup);
-  DriveCoordShort(129.5,130.5,50,0.75); // Drive into Goal
+  DriveCoordShort(130.5,131.5,50,0.75); // Drive into Goal
   cycleScoreCorner(2,3,2);
 
 

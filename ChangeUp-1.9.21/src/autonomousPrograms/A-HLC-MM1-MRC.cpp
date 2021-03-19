@@ -78,7 +78,7 @@ void a_HLC_MM1_MRC(){
   left_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   right_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   right_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  DriveCoordShort(125,61.5,50,0.75); // Drive into the Middle Right Goal
+  DriveCoordShort(125,62,50,0.75); // Drive into the Middle Right Goal
   setDrive(0,0,0,0);
   filter=false;
   cycleScore(3,3,1);  // Cycle Middle Right Goal

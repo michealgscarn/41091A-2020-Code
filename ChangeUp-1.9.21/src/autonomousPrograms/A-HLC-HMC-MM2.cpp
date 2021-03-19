@@ -62,6 +62,7 @@ void a_HLC_HMC_MM2(){
   maxSpeed=500; // Speed up the Robot
   DriveCoordShort(57,31,-210,1.75); // Line up with the Home middle Goal
   while(ballFiltering()){pros::delay(10);}
+  stopFilter=true;
   maxSpeed=300; // Slow down the Robot
   setLift(0);
   setDelivery(0);
@@ -78,6 +79,7 @@ void a_HLC_HMC_MM2(){
   maxSpeed=500;
   DriveCoordShort(33,46,-2,1.9); // Line up with the ball 1
   while(ballFiltering()){pros::delay(10);}    //Filter the ball
+  stopFilter=true;
   setIntake(127); // Spin Intake forward to pick up Ball
   setLift(90); // Stop scoring
   DriveCoordShort(34,59,-5,0.8); // Pick up ball

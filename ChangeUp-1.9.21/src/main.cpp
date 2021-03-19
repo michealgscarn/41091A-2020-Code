@@ -27,7 +27,7 @@ void initialize() {
   pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
   pros::Task controllerVibrate(controllerVibrateTemp);  // Start Controller vibration to see info
   // ----- Brain ----- //
-  pros::Task brainDisplay(brainDisplayGrid); // Display information to the Brain
+  pros::Task brainDisplay(brainDisplayTemp); // Display information to the Brain
   // ----- Ball Updates ----- //
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
   // pros::Task ballExitUpdate(ballExitCountTask); // Update ball count since the start of the program
