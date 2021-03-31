@@ -73,6 +73,7 @@ void bButton(){
 // Commands run in driver Control.                          //
 void yButton(){
   if(controller.get_digital(DIGITAL_Y)){
+    quickAlign("X");
   }
 }
 
@@ -82,7 +83,7 @@ void yButton(){
 // Commands run in driver Control.                          //
 void xButton(){
   if(controller.get_digital(DIGITAL_X)){
-    quickAlign(24,1);
+    quickAlign(24,0);
   }
 }
 

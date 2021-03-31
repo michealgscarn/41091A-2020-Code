@@ -100,8 +100,8 @@ void brainDisplayAlign(){
   pros::lcd::initialize();  //initialize Brain screen so we can see info later
   while(true){ // Loop infinitly
     pros::lcd::print(0,"41091A Revelation"); // Print Title on line 1
-    pros::lcd::print(1,"Front Distance:%f",leftTrackFront.get()*0.0393701+5.125); // Print the distance between the front distance sensor and wall on line 2.
-    pros::lcd::print(2,"Back Distance: %f",leftTrackBack.get()*0.0393701+5.375); // Print the distance between the back distance sensor and wall on line 3.
+    pros::lcd::print(1,"Front Distance:%f",frontTrackLeft.get()*0.0393701+5.125); // Print the distance between the front distance sensor and wall on line 2.
+    pros::lcd::print(2,"Back Distance: %f",frontTrackRight.get()*0.0393701+5.375); // Print the distance between the back distance sensor and wall on line 3.
     pros::lcd::print(3,"Theta:         %f",drive->getState().theta.convert(degree)); // Print the Theta on line 4.
     pros::lcd::print(4,"X:             %f",drive->getState().x.convert(inch)); // Print the X value on line 5.
     pros::lcd::print(5,"Y:             %f",drive->getState().y.convert(inch)); // Print the Y value on line 6.

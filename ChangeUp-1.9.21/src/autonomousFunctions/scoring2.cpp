@@ -55,7 +55,7 @@ void cycleScoreFilter(){
 // Does only filters final ball.                 //
 void cycleScoreNoIntake(int cycleBall,double cycleTime, int startBallCount){
   if(startBallCount==1)
-    setLift(95);  // Lift Balls to Deliver
+    setLift(80);  // Lift Balls to Deliver
   if(startBallCount==2)
     setLift(75);  // Lift Balls to Deliver
   setDelivery(127); // Shoot Balls into Goal

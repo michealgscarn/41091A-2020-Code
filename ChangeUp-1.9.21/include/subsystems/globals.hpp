@@ -28,6 +28,8 @@ extern pros::Optical topColor;   //Top color sensor
 
 extern pros::Distance leftTrackBack;
 extern pros::Distance leftTrackFront;
+extern pros::Distance frontTrackLeft;
+extern pros::Distance frontTrackRight;
 extern pros::Distance frontTrack;
 extern pros::Distance ballDetectBottom;
 

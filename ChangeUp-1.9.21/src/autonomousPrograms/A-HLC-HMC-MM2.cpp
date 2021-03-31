@@ -48,12 +48,8 @@ void a_HLC_HMC_MM2(){
 
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
+  pros::Task Ayup(deploy);
   DriveCoordShort(29,33,-133,1);  // Line up with the Home right Goal
-  setLift(80);
-  setIntake(-127);  // Unfold Intake
-  pros::delay(800); // Wait for Intake and Delivery
-  setLift(0);
-  setIntake(80);  // Spin Intake to pick up Balls
   maxSpeed=200;  // Drive Slowly into Goals
   DriveCoordShort(14,17,-133,0.75);  // Drive into the Home right Goal
   cycleScore(3,2.75,1);  // Cycle Goal until opposing ball is picked up

@@ -62,15 +62,16 @@ pros::Optical topColor(7);
 // 2  - Back Reset Distance                   //
 // 17 - Heading Distance                      //
 pros::Distance leftTrackFront(15);
-pros::Distance leftTrackBack(1);
-pros::Distance frontTrack(5);
+pros::Distance leftTrackBack(3);
+pros::Distance frontTrackLeft(20);
+pros::Distance frontTrackRight(1);
 
 
 // ---------------- LIMIT SWITCH ---------------- //
 // Filter checker                                 //
-pros::ADIDigitalIn bottomLimit ({18,'A'});
+pros::ADIDigitalIn bottomLimit ({19,'A'});
 pros::ADIDigitalIn topLimit ('B');
-pros::ADIDigitalIn primaryLimit ({18,'D'});
+pros::ADIDigitalIn primaryLimit ({19,'D'});
 
 
 // ---------------- LINE FOLLOWER ---------------- //
@@ -107,7 +108,7 @@ std::shared_ptr<OdomChassisController> drive = ChassisControllerBuilder()
     {0.00095, 0.00001, 0.00000}, // Forward PID Gais
     {0.0032, 0.000025, 0.00000}, // Angle PID Gains
     {0.0003, 0.0000, 0.00000}) // Turn PID Gains
-  .withDimensions(AbstractMotor::gearset::green, {{2.75_in,8.717107370554096_in, 5.338156430029729_in, 2.75_in}, quadEncoderTPR})
+  .withDimensions(AbstractMotor::gearset::green, {{2.75_in,8.656577566605674_in, 5.338156430029729_in, 2.75_in}, quadEncoderTPR})
   .withOdometry(StateMode::CARTESIAN) // Coordinate System
   .buildOdometry(); // Build the chassis with Odometry
 

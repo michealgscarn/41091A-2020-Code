@@ -27,7 +27,7 @@ void initialize() {
   pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
   pros::Task controllerVibrate(controllerVibrateTemp);  // Start Controller vibration to see info
   // ----- Brain ----- //
-  pros::Task brainDisplay(brainDisplayTemp); // Display information to the Brain
+  pros::Task brainDisplay(brainDisplayAlign); // Display information to the Brain
   // ----- Ball Updates ----- //
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
   // pros::Task ballExitUpdate(ballExitCountTask); // Update ball count since the start of the program
@@ -84,7 +84,7 @@ void autonomous() {
   // 15 second autonomous                                                     //
   // Used when partner has no consistant auto                                 //
   else if(autoSel=="a_HRC_HMC_HLC")
-  a_HRC_HMC_HLC();
+  a_HRC_HMC_HLC_D();
   // ------------------------------------------------------------------------ //
 
   // ------ HOME LEFT CYCLE + HOME MIDDLE CYCLE + CENTER -------------------- //
@@ -130,7 +130,6 @@ void autonomous() {
 // Display Odometry details.                        //
 void opcontrol() {
 // Continually update the screen to show OdomDebug information.
-while(!ballIn()){pros::delay(10);}
   while(true){
     // get the subsystems on the robot
     setDeliveryMotor();

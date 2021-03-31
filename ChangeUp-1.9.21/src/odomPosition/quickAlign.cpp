@@ -31,14 +31,12 @@ double XYVal;
 // ------------------- baseA ------------------- //
 // Base of triangle used for Theta.              //
 // Set as the distance between distance sensors. //
-double baseA;
-
+double baseA=12.25;
 
 // -------------------------- heightA -------------------------- //
 // Height of triangle used for Theta.                            //
 // Set as the difference between front and back distance sensors.//
 double heightA;
-
 
 // ---------------------- sf ---------------------- //
 // Distance between front distance sensor and wall. //
@@ -48,6 +46,26 @@ double sf=0;
 // --------------------- sb --------------------- //
 // Distance between back distance snsor and wall. //
 double sb=0;
+
+
+// ---------------------- sf ---------------------- //
+// Distance between front distance sensor and wall. //
+double sfF=0;
+
+
+// --------------------- sb --------------------- //
+// Distance between back distance snsor and wall. //
+double sbF=0;
+
+
+// ---------------------- sf ---------------------- //
+// Distance between front distance sensor and wall. //
+double sfL=0;
+
+
+// --------------------- sb --------------------- //
+// Distance between back distance snsor and wall. //
+double sbL=0;
 
 
 // --------------- RADIANS TO DEGREES --------------- //
@@ -104,6 +122,84 @@ double getXYVal(double cVal, double BVal){
 }
 
 
+// --------------- RESET VALUES --------------- //
+//  Create an array of the new position generated//
+//  Gather data from distance sensors  
+std::array<double,3> resetVals(int wall) {
+
+  // ----- GET VALUES ----- //
+  sfL = leftTrackFront.get()*0.0393701+5.125; // Get distance front value
+  sbL = leftTrackBack.get()*0.0393701+5.375; // Get distance back value
+  sfF = frontTrackLeft.get()*0.0393701+7.25; // Get distance front value
+  sbF = frontTrackRight.get()*0.0393701+7.25; // Get distance back value
+
+  // ---------- THETA VALUE ---------- //
+  // ----- TRIANGLE FROM TRAPEZOID ----- //
+  double baseL=12.25;
+  double baseF=8.9375;
+
+  double heightL = sfL-sbL; // Height of the triangle / Difference between larger and smaller distance values
+  double heightF = sfF-sbF; // Height of the triangle / Difference between larger and smaller distance values
+
+  // ----- SOLVE TRIANGLE ANGLE / GET THETA ----- //
+  thetaVal = (getThetaVal(baseL,heightL));
+
+  // ---------- X/Y VALUE ---------- //
+  // ----- TRIANGE FOR X/Y VALUE ----- //
+  double hypoL = (sfL+sbL)/2;
+  double hypoF = (sfF+sbF)/2;
+
+  double angL = fabs(thetaVal); // Angle of Triangle / 90 minus
+  double angF = fabs(thetaVal); // Angle of Triangle / 90 minus
+
+  // ----- SOLVE BASE LENGTH / GET X/Y ----- //
+  double newL=getXYVal(hypoL,angL);
+  double newF=getXYVal(hypoF,angF);
+
+  // ----- COMPRESS INFORMATION ----- //
+  std::array<double,3> newPos = {newL,newF,thetaVal};  // Import new XY and Theta values into an array
+
+  // ----- CONVERT TO WALL ----- //
+  newPos[2]+=(wall-1)*1.5708; // Add 90 degrees to each following wall the robot is next to
+  if(wall==2 || wall==3)  // If the wall is either North or East
+    newPos[0] = 143-newPos[0]+0.95; // Reset XY accordinly
+  else  // If the walls are 1 or 4
+    newPos[0] = newPos[0]+0.95; // Reset XY accordinly
+
+  if(wall==1 || wall==2)  // If the wall is either North or East
+    newPos[1] = 143-newPos[1]+0.95; // Reset XY accordinly
+  else  // If the walls are 1 or 4
+    newPos[1] = newPos[1]+0.95; // Reset XY accordinly
+
+  newL=newPos[0];
+  newF=newPos[1];
+
+  if(wall==1 || wall==3){  // If the wall is either North or East
+    newPos[0] = newL; // Reset XY accordinly
+    newPos[1] = newF; // Reset XY accordinly
+  }
+  else{  // If the walls are 2 or 4
+    newPos[0] = newF; // Reset X accordinly
+    newPos[1] = newL; // Reset Y accordinly
+  }
+
+  return newPos;
+}
+
+void quickAlign(double currXY, int wall) {
+  std::array<double,3> tempNew = resetVals(wall); // Check to see if the new suffices
+  // int resetTimeout = pros::millis() + 1000;
+  // pros::Task TurnToAllign(turnToAllign);
+  while(!(tempNew[0] > currXY-500) & (tempNew[0] < currXY+500)){  // Loop until there is a real reset value
+    tempNew = resetVals(wall);  // Get new values for reset
+    pros::delay(10);
+  }
+  drive->setState({ tempNew[0]*1_in , tempNew[1]*1_in , radToDeg(tempNew[2])*1_deg});
+}
+
+
+
+
 void quickAlign(std::string XorY){
   // ----- GET VALUES ----- //
   sf = leftTrackFront.get()*0.0393701+5.125; // Get distance front value
@@ -127,9 +223,9 @@ void quickAlign(std::string XorY){
   XYVal=getXYVal(hypoXY,angXY);
 
   if(XorY=="X")
-    drive->setState({fabs(XYVal)*1_in+0.95_in,drive->getState().y,radToDeg(thetaVal)*1_deg});
+  drive->setState({fabs(XYVal)*1_in+0.95_in,drive->getState().y,radToDeg(thetaVal)*1_deg});
   else if(XorY=="Y")
-    drive->setState({drive->getState().x,fabs(XYVal)*1_in+0.95_in,thetaVal*1_deg});
+  drive->setState({drive->getState().x,fabs(XYVal)*1_in+0.95_in,thetaVal*1_deg});
 }
 
 
@@ -156,71 +252,94 @@ void quickAlignNorthEast(std::string XorY){
   XYVal=getXYVal(hypoXY,angXY);
 
   if(XorY=="X")
-    drive->setState({143_in-fabs(XYVal)*1_in+0.95_in,drive->getState().y,180_deg+radToDeg(thetaVal)*1_deg});
+  drive->setState({143_in-fabs(XYVal)*1_in+0.95_in,drive->getState().y,180_deg+radToDeg(thetaVal)*1_deg});
   else if(XorY=="Y")
-    drive->setState({drive->getState().x,143_in-fabs(XYVal)*1_in+0.95_in,90_deg+radToDeg(thetaVal)*1_deg});
+  drive->setState({drive->getState().x,143_in-fabs(XYVal)*1_in+0.95_in,90_deg+radToDeg(thetaVal)*1_deg});
 }
 
 // -------------------------------------- NEW CODE ------------------------------------------ //
 
+// double tempNew[3]={0,0,0};
+//
+// std::array<double,3> resetVals(int wall) {
+  //
+  //   // ----- GET VALUES ----- //
+  //   sfL = leftTrackFront.get()*0.0393701+5.125; // Get distance front value
+  //   sbL = leftTrackBack.get()*0.0393701+5.375; // Get distance back value
+  //   sfF = frontTrackLeft.get()*0.0393701+7.25; // Get distance front value
+  //   sbF = frontTrackRight.get()*0.0393701+7.25; // Get distance back value
+  //
+  //   // ---------- THETA VALUE ---------- //
+  //   // ----- TRIANGLE FROM TRAPEZOID ----- //
+  //   double baseL=12.25;
+  //   double baseF=8.9375;
+  //
+  //   double heightL = sfL-sbL; // Height of the triangle / Difference between larger and smaller distance values
+  //   double heightF = sfF-sbF; // Height of the triangle / Difference between larger and smaller distance values
+  //
+  //   // ----- SOLVE TRIANGLE ANGLE / GET THETA ----- //
+  //   thetaVal = (getThetaVal(baseL,heightL));
+  //
+  //   // ---------- X/Y VALUE ---------- //
+  //   // ----- TRIANGE FOR X/Y VALUE ----- //
+  //   double hypoXYL = (sfL+sbL)/2;
+  //   double hypoXYF = (sfF+sbF)/2;
+  //
+  //   double angXYL = fabs(thetaVal); // Angle of Triangle / 90 minus
+  //   double angXYF = fabs(thetaVal); // Angle of Triangle / 90 minus
+  //
+  //   // ----- SOLVE BASE LENGTH / GET X/Y ----- //
+  //   double tempnewL=getXYVal(hypoXYL,angXYL);
+  //   double tempnewF=getXYVal(hypoXYF,angXYF);
+  //
+  //   // ----- COMPRESS INFORMATION ----- //
+  //   std::array<double,3> resetXYTheta = {tempnewL,tempnewF,thetaVal};  // Import new XY and Theta values into an array
+  //
+  //   // ----- CONVERT TO WALL ----- //
+  //   resetXYTheta[2]+=(wall-1)*1.5708; // Add 90 degrees to each following wall the robot is next to
+  //   if(wall==2 || wall==3)  // If the wall is either North or East
+  //     resetXYTheta[0] = 143-resetXYTheta[0]+0.95; // Reset XY accordinly
+  //   else  // If the walls are 1 or 4
+  //     resetXYTheta[0] = resetXYTheta[0]+0.95; // Reset XY accordinly
+  //
+  //   if(wall==1 || wall==2)  // If the wall is either North or East
+  //     resetXYTheta[1] = 143-resetXYTheta[1]+0.95; // Reset XY accordinly
+  //   else  // If the walls are 1 or 4
+  //     resetXYTheta[1] = resetXYTheta[1]+0.95; // Reset XY accordinly
+  //
+  //   tempnewL=resetXYTheta[0];
+  //   tempnewF=resetXYTheta[1];
+  //
+  //   if(wall==1 || wall==3){  // If the wall is either North or East
+    //     resetXYTheta[0] = tempnewL; // Reset XY accordinly
+    //     resetXYTheta[1] = tempnewF; // Reset XY accordinly
+    //   }
+    //   else{  // If the walls are 2 or 4
+      //     resetXYTheta[0] = tempnewF; // Reset X accordinly
+      //     resetXYTheta[1] = tempnewL; // Reset Y accordinly
+      //   }
+      //
+      //   return resetXYTheta;
+      // }
 
 
-std::array<double,2> resetVals(int wall) {
+      void turnToAllign(){
+        while(true){
+          setDrive(-40,-40,40,40);
+          pros::delay(100);
+          setDrive(40,40,-40,-40);
+          pros::delay(100);
+        }
+      }
 
-  // ----- GET VALUES ----- //
-  sf = leftTrackFront.get()*0.0393701+5.125; // Get distance front value
-  sb = leftTrackBack.get()*0.0393701+5.375; // Get distance back value
-
-  // ---------- THETA VALUE ---------- //
-  // ----- TRIANGLE FROM TRAPEZOID ----- //
-  baseA = 12.25; // Distance between sensors
-  heightA = sf-sb; // Height of the triangle / Difference between larger and smaller distance values
-
-  // ----- SOLVE TRIANGLE ANGLE / GET THETA ----- //
-  thetaVal = getThetaVal(baseA,heightA);
-
-  // ---------- X/Y VALUE ---------- //
-  // ----- TRIANGE FOR X/Y VALUE ----- //
-  double hypoXY = (sf+sb)/2;
-  double angXY = fabs(thetaVal); // Angle of Triangle / 90 minus
-
-  // ----- SOLVE BASE LENGTH / GET X/Y ----- //
-  XYVal=getXYVal(hypoXY,angXY);
-
-  // ----- COMPRESS INFORMATION ----- //
-  std::array<double,2> resetXYTheta = {XYVal,thetaVal};  // Import new XY and Theta values into an array
-
-  // ----- CONVERT TO WALL ----- //
-  resetXYTheta[1]+=(wall-1)*90; // Add 90 to each following wall the robot is next to
-  if(wall==2 || wall==3)  // If the wall is either North or East
-    resetXYTheta[0] = 123-resetXYTheta[0]+0.95; // Take Subtract the length of the the field by X
-  else  // If the walls are 1 or 4
-    resetXYTheta[0] = resetXYTheta[0]+0.95; // Reset XY accordinly
-
-  return resetXYTheta; // Return new XY and Theta Values
-}
-
-
-void turnToAllign(){
-  while(true){
-    setDrive(-40,-40,40,40);
-    pros::delay(100);
-    setDrive(40,40,-40,-40);
-    pros::delay(100);
-  }
-}
-
-void quickAlign(double currXY, int wall) {
-  std::array<double,2> tempNew = resetVals(wall); // Check to see if the new suffices
-  int resetTimeout = pros::millis() + 1000;
-  pros::Task TurnToAllign(turnToAllign);
-  while(!(tempNew[0] > currXY-500) & (tempNew[0] < currXY+500)){  // Loop until there is a real reset value
-    tempNew = resetVals(wall);  // Get new values for reset
-    pros::delay(10);
-  }
-  TurnToAllign.suspend();
-  if(wall==1 || wall==3)
-    drive->setState({ tempNew[0]*1_in , drive->getState().y , radToDeg(tempNew[1])*1_deg});
-  else
-    drive->setState({drive->getState().x , tempNew[0]*1_in , radToDeg(tempNew[1])*1_deg});
-}
+      //
+      // void quickAlign(double currXY, int wall) {
+        //   std::array<double,3> tempNew = resetVals(wall); // Check to see if the new suffices
+        //   // int resetTimeout = pros::millis() + 1000;
+        //   // pros::Task TurnToAllign(turnToAllign);
+        //   while(!(tempNew[0] > currXY-500) & (tempNew[0] < currXY+500)){  // Loop until there is a real reset value
+          //     tempNew = resetVals(wall);  // Get new values for reset
+          //     pros::delay(10);
+          //   }
+          //   drive->setState({ tempNew[0]*1_in , tempNew[1]*1_in , radToDeg(tempNew[2])*1_deg});
+          // }

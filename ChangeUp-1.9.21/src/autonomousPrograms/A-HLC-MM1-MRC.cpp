@@ -45,11 +45,7 @@ void a_HLC_MM1_MRC(){
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
   DriveCoordShort(29,33,-133,1);  // Line up with the Home right Goal
-  setLift(127);
-  setIntake(-127);  // Unfold Intake
-  pros::delay(800); // Wait for Intake and Delivery
-  setLift(0);
-  setIntake(80);  // Spin Intake to pick up Balls
+  deploy();
   maxSpeed=100;  // Drive Slowly into Goals
   DriveCoordShort(12,16,-135.6,0.75);  // Drive into the Home right Goal
   cycleScore(3,5,1);  // Cycle Goal until opposing ball is picked up
@@ -62,7 +58,7 @@ void a_HLC_MM1_MRC(){
     DriveCoordShort(25,25,-141.7,0.75); // Back away from Goal
     maxSpeed=500;
     setIntake(-20); // Spin in Reverse to Push ball into middle
-    DriveCoordShort(58,57,-3.5,2); // Push Ball into Center Goal
+    DriveCoordShort(60,63,-3.5,2.2); // Push Ball into Center Goal
 
 // ---------- GOAL 3 ---------- //
   // ----- Ball & Goal ----- //
@@ -78,7 +74,7 @@ void a_HLC_MM1_MRC(){
   left_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   right_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   right_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  DriveCoordShort(125,62,50,0.75); // Drive into the Middle Right Goal
+  DriveCoordShort(126,65,50,0.75); // Drive into the Middle Right Goal
   setDrive(0,0,0,0);
   filter=false;
   cycleScore(3,3,1);  // Cycle Middle Right Goal
