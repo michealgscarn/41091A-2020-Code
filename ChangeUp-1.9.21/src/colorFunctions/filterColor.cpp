@@ -45,9 +45,6 @@ void FilterBall(std::string alliance, int deltaBallCount){
     }
     if(ballState=="detected")//Check to see if ball has been detected
       ballState="held";//...Mark the ball as held
-    // if(ballDetectBottom.get()>60){//If there are no balls in the robot
-    //   ballState="none";//... update the robot to no balls
-    // }
     if(!ballIn())//If there are no balls in the robot
       ballState="none";//... update the robot to no balls
     if(ballIn()&(ballState=="none")){//If a ball comes in for the first time
