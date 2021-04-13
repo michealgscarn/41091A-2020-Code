@@ -1,3 +1,3 @@
 #include "main.h"
 
-void a_HLC_MM2();
+void a_HRC_HMC();

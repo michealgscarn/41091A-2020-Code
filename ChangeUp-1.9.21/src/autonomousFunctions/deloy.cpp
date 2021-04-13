@@ -8,7 +8,7 @@ void deploy(){
   setDelivery(20);
   while(ballIn()){pros::delay(10);}
   setLift(80);
-  pros::delay(600);
+  pros::delay(800);
   setLift(0);
   setIntake(80);
 }

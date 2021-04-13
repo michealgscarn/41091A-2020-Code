@@ -61,7 +61,7 @@ void a_HRC_HMC_HLC(){
   setLift(0);
   setDelivery(0);
   setIntake(0);
-  DriveCoordShort(75,21,210,0.9); // Drive into the Home middle Goal
+  DriveCoordShort(72,21,205,0.9); // Drive into the Home middle Goal
   cycleScore(2,4,1);
 
 // ---------- GOAL 3 ---------- //
@@ -69,9 +69,8 @@ void a_HRC_HMC_HLC(){
   setDelivery(0); // Stop scoring
   setLift(0); // Stop scoring
   maxSpeed=500; // Speed up the Robot
-  DriveCoordShort(72,40,180,2); // Back away from the Home middle Goal
-  DriveCoordShort(25,35,228,2); // Line up with the Home left Goal
-  // DriveCoordShort(27,35,228,0.75); // Line up with the Home left Goal
+  DriveCoordShort(72,40,180,1); // Back away from the Home middle Goal
+  DriveCoordShort(25,35,228,1.5); // Line up with the Home left Goal
   setIntake(50); // Spin Intake forward to pick up Ball
 
   // ----- Goal ----- //
@@ -79,6 +78,8 @@ void a_HRC_HMC_HLC(){
   DriveCoordShort(8,19,228,0.75); // Drive into Home left Goal
   filter=false;
   cycleScore(3,2.25,1);  // Score until picked up ball has reached the top of Robot
+  pros::delay(10);
+  setDelivery(127);
 
   maxSpeed=1000;  // GOT TO GO FAST
   DriveCoordShort(27,35.6,232,1); // Back away from Goal

@@ -56,55 +56,55 @@ void a_HLC_MM1_MRC(){
     resetY=22;  // Set Y postion
     pros::Task lo(lineReset); // Begin line reset
     // pros::delay(1000000);
-    DriveCoordShort(35,52,0,2);
-    while(ballFiltering()){pros::delay(10);}    //Filter the ball
-    stopFilter=true;
-    setIntake(127); // Spin Intake forward to pick up Ball
-    setLift(90); // Stop scoring
-    DriveCoordShort(35,64,0,2);
-    setIntake(-10);
+    // DriveCoordShort(35,52,0,2);
+    // while(ballFiltering()){pros::delay(10);}    //Filter the ball
+    // stopFilter=true;
+    // setIntake(127); // Spin Intake forward to pick up Ball
+    // setLift(90); // Stop scoring
+    // DriveCoordShort(35,64,0,2);
+    // setIntake(-10);
     DriveCoordShort(59,64,3,2);
-    setIntake(127);
-    setLift(0);
-    DriveCoordShort(59,53,0,2);
-    DriveCoordShort(70,53,0,2);
-    DriveCoordShort(71,59,0,2);
-    setIntake(0);
-    while(pros::millis()<startTime+14250){pros::delay(10);} // Wait until the last second to shoot
-    setDelivery(127); // Spin Delivery to score Ball
-    setLift(127); // Spin Lift to score Ball
-    pros::delay(750); // Wait for Ball to score
-    setLift(0);
-    setDelivery(0);
-//     DriveCoordShort(25,25,-141.7,0.75); // Back away from Goal
-//     maxSpeed=500;
-//     setIntake(-20); // Spin in Reverse to Push ball into middle
-//     DriveCoordShort(60,63,-3.5,2.2); // Push Ball into Center Goal
-//
-// // ---------- GOAL 3 ---------- //
-//   // ----- Ball & Goal ----- //
-//   DriveCoordShort(40,45,79.9,1.4); // Back away from Goal
-//   maxSpeed=150;
-//
-//   DriveCoordShort(109.8,54,90,1.8); // Line up with Middle Right Goal
-//   DriveCoordShort(119.0,54,43.6,0.8);  // Get ready to cycle Middle Right Goal
-//
-//   setIntake(127);
-//   maxSpeed=100; //  Slow down the Robot for Precision
-//   left_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-//   left_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-//   right_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-//   right_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-//   DriveCoordShort(126,65,50,0.75); // Drive into the Middle Right Goal
-//   setDrive(0,0,0,0);
-//   filter=false;
-//   cycleScore(3,3,1);  // Cycle Middle Right Goal
-//   cycleScoreSide(1,3,1);  // Cycle Middle Right Goal
-//
-//   maxSpeed=500; // Speed up the Robot
-//   pros::delay(1);
-//   setIntake(-127);  // Prevent picking up alliance ball
-//   setLift(0); // Stop Lift
-//   setDelivery(0); // Stop Delivery
-//   DriveCoordShort(119,53,43.6,2);  // Get ready to cycle Middle Right Goal
+    // setIntake(127);
+    // setLift(0);
+    // DriveCoordShort(59,53,0,2);
+    // DriveCoordShort(70,53,0,2);
+    // DriveCoordShort(71,59,0,2);
+    // setIntake(0);
+    // while(pros::millis()<startTime+14250){pros::delay(10);} // Wait until the last second to shoot
+    // setDelivery(127); // Spin Delivery to score Ball
+    // setLift(127); // Spin Lift to score Ball
+    // pros::delay(750); // Wait for Ball to score
+    // setLift(0);
+    // setDelivery(0);
+    DriveCoordShort(25,25,-141.7,0.75); // Back away from Goal
+    maxSpeed=500;
+    setIntake(-20); // Spin in Reverse to Push ball into middle
+    DriveCoordShort(60,63,-3.5,2.2); // Push Ball into Center Goal
+
+// ---------- GOAL 3 ---------- //
+  // ----- Ball & Goal ----- //
+  DriveCoordShort(40,45,79.9,1.4); // Back away from Goal
+  maxSpeed=150;
+
+  DriveCoordShort(109.8,54,90,1.8); // Line up with Middle Right Goal
+  DriveCoordShort(119.0,54,43.6,0.8);  // Get ready to cycle Middle Right Goal
+
+  setIntake(127);
+  maxSpeed=100; //  Slow down the Robot for Precision
+  left_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  left_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_fr_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  right_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  DriveCoordShort(126,65,50,0.75); // Drive into the Middle Right Goal
+  setDrive(0,0,0,0);
+  filter=false;
+  cycleScore(3,3,1);  // Cycle Middle Right Goal
+  cycleScoreSide(1,3,1);  // Cycle Middle Right Goal
+
+  maxSpeed=500; // Speed up the Robot
+  pros::delay(1);
+  setIntake(-127);  // Prevent picking up alliance ball
+  setLift(0); // Stop Lift
+  setDelivery(0); // Stop Delivery
+  DriveCoordShort(119,53,43.6,2);  // Get ready to cycle Middle Right Goal
 }

@@ -8,7 +8,7 @@ using namespace okapi;
  |_| \_\\___| \__,_||_||_| \__, ||_| |_|
                            |___/
 Created on 1/1/2021 by Logan and Taylor
-Last Updated 1/28/2021 by Logan
+Last Updated 3/26/2021 by Logan
 
 Quickly reset the Robot's position using the left wall from the Robot
 Uses the Front and Back Reset Distance Sensors to calculate the Robots real
@@ -196,3 +196,6 @@ void quickAlign(double currXY, int wall) {
   }
   drive->setState({ tempNew[0]*1_in , tempNew[1]*1_in , radToDeg(tempNew[2])*1_deg});
 }
+
+void quickAlign(std::string XorY){};
+void quickAlignNorthEast(std::string XorY){};

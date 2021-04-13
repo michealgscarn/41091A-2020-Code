@@ -8,7 +8,7 @@ using namespace okapi;
  /_/   \_\\__,_| \__|\___/     |____/ |_|   |_|  \_/  \___|
 
 Created on 8/14/2020 by Taylor and Logn
-Last updated on 1/17/2021 by Logan
+Last updated on 1/22/2021 by Logan
 
 -----------------------------------------------------------------------------*/
 
@@ -16,7 +16,7 @@ Last updated on 1/17/2021 by Logan
 // Set the maximum speed given to the motors //
 // Higher the speed, quicker the bot moves.  //
 // 200 - Normal Speed / Preset.              //
-// 500 - Highest Speed before inconsistent.  //
+// 600 - Highest Speed before inconsistent.  //
 double maxSpeed = 200;
 
 //Convert Degrees to Radians
@@ -214,7 +214,7 @@ void DriveCoordShortNoPID(double xCoord, double yCoord, double angle, double tim
   double lastTime=pros::millis();
 
   //Define PID attributes across the X axis
-  double xP = 15;
+  double xP = 12;
   double xI = 0.001;
   double xD = 0;
   double xError = xCoord;
@@ -223,7 +223,7 @@ void DriveCoordShortNoPID(double xCoord, double yCoord, double angle, double tim
   double xSpeed;
 
   //Define PID attributes across the Y axis
-  double yP = 15;
+  double yP = 16;
   double yI = 0.001;
   double yD = 0;
   double yError = yCoord;
@@ -232,7 +232,7 @@ void DriveCoordShortNoPID(double xCoord, double yCoord, double angle, double tim
   double ySpeed;
 
   //Define PID attributes for Turning
-  double aP = 10;
+  double aP = 6;
   double aI = 0;
   double aD = 0;
   double aError = angle;

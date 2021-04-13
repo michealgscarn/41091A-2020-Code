@@ -47,43 +47,42 @@ void a_HRC_HMC_HLC_D(){
 // ---------- GOAL 1 ---------- //
   // ----- Goal ----- //
   // pros::Task Ayup(deploy);
-  DriveCoordShort(113.4,34,141,1);  // Line up with the Home right Goal
-  deploy();
+  DriveCoordShort(113.4,33,141,1);  // Line up with the Home right Goal
+  deploy();   //Deploy the intake and hoods
   maxSpeed=300;
-  DriveCoordShort(125,17,135,1);  // Drive into the Home right Goal
-  cycleScore(3,2.75,1);
+  DriveCoordShort(125,15.5,135,1);  // Drive into the Home right Goal
+  cycleScore(3,2.75,1);   //Cycle out the opponent ball and score 3 alliance balls
 
 // ---------- GOAL 2 ---------- //
   maxSpeed=600; // Speed up the Robot
-  DriveCoordShort(83,32,206,1.75); // Line up with the Home middle Goal
+  DriveCoordShort(122,18,141,.25);  // Back away from Home right Goal
+  DriveCoordShort(81,32,200,1.5); // Line up with the Home middle Goal
   while(ballFiltering()){pros::delay(10);}
   maxSpeed=300; // Slow down the Robot
   setLift(0);
   setDelivery(0);
   setIntake(0);
-  DriveCoordShort(75,21,210,0.9); // Drive into the Home middle Goal
-  cycleScore(2,4,1);
+  DriveCoordShort(73,21.5,195,1); // Drive into the Home middle Goal
+  cycleScore(2,4,1);    //Cycle out opponent ball and score one alliance ball
 
 // ---------- GOAL 3 ---------- //
   // ----- Ball 1 ----- //
   setDelivery(0); // Stop scoring
   setLift(0); // Stop scoring
   maxSpeed=600; // Speed up the Robot
-  DriveCoordShort(72,40,180,2); // Back away from the Home middle Goal
+  DriveCoordShort(72,40,180,1.75); // Back away from the Home middle Goal
 
-  DriveCoordShort(28,31,270,2); // Back away from the Home middle Goal
-  quickAlign(26,4);
-  DriveCoordShort(36,36,223,1); // Back away from the Home middle Goal
-  // DriveCoordShort(25,35,228,2); // Line up with the Home left Goal
-  // DriveCoordShort(27,35,228,0.75); // Line up with the Home left Goal
+  DriveCoordShort(33,36,270,1.7); // Drive to point for reset odom
+  quickAlign(26,4); // Reset odom
+  DriveCoordShort(36,36,223,0.8); // Line up with Home Left Goal
   setIntake(50); // Spin Intake forward to pick up Ball
 
   // ----- Goal ----- //
   maxSpeed=300; //  Slow down the Robot
-  DriveCoordShort(14,16,228,1); // Drive into Home left Goal
+  DriveCoordShort(14,16,230,1); // Drive into Home left Goal
   filter=false;
   cycleScore(3,2.25,1);  // Score until picked up ball has reached the top of Robot
 
-  maxSpeed=1000;  // GOT TO GO FAST
+  maxSpeed=1000;  // GOTTA GO FAST
   DriveCoordShort(27,35.6,232,1); // Back away from Goal
 }

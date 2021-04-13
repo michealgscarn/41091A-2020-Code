@@ -8,14 +8,14 @@ using namespace okapi;
  | |_| || || (_) || |_) || (_| || |     | |___| (_) || |_| || | | || |_
   \____||_| \___/ |_.__/  \__,_||_|      \____|\___/  \__,_||_| |_| \__|
 
-Created on 11/11/2020 by Taylor and Logan
-Last updated on 1/7/2021 by Logan
+Created on 11/9/2020 by Taylor and Logan
+Last updated on 2/19/2021 by Logan
 
 -----------------------------------------------------------------------------*/
 
 // ---------------------- BALL COUNT ---------------------- //
 // Total number of balls that have gone through the robot.  //
-int ballCount;
+int ballCount=0;
 
 
 // ----------------- FILTER COUNT ----------------- //

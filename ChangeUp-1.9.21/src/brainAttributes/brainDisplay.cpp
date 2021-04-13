@@ -9,7 +9,7 @@ using namespace okapi;
                 |_|               |___/
 
 Created on 10/20/2020 by Logan and Taylor
-Last Updated on 2/11/2021 by Logan
+Last Updated on 2/26/2021 by Logan
 
 Print information on the Brain Screen
 

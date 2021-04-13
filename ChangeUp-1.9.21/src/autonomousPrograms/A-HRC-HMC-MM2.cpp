@@ -83,6 +83,7 @@ void a_HRC_HMC_MM2(){
   right_bc_mtr.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   DriveCoordShort(36,59,360,0.8); // Pick up ball
   while(!ballIn()){pros::delay(10);}
+  pros::delay(600);
 
   // ----- Ball 2 ---- //
   setIntake(-10);  // Unfold Intake

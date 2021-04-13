@@ -9,7 +9,7 @@ using namespace okapi;
  |_|  |_| \__,_||_||_| |_|
 
 Created on 7/14/2020 by Logan and Taylor
-Last Updated on 3/5/2021 by Logan
+Last Updated on 3/31/2021 by Logan
 
 The Main function Initializes the program as it starts.
 It starts autonomous, driver control and everything competition.
@@ -27,7 +27,7 @@ void initialize() {
   pros::Task controllerDisplay(controllerDisplaySel);  // Start Controller display to see info
   pros::Task controllerVibrate(controllerVibrateTemp);  // Start Controller vibration to see info
   // ----- Brain ----- //
-  pros::Task brainDisplay(brainDisplayAlign); // Display information to the Brain
+  pros::Task brainDisplay(brainDisplayBall); // Display information to the Brain
   // ----- Ball Updates ----- //
   pros::Task ballUpdate(ballCountTask); // Update ball count since the start of the program
   // pros::Task ballExitUpdate(ballExitCountTask); // Update ball count since the start of the program
@@ -98,21 +98,22 @@ void autonomous() {
   // 15 second autonomous                                                     //
   // Used when partner consistantly score Home Middle and Home Left           //
   else if(autoSel=="a_HRC_MM2")
-  a_HRC_MM2();
+  // a_HRC_MM2();
+  pros::delay(10);
   // ------------------------------------------------------------------------ //
 
   // ----- HOME LEFT CYCLE + CENTER ----------------------------------------- //
   // 15 second autonomous                                                     //
   // Used when partner consistantly score Home Middle and Home Right          //
   else if(autoSel=="a_HLC_MM2")
-  a_HLC_MM2();
+  a_HRC_HMC();
   // ------------------------------------------------------------------------ //
 
   // ----- SKILLS ----------------------------------------------------------- //
   // 1 minute autonomous                                                      //
   // Skills Autonomous                                                        //
   else if(autoSel=="Skills")
-    A_SKILLS_JANUARY_FEBRUARY_2021();
+    a_HLC_MM1_MLF();
   // ------------------------------------------------------------------------ //
 
   // ----- DEFAULT ---------------------------------------------------------- //

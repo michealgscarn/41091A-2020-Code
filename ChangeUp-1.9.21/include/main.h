@@ -88,6 +88,7 @@ void opcontrol(void);
 #include "autonomousPrograms/A-HRC-HMC-HLC.hpp"
 #include "autonomousPrograms/A-HRC-HMC-HLC-D.hpp"
 #include "autonomousPrograms/A-HLC-MM1-MRC.hpp"
+#include "autonomousPrograms/A-HLC-MM1-MLF.hpp"
 #include "autonomousPrograms/A-HLC-MM2.hpp"
 #include "autonomousPrograms/A-HRC-HLC.hpp"
 #include "autonomousPrograms/A-HLC-MM1-HRC.hpp"

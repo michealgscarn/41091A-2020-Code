@@ -13,6 +13,8 @@ Last updated on 2/15/2021 by Logan
 -----------------------------------------------------------------------------*/
 
 bool isCycleScoreSetup=false; //  Communication between Setup command and Autonomous
+bool filter=true;
+bool stopFilter=false;
 
 void cycleScoreSetup(){
   isCycleScoreSetup=false;  // Tell the Autonomous that the ball is not set up
@@ -28,16 +30,17 @@ void cycleScoreSetup(){
   isCycleScoreSetup=true; // Tell the Autonomous the ball is set up
 }
 
-
-bool filter=true;
-bool stopFilter=false;
-
+// ------------ CYCLE SCORE FILTER ------------- //
+// Cycle a goal in autononous.                   //
+// Best used in Tournament autonomous.           //
+// Cycles a goal based on ball count.            //
+// Does only filters final ball.                 //
 void cycleScoreFilter(){
-  stopFilter=false;
+  stopFilter=false; //
   setLift(-127);
   while(ballIn()){
     if(stopFilter)
-      pros::delay(10000000);
+     break;
     pros::delay(10);
   }
   setLift(127);
@@ -48,7 +51,7 @@ void cycleScoreFilter(){
   setDelivery(0);
 }
 
-// ---------------- CYCLE SCORE NO INTAKE---------------- //
+// ----------- CYCLE SCORE NO INTAKE ----------- //
 // Cycle a goal in autononous.                   //
 // Best used in Tournament autonomous.           //
 // Cycles a goal based on ball count.            //
@@ -106,7 +109,7 @@ void cycleScoreCorner(int cycleBall,double cycleTime, int startBallCount){
   if(startBallCount==1)
     setLift(127);
   if(startBallCount==2)
-    setLift(70);  // Lift Balls to Deliver
+    setLift(50);  // Lift Balls to Deliver
   setDelivery(127); // Shoot Balls into Goal
 
   int targetBallCount=ballCount+cycleBall;  // Set the amount of balls to cycle
@@ -116,6 +119,8 @@ void cycleScoreCorner(int cycleBall,double cycleTime, int startBallCount){
     setDelivery(127); // Shoot Balls into Goal
     pros::delay(10);
   }
+  pros::delay(200);
+  setLift(90);
   int instance=pros::millis()+400;
   while((ballCount<targetBallCount) & (pros::millis()<targetTime-500)){
     if(pros::millis()>instance)
